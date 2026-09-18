@@ -19,15 +19,51 @@
     boot.loader.systemd-boot.enable = true;
   };
 
-  evalSystem = nixpkgs': dwlConfig:
+  evalWith = nixpkgs': modules:
     (nixpkgs'.lib.nixosSystem {
       inherit system;
-      modules = [
-        base
-        self.nixosModules.default
-        {programs.dwl = {enable = true;} // dwlConfig;}
-      ];
+      specialArgs.inputs.dwl-flake = self;
+      modules = [base self.nixosModules.default] ++ modules;
     }).config;
+
+  evalSystem = nixpkgs': dwlConfig: evalWith nixpkgs' [{programs.dwl = {enable = true;} // dwlConfig;}];
+
+  standalone = flakeModule: class: module: extraOptions: let
+    config =
+      (lib.evalModules {
+        inherit class;
+        modules = [
+          flakeModule
+          module
+          {
+            options = with lib;
+              {
+                assertions = mkOption {
+                  type = types.listOf types.unspecified;
+                  default = [];
+                };
+                warnings = mkOption {
+                  type = types.listOf types.str;
+                  default = [];
+                };
+                lib = mkOption {
+                  type = types.attrsOf types.attrs;
+                  default = {};
+                };
+              }
+              // extraOptions;
+            config._module.args.pkgs = pkgs;
+          }
+        ];
+      }).config;
+    failed = map (a: a.message) (lib.filter (a: !a.assertion) config.assertions);
+  in
+    lib.throwIf (failed != []) (lib.concatStringsSep "\n" failed) config.programs.dwl.package;
+
+  packagesOption = lib.mkOption {
+    type = lib.types.listOf lib.types.package;
+    default = [];
+  };
 
   evaluates = name: config:
     pkgs.writeText "dwl-check-${name}" (builtins.unsafeDiscardStringContext config.system.build.toplevel.drvPath);
@@ -108,6 +144,11 @@ in
       keybinds."Super+Return".spawn = "foot";
     };
 
+    docs-fresh = pkgs.runCommand "dwl-docs-fresh" {} ''
+      diff -u ${../docs.md} ${self.packages.${system}.docs}
+      touch $out
+    '';
+
     index-fresh = pkgs.runCommand "dwl-patches-index-fresh" {} ''
       ${lib.getExe gen-index} ${genIndexArgs} > fresh.json
       diff -u ${../nix/patches.json} fresh.json
@@ -119,6 +160,27 @@ in
     nixos-unstable = evaluates "nixos-unstable" (evalSystem nixpkgs full);
     nixos-stable = evaluates "nixos-stable" (evalSystem nixpkgs-stable {channel = "stable";});
     nixos-home-manager-build = evaluates "hm-build" (evalSystem nixpkgs {useHomeManagerBuild = true;});
+
+    lib-helper = evaluates "lib-helper" (evalWith nixpkgs [
+      ({config, ...}: {
+        programs.dwl = {
+          enable = true;
+          settings.accel_profile = config.lib.dwl.c "LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT";
+        };
+      })
+    ]);
+
+    home-manager-module = standalone self.homeModules.default "homeManager" {programs.dwl.enable = true;} {home.packages = packagesOption;};
+    hjem-module = standalone self.hjemModules.default "hjem" {programs.dwl.enable = true;} {packages = packagesOption;};
+
+    example-nixos = (evalWith nixpkgs [../examples/nixos.nix]).programs.dwl.package;
+    example-patches = (evalWith nixpkgs [../examples/patches.nix]).programs.dwl.package;
+    example-config-h = (evalWith nixpkgs [../examples/config-h.nix]).programs.dwl.package;
+    example-home = standalone self.homeModules.default "homeManager" ../examples/home.nix {home.packages = packagesOption;};
+    example-package = import ../examples/package.nix {
+      inherit pkgs;
+      dwl-flake = self;
+    };
 
     assert-modifier = failsWith "modifier" "unknown modifier 'Hyper'" {keybinds."Hyper+x" = "quit";};
     assert-modkey = failsWith "modkey" "modKey 'Meta'" {modKey = "Meta";};

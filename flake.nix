@@ -83,6 +83,10 @@
         '';
       };
 
+      docs = import ./nix/docs.nix {inherit pkgs nixpkgs self;};
+
+      update-docs = pkgs.writeShellScriptBin "update-docs" "install -m644 ${docs} docs.md";
+
       update = pkgs.writeShellApplication {
         name = "update";
         runtimeInputs = with pkgs; [git gnused gnugrep coreutils];
@@ -92,6 +96,7 @@
           sed -i -E "s|(codeberg.org/dwl/dwl\?ref=refs/tags/)[^&\"]+|\1$latest|" flake.nix
           nix flake update
           nix run .#update-index
+          nix run .#update-docs
         '';
       };
     });
@@ -108,16 +113,25 @@
           (import ./nix/nixos-module.nix {
             inherit mkDwl;
             homeModule = self.homeModules.dwl;
+            homeStylixModule = self.homeModules.stylix;
           })
         ];
       };
       default = dwl;
+      stylix = {
+        key = "dwl-flake#nixosModules.stylix";
+        imports = [./nix/stylix.nix];
+      };
     };
 
     homeModules = rec {
       dwl = {
         key = "dwl-flake#homeModules.dwl";
         imports = [(import ./nix/hm-module.nix mkDwl)];
+      };
+      stylix = {
+        key = "dwl-flake#homeModules.stylix";
+        imports = [./nix/stylix.nix];
       };
       default = dwl;
     };

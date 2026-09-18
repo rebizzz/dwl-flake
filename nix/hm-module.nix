@@ -19,11 +19,14 @@ in {
       };
     };
 
-  config = lib.mkIf cfg.enable {
-    assertions = shared.assertions shared.package;
-    inherit (shared) warnings;
-    home.packages = [cfg.package];
-  };
+  config = lib.mkMerge [
+    {lib.dwl = import ./config.nix {inherit lib;};}
+    (lib.mkIf cfg.enable {
+      assertions = shared.assertions shared.package;
+      inherit (shared) warnings;
+      home.packages = [cfg.package];
+    })
+  ];
 
   _class = "homeManager";
 }

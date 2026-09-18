@@ -1,6 +1,7 @@
 {
   mkDwl,
   homeModule,
+  homeStylixModule,
 }: {
   config,
   lib,
@@ -80,9 +81,12 @@ in {
       };
 
       polkitAgent.enable = lib.mkEnableOption "a polkit authentication agent in the dwl session" // {default = true;};
+
+      keyring.enable = lib.mkEnableOption "gnome-keyring for storing secrets in the dwl session" // {default = true;};
     };
 
   config = lib.mkMerge [
+    {lib.dwl = import ./config.nix {inherit lib;};}
     (lib.mkIf cfg.enable (lib.mkMerge [
       {
         assertions = shared.assertions shared.package;
@@ -92,6 +96,7 @@ in {
         services.displayManager.sessionPackages = [sessionPackage];
         hardware.graphics.enable = lib.mkDefault true;
         fonts.enableDefaultPackages = lib.mkDefault true;
+        services.gnome.gnome-keyring.enable = lib.mkIf cfg.keyring.enable (lib.mkDefault true);
 
         xdg = {
           autostart.enable = lib.mkDefault true;
@@ -131,7 +136,7 @@ in {
       })
     ]))
     (lib.optionalAttrs (options ? home-manager) {
-      home-manager.sharedModules = [homeModule];
+      home-manager.sharedModules = [homeModule] ++ lib.optional (options ? stylix) homeStylixModule;
     })
   ];
 
