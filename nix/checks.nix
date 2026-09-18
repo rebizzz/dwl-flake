@@ -156,9 +156,12 @@ in
         };
         services.greetd = {
           enable = true;
-          settings.initial_session = {
-            user = "alice";
-            command = "dwl-session";
+          settings = {
+            default_session.command = "${pkgs.greetd}/bin/agreety --cmd dwl-session";
+            initial_session = {
+              user = "alice";
+              command = "dwl-session";
+            };
           };
         };
         environment.systemPackages = [pkgs.foot];
