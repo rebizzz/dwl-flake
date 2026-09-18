@@ -64,3 +64,12 @@ jobs:
             [ -z "$pending" ] && break
             for id in $pending; do gh api -X POST "repos/${{ github.repository }}/actions/runs/$id/approve" || true; done
           done
+
+          for _ in $(seq 1 90); do
+            state=$(gh pr view update --json state -q .state)
+            [ "$state" = OPEN ] || break
+            sleep 10
+          done
+          if [ "$state" = MERGED ]; then
+            gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/update" || true
+          fi

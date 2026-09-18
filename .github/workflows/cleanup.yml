@@ -3,18 +3,13 @@ name: cleanup
 on:
   pull_request:
     types: [closed]
-  workflow_run:
-    workflows: [check]
-    types: [completed]
-    branches: [update]
 
 permissions:
   contents: write
-  pull-requests: read
 
 jobs:
   delete-branch:
-    if: github.event_name == 'workflow_run' || github.event.pull_request.head.ref == 'update'
+    if: github.event.pull_request.head.ref == 'update'
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
