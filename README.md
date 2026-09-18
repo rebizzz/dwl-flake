@@ -96,7 +96,7 @@ All options are listed in [docs.md](docs.md). The main ones:
 | `settings` | any variable from `config.def.h`, including ones added by patches |
 | `configH` | use your own `config.h` instead |
 
-See [examples](examples) for complete configs.
+The [examples](examples) go from a minimal setup to patches, Home Manager and your own `config.h`.
 
 ## Patches
 

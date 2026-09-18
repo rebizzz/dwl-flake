@@ -173,14 +173,12 @@ in
     home-manager-module = standalone self.homeModules.default "homeManager" {programs.dwl.enable = true;} {home.packages = packagesOption;};
     hjem-module = standalone self.hjemModules.default "hjem" {programs.dwl.enable = true;} {packages = packagesOption;};
 
-    example-nixos = (evalWith nixpkgs [../examples/nixos.nix]).programs.dwl.package;
-    example-patches = (evalWith nixpkgs [../examples/patches.nix]).programs.dwl.package;
-    example-config-h = (evalWith nixpkgs [../examples/config-h.nix]).programs.dwl.package;
-    example-home = standalone self.homeModules.default "homeManager" ../examples/home.nix {home.packages = packagesOption;};
-    example-package = import ../examples/package.nix {
-      inherit pkgs;
-      dwl-flake = self;
-    };
+    example-1-minimal = (evalWith nixpkgs [../examples/1-minimal.nix]).programs.dwl.package;
+    example-2-everyday = (evalWith nixpkgs [../examples/2-everyday.nix]).programs.dwl.package;
+    example-3-patches = (evalWith nixpkgs [../examples/3-patches.nix]).programs.dwl.package;
+    example-4-home-manager-nixos = evaluates "example-4" (evalWith nixpkgs [{inherit (import ../examples/4-home-manager.nix) programs;}]);
+    example-4-home-manager-user = standalone self.homeModules.default "homeManager" (import ../examples/4-home-manager.nix).home-manager.users.alice {home.packages = packagesOption;};
+    example-5-own-config-h = (evalWith nixpkgs [../examples/5-own-config-h]).programs.dwl.package;
 
     assert-modifier = failsWith "modifier" "unknown modifier 'Hyper'" {keybinds."Hyper+x" = "quit";};
     assert-modkey = failsWith "modkey" "modKey 'Meta'" {modKey = "Meta";};
