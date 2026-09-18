@@ -1,0 +1,82 @@
+{
+  "nodes": {
+    "dwl-patches-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789628052,
+        "narHash": "sha256-eHuOv83oWde+ievxdJ0MTDavy44i0PCk+aujluEZQ/0=",
+        "ref": "refs/heads/main",
+        "rev": "f93e314dc5b171f593bb8c1786f119f51fbf09c7",
+        "shallow": true,
+        "type": "git",
+        "url": "https://codeberg.org/dwl/dwl-patches"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "https://codeberg.org/dwl/dwl-patches"
+      }
+    },
+    "dwl-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789720647,
+        "narHash": "sha256-z7Jv3fP36RL8X5qlyP+KumbpawMkpLHC81vZmZ5FwBY=",
+        "ref": "refs/heads/main",
+        "rev": "45054a34a4f4817c7a87576147fdbbc8272af0a0",
+        "shallow": true,
+        "type": "git",
+        "url": "https://codeberg.org/dwl/dwl"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "https://codeberg.org/dwl/dwl"
+      }
+    },
+    "dwl-stable-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766876912,
+        "narHash": "sha256-J76L5ZOCYgfcY08wH5cSLG+UdgDrv50lQyEnJNqDkXI=",
+        "ref": "refs/tags/v0.8",
+        "rev": "9b11a49cb757b80f8589088b487b5f1e56643aa1",
+        "shallow": true,
+        "type": "git",
+        "url": "https://codeberg.org/dwl/dwl"
+      },
+      "original": {
+        "ref": "refs/tags/v0.8",
+        "shallow": true,
+        "type": "git",
+        "url": "https://codeberg.org/dwl/dwl"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1789684949,
+        "narHash": "sha256-ZKhUe/2IJUq1JhKxKMu8rbkgSGmPP2ZCqlIPn40aGCM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e554fab72f81915600f3f449b786fd9af40439a5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "dwl-patches-src": "dwl-patches-src",
+        "dwl-src": "dwl-src",
+        "dwl-stable-src": "dwl-stable-src",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

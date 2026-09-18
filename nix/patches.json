@@ -1,0 +1,3242 @@
+{
+  "accessnthmon": {
+    "default": {
+      "main": null,
+      "stable": "accessnthmon.patch"
+    },
+    "description": "Port of dwm's accessnthmon. Adds functions to tag and focus monitor by index.",
+    "files": {
+      "accessnthmon.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-05-10"
+      }
+    }
+  },
+  "alwayscenter": {
+    "default": {
+      "main": "alwayscenter.patch",
+      "stable": "alwayscenter.patch"
+    },
+    "description": "Automatically center floating windows.",
+    "files": {
+      "alwayscenter.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2026-01-15"
+      }
+    }
+  },
+  "attachbottom": {
+    "default": {
+      "main": "attachbottom.patch",
+      "stable": "attachbottom.patch"
+    },
+    "description": "Newly created windows are placed at the bottom of the client tile stack.",
+    "files": {
+      "attachbottom.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-05-16"
+      }
+    }
+  },
+  "attachfocused": {
+    "default": {
+      "main": "attachfocused.patch",
+      "stable": "attachfocused.patch"
+    },
+    "description": "Makes windows attach below the currently active window.",
+    "files": {
+      "attachfocused.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "attachtop": {
+    "default": {
+      "main": "attachtop.patch",
+      "stable": "attachtop.patch"
+    },
+    "description": "This is a port of attachtop patch for dwm: https://dwm.suckless.org/patches/attachtop",
+    "files": {
+      "attachtop.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2025-06-16"
+      }
+    }
+  },
+  "autostart": {
+    "default": {
+      "main": "autostart_main-5fd19fe.patch",
+      "stable": "autostart_0.8.patch"
+    },
+    "description": "Allow dwl to execute commands from autostart array in your config.h file. And when you exit dwl all processes from autostart array will be killed.",
+    "files": {
+      "autostart_0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "autostart_0.8.patch"
+      },
+      "autostart_main-5fd19fe.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "autostart_main-5fd19fe"
+      },
+      "autostart_wlroots-next-f4249db.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "autostart_wlroots-next-f4249db.patch"
+      }
+    }
+  },
+  "bar": {
+    "default": {
+      "main": null,
+      "stable": "bar.patch"
+    },
+    "description": "Add a bar identical to dwm's bar.",
+    "files": {
+      "bar-0.6.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [
+          "fcft",
+          "libdrm",
+          "pixman-1"
+        ],
+        "target": "0.6"
+      },
+      "bar-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [
+          "fcft",
+          "libdrm",
+          "pixman-1"
+        ],
+        "target": "0.7"
+      },
+      "bar.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [
+          "fcft",
+          "libdrm",
+          "pixman-1"
+        ],
+        "target": "main 2026-01-05"
+      }
+    }
+  },
+  "bar-appicons": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Adds support for app icons that can replace the tag indicator and tag name.\nThis feature is configurable through an additional option in `rules`.",
+    "files": {
+      "bar-appicons.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": null
+      }
+    }
+  },
+  "bar-awesomebar": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Based on the corresponding `dwm` patch, this patch implements the AwesomeWM-style bar for `dwl`.",
+    "files": {
+      "bar-awesomebar.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2026-08-03"
+      }
+    }
+  },
+  "bar-modes": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Add a mode indicator to bar that tells which mode you are in, just like\nriver-classic's [dam](https://codeberg.org/sewn/dam) bar.",
+    "files": {
+      "bar-modes.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "bar-notitle": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Add a `window_title` option to toggle showing window titles in the bar, similar to the DWM `notitle` patch.",
+    "files": {
+      "bar-notitle.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "bar-recolr": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": null,
+    "files": {
+      "bar-recolr.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "git branch"
+      }
+    }
+  },
+  "bar-systray": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Add a system tray to the [bar](/dwl/dwl-patches/src/branch/main/patches/bar).",
+    "files": {
+      "bar-systray-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [
+          "dbus-1",
+          "fcft",
+          "pixman-1"
+        ],
+        "target": "0.7"
+      }
+    }
+  },
+  "barborder": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Add a border around the [bar](/dwl/dwl-patches/wiki/bar) similar to how a client is given a border.",
+    "files": {
+      "barborder.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "barcolors": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Add support for colored status text to the [bar](/dwl/dwl-patches/src/branch/main/patches/bar). Text can be colored in the same manner as with dwlb, namely by wrapping it between `^fg(color)` and `^fg()` or `^bg(color)` and `^bg()`, where `color` is a 6-digit hexadecimal value.",
+    "files": {
+      "barcolors.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "barconfig": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch **requires** the dwl [barconfig](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar) patch be applied first! The barconfig patch provides configuration for the dwl bar via the variable\n`barlayout`. This determines which of the elements listed below to\ndisplay on the bar and in which order:",
+    "files": {
+      "barconfig.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2025-10-24"
+      }
+    }
+  },
+  "barpadding": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Add vertical and horizontal space between the [bar](/dwl/dwl-patches/wiki/bar) and the edge of the screen.",
+    "files": {
+      "barpadding.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "bartruecenteredtitle": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "A homegrown port of dwm's _truecenteredtitle_ patch, with the addition of a config option to toggle its effects.<br>Requires [the bar patch](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar) to be applied beforehand.",
+    "files": {
+      "bartruecenteredtitle.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.7/v0.6"
+      }
+    }
+  },
+  "better-resize": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch allows you to configure window resizing more flexibly.\nIt introduces three options with the following possible values:",
+    "files": {
+      "better-resize-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "borderlessrule": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Borderless client if rule set to borderless",
+    "files": {
+      "borderlessrule.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2025-11-29"
+      }
+    }
+  },
+  "borders": {
+    "default": {
+      "main": null,
+      "stable": "borders.patch"
+    },
+    "description": "Adds 2 more borders to each side (top, bottom, left, right) of every window.",
+    "files": {
+      "borders.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-06-04"
+      }
+    }
+  },
+  "bottomstack": {
+    "default": {
+      "main": "bottomstack.patch",
+      "stable": "bottomstack.patch"
+    },
+    "description": "bstack and bstackhoriz are two stack layouts for dwl.",
+    "files": {
+      "bottomstack.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "btrtile": {
+    "default": {
+      "main": null,
+      "stable": "btrtile-v0.8-gaps.patch"
+    },
+    "description": "# btrtile — A Focus-Driven Tiling Layout",
+    "files": {
+      "btrtile-v0.8-gaps.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8 WITH gaps"
+      },
+      "btrtile-v0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      },
+      "btrtile-wlroots-next-d41ecb7-gaps.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "wlroots-next WITH gaps"
+      },
+      "btrtile-wlroots-next-d41ecb7.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "wlroots-next"
+      }
+    }
+  },
+  "buttonbystate": {
+    "default": {
+      "main": null,
+      "stable": "buttonbystate.patch"
+    },
+    "description": "Adds \"state\" (`enum wlr_button_state`) to configure a button action on either press or release.\nThis basically enables release to be used for button actions.",
+    "files": {
+      "buttonbystate.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-04-06"
+      }
+    }
+  },
+  "center-terminal": {
+    "default": {
+      "main": "center-terminal.patch",
+      "stable": null
+    },
+    "description": "Add a keybinding that toggles centering the terminally horizontally when\nit's the only window, while still tiling multiple windows.",
+    "files": {
+      "center-terminal.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2026-09-16"
+      }
+    }
+  },
+  "centeredmaster": {
+    "default": {
+      "main": null,
+      "stable": "centeredmaster-0.8.patch"
+    },
+    "description": "This is a port of centeredmaster patch for dwm: <https://dwm.suckless.org/patches/centeredmaster>",
+    "files": {
+      "centeredmaster-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "centeredmaster-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "cfact": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "A port of the [dwm cfacts patch](https://dwm.suckless.org/patches/cfacts/) (with the limits removed)",
+    "files": {
+      "cfact-v0.6.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.6"
+      },
+      "cfact-v0.7-gaps.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.7-gaps"
+      },
+      "cfact-v0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.7"
+      },
+      "cfact.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-02-15"
+      }
+    }
+  },
+  "cfact-snail": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch implements [cfact][cfact] for [snail][snail] layout.\nThis patch must be applied on top of cfact and snail patches.",
+    "files": {
+      "cfact-snail.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.7"
+      }
+    }
+  },
+  "chainkeys": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Implements chained keybindings (like the dwm\n[keychain](https://dwm.suckless.org/patches/keychain/) patch).",
+    "files": {
+      "chainkeys.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-05-20"
+      }
+    }
+  },
+  "client-opacity": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch adds default transparency parameters to config.h which specify the starting transparencies of all windows.",
+    "files": {
+      "client-opacity.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2025-01-20"
+      }
+    }
+  },
+  "client-opacity-focus": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch is based on the\n[client-opacity](https://codeberg.org/dwl/dwl-patches/raw/branch/main/patches/client-opacity/client-opacity.patch)\npatch. This patch adds differing opacity levels depending upon whether the client is focused or not.",
+    "files": {
+      "client-opacity-focus.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2026-04-27"
+      }
+    }
+  },
+  "color_manager": {
+    "default": {
+      "main": null,
+      "stable": "color_manager.patch"
+    },
+    "description": "Adds simple support for color management using `wp_color_manager_v1`.",
+    "files": {
+      "color_manager.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [
+          "libdrm"
+        ],
+        "target": "main 2025-06-18"
+      }
+    }
+  },
+  "column": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "A column layout patch. This patch just puts the visible clients into equal-width columns on the screen.",
+    "files": {
+      "column.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-01-02"
+      }
+    }
+  },
+  "controlled_fullscreen": {
+    "default": {
+      "main": null,
+      "stable": "controlled_fullscreen.patch"
+    },
+    "description": "\tThis patch allows a window to adjust its layout as if it was fullscreen, but it won't change its size and position, and it will stays under the control of dwl. For example a video on a browser can occupy the whole space reserved to the window, but we can still resize it and move it and see the status bar. ",
+    "files": {
+      "controlled_fullscreen.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "dwl 0.8"
+      },
+      "controlled_fullscreen_2025_10_08.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2025-10-08"
+      },
+      "controlled_fullscreen_2025_11_13.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2025-11-13"
+      }
+    }
+  },
+  "coredump": {
+    "default": {
+      "main": "coredump.patch",
+      "stable": "coredump.patch"
+    },
+    "description": "Generate a coredump if dwl exited abnormally (to be more useful you need to\ncompile dwl and wlroots with debug symbols)",
+    "files": {
+      "coredump-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "coredump-0.7.patch"
+      },
+      "coredump.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "main 2025-01-20"
+      }
+    }
+  },
+  "cursortheme": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Adds ability to change cursor's theme and size.",
+    "files": {
+      "cursortheme.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-09"
+      }
+    }
+  },
+  "customfloat": {
+    "default": {
+      "main": "customfloat_main-5fd19fe.patch",
+      "stable": "customfloat_0.8.patch"
+    },
+    "description": "Rules for floating windows support default x, y, width, height. Defaults to the center of the screen and the client size.",
+    "files": {
+      "customfloat_0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "customfloat_0.8"
+      },
+      "customfloat_main-5fd19fe.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "customfloat_main-5fd19fe"
+      },
+      "customfloat_wlroots-next-f4249db.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "customfloat_wlroots-next-f4249db"
+      }
+    }
+  },
+  "decklayout": {
+    "default": {
+      "main": "decklayout.patch",
+      "stable": "decklayout.patch"
+    },
+    "description": "Deck is a dwl-layout which is inspired by the dwm Deck layout (which is inspired by TTWM window manager). It applies the monocle-layout to the clients in the stack. The master-client is still visible. The stacked clients are like a deck of cards, hence the name.",
+    "files": {
+      "decklayout.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "dim-unfocused": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Implements dimming of clients which are unfocused.",
+    "files": {
+      "dim-unfocused-20230516.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": null
+      },
+      "dim-unfocused-20240416.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-04-16"
+      },
+      "dim-unfocused-20240714.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-14"
+      },
+      "dim-unfocused-20240903.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-09-03"
+      },
+      "dim-unfocused-20240918.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-09-18"
+      },
+      "dim-unfocused.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2026-03-10"
+      }
+    }
+  },
+  "disable-keybindings-on-fullscreen": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch disables all keybindings except `togglefullscreen` when the focused window is fullscreen.\nMight help prevent fat-fingering.",
+    "files": {
+      "disable-keybindings-on-fullscreen.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2025-02-09"
+      }
+    }
+  },
+  "disable-keybindings-on-fullscreen-toggle": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch changes the default behavior of the [disable-keybindings-on-fullscreen](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/disable-keybindings-on-fullscreen) patch by only taking effect when you explicitly toggle the functionality.\nYou must apply that patch prior to applying this one.",
+    "files": {
+      "disable-keybindings-on-fullscreen-toggle-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "dragmfact": {
+    "default": {
+      "main": "dragmfact.patch",
+      "stable": "dragmfact.patch"
+    },
+    "description": "Change mfact by dragging the mouse.",
+    "files": {
+      "dragmfact-v0.6.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.6"
+      },
+      "dragmfact-v0.7.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.7"
+      },
+      "dragmfact.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-02-16"
+      }
+    }
+  },
+  "dragresize": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "implement rio-like window resizing",
+    "files": {
+      "dragresize.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-10"
+      }
+    }
+  },
+  "drm_lease": {
+    "default": {
+      "main": null,
+      "stable": "drm_lease.patch"
+    },
+    "description": "Adds support for drm-lease-v1 for embedded displays such as VR headsets",
+    "files": {
+      "drm_lease.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "main 2026-02-25"
+      }
+    }
+  },
+  "dwindle": {
+    "default": {
+      "main": "dwindle.patch",
+      "stable": "dwindle.patch"
+    },
+    "description": "Adds a dwindle (fibonacci-style) layout to dwl.\nWindows are arranged by recursively splitting the remaining space,\nalternating between horizontal and vertical splits",
+    "files": {
+      "dwindle.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "en-keycodes": {
+    "default": {
+      "main": null,
+      "stable": "en-keycodes-0.8.patch"
+    },
+    "description": "Always use the English keymap to get keycodes, so key bindings work even when using a non-English keyboard layout.",
+    "files": {
+      "en-keycodes-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "en-keycodes-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "envcfg": {
+    "default": {
+      "main": null,
+      "stable": "envcfg.patch"
+    },
+    "description": "Input device configuration (click method, tap-and-drag, acceleration, etc), border size and colors via environment variables.",
+    "files": {
+      "envcfg.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-02-11"
+      }
+    }
+  },
+  "extrabar": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": null,
+    "files": {
+      "extrabar.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": null
+      }
+    }
+  },
+  "fakefullscreenclient": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Allow setting fake fullscreen per client",
+    "files": {
+      "fakefullscreenclient.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-03-29"
+      }
+    }
+  },
+  "fallback": {
+    "default": {
+      "main": "fallback.patch",
+      "stable": "fallback.patch"
+    },
+    "description": "Tries a different display mode if the preferred mode doesn't work.",
+    "files": {
+      "fallback.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-02-11"
+      }
+    }
+  },
+  "focusdir": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Focus the window to the left, right, above or below the current focused window",
+    "files": {
+      "focusdir.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2023-01-22"
+      }
+    }
+  },
+  "focusonurgent": {
+    "default": {
+      "main": "focusonurgent.patch",
+      "stable": "focusonurgent.patch"
+    },
+    "description": "By default, dwl responds to client requests to client messages by setting the urgency bit on the named window.\nThis patch changes the focus to the window instead.\nBoth behaviours are legitimate according to the cursed spec. \nThis is the approximately the equivalent of the focusonactive patch of dwm.\nIf you want a more controlled behavior, for example setting which clients can focus, check [activation-rule patch](https://codeberg.org/sevz/dwl-patches/src/branch/activation-rules).",
+    "files": {
+      "focusonurgent.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "main dwl 0.8"
+      }
+    }
+  },
+  "follow": {
+    "default": {
+      "main": "follow.patch",
+      "stable": "follow.patch"
+    },
+    "description": "An extremely simple patch that adds the option to change DWL's window sending behavior; when active, sent windows will be followed, i.e. when a window is sent to another tag, the view changes to that tag.<br>No dependencies.",
+    "files": {
+      "follow.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.7"
+      }
+    }
+  },
+  "foreign-toplevel-management": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Implement `foreign-toplevel-management`, it add handlers for activate, close, fullscreen and destroy request events, it's missing minimize and maximize request handlers.",
+    "files": {
+      "foreign-toplevel-management.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-05-02"
+      }
+    }
+  },
+  "fullscreenadaptivesync": {
+    "default": {
+      "main": "fullscreenadaptivesync-v0.8.patch",
+      "stable": "fullscreenadaptivesync-v0.8.patch"
+    },
+    "description": "# fullscreenadaptivesync — Enables adaptive sync/VRR when a client is fullscreen.",
+    "files": {
+      "fullscreenadaptivesync-v0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      },
+      "fullscreenadaptivesync-wlroots-next-d41ecb7.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "wlroots-next-d41ecb7"
+      }
+    }
+  },
+  "gamepad-bindings": {
+    "default": {
+      "main": null,
+      "stable": "gamepad-bindings.patch"
+    },
+    "description": "Gamepad bindings to dwl. Press `LB + RB` toggle gamepad bindings.",
+    "files": {
+      "gamepad-bindings.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [
+          "libevdev",
+          "libudev"
+        ],
+        "target": "2026-07-18"
+      }
+    }
+  },
+  "gaplessgrid": {
+    "default": {
+      "main": "gaplessgrid.patch",
+      "stable": "gaplessgrid.patch"
+    },
+    "description": "Arranges windows in a grid. Except it adjusts the number of windows in the first few columns to avoid empty cells.",
+    "files": {
+      "gaplessgrid-20230801.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2023-08-01"
+      },
+      "gaplessgrid-20240714.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-14"
+      },
+      "gaplessgrid-20240918.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-09-18"
+      },
+      "gaplessgrid-20251031.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2025-10-31"
+      },
+      "gaplessgrid.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "gaps": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Adds gaps between clients, providing the ability to disable them at run-time. ",
+    "files": {
+      "gaps.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-12"
+      }
+    }
+  },
+  "genericgaps": {
+    "default": {
+      "main": null,
+      "stable": "genericgaps.patch"
+    },
+    "description": "This patch adds gaps around windows and works with any layout (the layout code\ndoes not need to know about the gaps). This patch is a modified version of\n[vanitygaps][vanitygaps] patch.",
+    "files": {
+      "genericgaps-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7 2025-02-11"
+      },
+      "genericgaps.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "globalkey": {
+    "default": {
+      "main": null,
+      "stable": "globalkey.patch"
+    },
+    "description": "This patch adds the ability to pass keys that are specified in the config header globally, similar to Hyprland's approach.\nThis might deal with Wayland's lack of global shortcuts.",
+    "files": {
+      "globalkey.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-06-08"
+      }
+    }
+  },
+  "hide-behind-deck": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Hides all slave clients behind last focused slave in deck layout.",
+    "files": {
+      "hide-behind-deck.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "hide-behind-fullscreen": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Hide all clients (and layer surfaces) behind the current client if it is\nfullscreen, only the background  (layer surfaces at the background layer) will\nbe shown",
+    "files": {
+      "hide-behind-fullscreen-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "hide-behind-fullscreen-0.7.patch"
+      },
+      "hide-behind-fullscreen.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2025-01-20"
+      }
+    }
+  },
+  "hide-behind-monocle": {
+    "default": {
+      "main": "hide-behind-monocle-0.8.patch",
+      "stable": "hide-behind-monocle-0.8.patch"
+    },
+    "description": "Hide all clients behind the focused one in the monocle layout",
+    "files": {
+      "hide-behind-monocle-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "hide-behind-monocle-0.7.patch"
+      },
+      "hide-behind-monocle-0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "hide-behind-monocle-0.8.patch"
+      },
+      "hide-behind-monocle.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2025-01-20"
+      }
+    }
+  },
+  "hide-cursor-when-typing": {
+    "default": {
+      "main": null,
+      "stable": "hide-cursor-when-typing.patch"
+    },
+    "description": "Hide the mouse cursor when you start typing, and restore it again when the\nmouse cursor moves or a mouse button is pressed, just like\n[xbanish](https://github.com/jcs/xbanish).",
+    "files": {
+      "hide-cursor-when-typing.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "hide_vacant_tags": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Prevent [bar](/dwl/dwl-patches/wiki/bar) from drawing tags with no clients (i.e. vacant).\nIt also stops drawing empty rectangles on the bar for non-vacant tags as there is no need anymore to distinguish vacant tags and it offers a more visible contrast than if there were filled/empty rectangles.",
+    "files": {
+      "hide_vacant_tags.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "hiderule": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Adds a `ishidden` option to client rules, that allows hiding any matching clients entirely.",
+    "files": {
+      "hiderule.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "yyyy-mm-dd"
+      }
+    }
+  },
+  "hot-reload": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Enables hot-reloading of dwl; meaning almost all logic can be changed at runtime.\nThis obviously requires some black magic so for now there's a glibc 2.0 or later\ndependency to this.\nIn particular this allows for every option in config.h to be changed at runtime.",
+    "files": {
+      "hot-reload-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "hot-reload.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2025-05-30"
+      }
+    }
+  },
+  "inputdevicerules": {
+    "default": {
+      "main": "inputdevicerules-v0.8.patch",
+      "stable": "inputdevicerules-v0.8.patch"
+    },
+    "description": "Input device rules implemented using custom device create functions for\nkeyboards and pointing devices.",
+    "files": {
+      "inputdevicerules-v0.6.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.6"
+      },
+      "inputdevicerules-v0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.7"
+      },
+      "inputdevicerules-v0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "kblayout": {
+    "default": {
+      "main": null,
+      "stable": "kblayout-0.8.patch"
+    },
+    "description": "This patch adds per-client keyboard layout and ability to send current\nkeyboard layout information to a status bar.",
+    "files": {
+      "kblayout-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "kblayout-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "keyboardshortcutsinhibit": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Allows clients to use the keyboard-shortcuts-inhibit protocol to block the compositor from using keybinds. This is useful for virtualization software like looking-glass which requires this protocol to run.",
+    "files": {
+      "keyboardshortcutsinhibit.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-05-10"
+      }
+    }
+  },
+  "keycodes": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Use keycodes instead of keysyms. This way, input is independent from keyboard\nlayout (you can use the keys.h file to customize, or get the keycodes with\n`wev` or `xkbcli interactive-wayland` (x11-libs/libxkbcommon[tools] in gentoo)).",
+    "files": {
+      "keycodes-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "keycodes-0.7.patch"
+      },
+      "keycodes.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2025-01-20"
+      }
+    }
+  },
+  "killunsel": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": " A very simple patch that introduces the functionality to terminate all\n visible, unselected clients, similar to the dwm\n [killunsel](https://dwm.suckless.org/patches/killunsel/) patch.",
+    "files": {
+      "killunsel.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2025-07-20"
+      }
+    }
+  },
+  "launchtag": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Straight port of the dwm taglayouts patch, renamed because I have a hard time\nfinding it on the suckless site.",
+    "files": {
+      "launchtag.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "limitnmaster": {
+    "default": {
+      "main": "limitnmaster.patch",
+      "stable": "limitnmaster.patch"
+    },
+    "description": "Limits nmaster to within the range of currently-opened windows (nmaster will not change past the full horizontal split layout)",
+    "files": {
+      "limitnmaster.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-03-15"
+      }
+    }
+  },
+  "lock-size": {
+    "default": {
+      "main": "lock-size.patch",
+      "stable": "lock-size.patch"
+    },
+    "description": null,
+    "files": {
+      "lock-size.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "git branch"
+      }
+    }
+  },
+  "lockedkeys": {
+    "default": {
+      "main": null,
+      "stable": "lockedkeys.patch"
+    },
+    "description": "This patch allows you to add keybindings to the lockscreen.",
+    "files": {
+      "lockedkeys.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-04-11"
+      }
+    }
+  },
+  "mastercolumn": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch adds a layout, `mastercol`, in which the windows in the master area are arranged in columns of equal size. The number of columns is always nmaster + 1, and the last column is a stack of leftover windows (as in the normal tile layout). It effectively differs from the default tile layout only in that master windows are arranged horizontally rather than vertically.",
+    "files": {
+      "mastercolumn-gaps.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "mastercolumn.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "menu": {
+    "default": {
+      "main": "menu-0.8.patch",
+      "stable": "menu-0.8.patch"
+    },
+    "description": "This patch adds `menu` command, which allows dwl to interface with dmenu-like\nprograms.",
+    "files": {
+      "menu-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2025-03-21 v0.7"
+      },
+      "menu-0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "menurule": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch adds a dmenu interface to [setrule][setrule], which allows to add or\nchange client rules at runtime. It must be applied on top of [setrule][setrule]\nand [menu][menu] patches.",
+    "files": {
+      "menurule-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "menurule-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "meson": {
+    "default": {
+      "main": "meson.patch",
+      "stable": "meson.patch"
+    },
+    "description": "Add the meson build system.",
+    "files": {
+      "meson.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-12-07"
+      }
+    }
+  },
+  "modes": {
+    "default": {
+      "main": null,
+      "stable": "modes.patch"
+    },
+    "description": "Implement  modes, that way each mapping is associated with a mode and is only active while in that mode, default mode is `NORMAL`",
+    "files": {
+      "modes-0.5.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.5"
+      },
+      "modes.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "monitorconfig": {
+    "default": {
+      "main": "monitorconfig-0.8.patch",
+      "stable": "monitorconfig-0.8.patch"
+    },
+    "description": "Allows more monitor configuration in config.h",
+    "files": {
+      "monitorconfig-0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      },
+      "monitorconfig-wlroots-next-f4249db.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "wlroots-next-f4249db"
+      }
+    }
+  },
+  "mouse-trackpad-split": {
+    "default": {
+      "main": "mouse-trackpad-split-0.7.patch",
+      "stable": "mouse-trackpad-split-0.7.patch"
+    },
+    "description": "Separates natural scrolling and acceleration settings for trackpad and mouse.",
+    "files": {
+      "mouse-trackpad-split-0.7.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "movecenter": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "> This patch is no longer being maintained by me [wochap](https://codeberg.org/wochap), since I'm now using a different patch specific to my use case: https://codeberg.org/wochap/dwl/src/branch/v0.6-c/betterfloat/betterfloat-diff.patch.",
+    "files": {
+      "movecenter.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.6"
+      }
+    }
+  },
+  "moveresizekb": {
+    "default": {
+      "main": "moveresizekb.patch",
+      "stable": "moveresizekb.patch"
+    },
+    "description": "This allows the user to change size and placement of floating windows using only the keyboard, default keybindings: ",
+    "files": {
+      "moveresizekb.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "movestack": {
+    "default": {
+      "main": "movestack-0.8.patch",
+      "stable": "movestack-0.8.patch"
+    },
+    "description": "Allows you to move a window up and down the stack.",
+    "files": {
+      "movestack-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "movestack-0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "namedscratchpads": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Allows for the creation of multiple scratchpad windows, each assigned to a different keybinding. In simple terms, it enables 'run or raise' functionality",
+    "files": {
+      "namedscratchpads-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "namedscratchpads-0.8.patch"
+      },
+      "namedscratchpads.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-13 (v0.6)"
+      }
+    }
+  },
+  "naturalscrolltrackpad": {
+    "default": {
+      "main": "naturalscrolltrackpad.patch",
+      "stable": "naturalscrolltrackpad.patch"
+    },
+    "description": "Set natural scrolling only for trackpads. Without this patch, setting\n`natural_scrolling` to 1 in `config.h` results in a regular mouse wheel having\nnatural scrolling enabled as well.",
+    "files": {
+      "naturalscrolltrackpad.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "nextlayout": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Change the current layout to the next available one.",
+    "files": {
+      "nextlayout.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "numlock-capslock": {
+    "default": {
+      "main": "numlock-capslock_main-5fd19fe.patch",
+      "stable": "numlock-capslock_0.8.patch"
+    },
+    "description": "Allows activating numlock or capslock at startup.",
+    "files": {
+      "numlock-capslock_0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "numlock-capslock_0.8.patch"
+      },
+      "numlock-capslock_main-5fd19fe.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "numlock-capslock_main-5fd19fe.patch"
+      },
+      "numlock-capslock_wlroots-next-f4249db.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "numlock-capslock_wlroots-next-f4249db.patch"
+      }
+    }
+  },
+  "passthrough": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "allows pausing keybind handling",
+    "files": {
+      "passthrough.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-06-26"
+      }
+    }
+  },
+  "per-app-cast": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Adds per-window screen sharing aka toplevel capture via `ext-foreign-toplevel-image-capture-source-v1` based on the sway implementation <br>\nXWayland clients work in basic testing but it should be considered rather experimental. There is some possible restacking edge-cases but I was not able to reproduce them yet <br>\nNote that the captured surface is rendered a second time into its own scene, so there's a small GPU cost while a capture is active",
+    "files": {
+      "per-app-share-wlroots-next-d41ecb745c.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "per-app-share-wlroots-next-d41ecb745c"
+      }
+    }
+  },
+  "perinputconfig": {
+    "default": {
+      "main": "perinputconfig-pointer.patch",
+      "stable": "perinputconfig-keyboard.patch"
+    },
+    "description": "Replace the singular keyboard and pointer input configuration with an array allowing to set different variables matching by name.",
+    "files": {
+      "perinputconfig-2024-06-08.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-06-08"
+      },
+      "perinputconfig-keyboard.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2025-11-19 (keyboard)"
+      },
+      "perinputconfig-pointer.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2025-11-19 (pointer)"
+      },
+      "perinputconfig-v0.5.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.5"
+      }
+    }
+  },
+  "pertag": {
+    "default": {
+      "main": "pertag.patch",
+      "stable": "pertag.patch"
+    },
+    "description": "Makes layout, mwfact and nmaster individual for every tag.",
+    "files": {
+      "pertag.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.6"
+      }
+    }
+  },
+  "pointer-gestures-unstable-v1": {
+    "default": {
+      "main": null,
+      "stable": "pointer-gestures-unstable-v1.patch"
+    },
+    "description": "Forward the following events to client:\nswipe_begin, swipe_update, swipe_end, pinch_begin, pinch_update and pinch_end",
+    "files": {
+      "pointer-gestures-unstable-v1.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-07-12"
+      }
+    }
+  },
+  "primaryselection": {
+    "default": {
+      "main": null,
+      "stable": "primaryselection.patch"
+    },
+    "description": "Adds a config option to disable/enable primary selection (middle-click paste).",
+    "files": {
+      "primaryselection-2024-04-06.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-04-06"
+      },
+      "primaryselection.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2025-11-19"
+      }
+    }
+  },
+  "push": {
+    "default": {
+      "main": null,
+      "stable": "push.patch"
+    },
+    "description": "Adds functions `pushup` and `pushdown` to move windows within the tiling order.",
+    "files": {
+      "push-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "push-0.7.patch"
+      },
+      "push.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2025-01-20"
+      }
+    }
+  },
+  "regexrules": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Allows the use of regular expressions for window rules \"app_id\" and \"title\"",
+    "files": {
+      "regexrules.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-04-11"
+      }
+    }
+  },
+  "regions": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch will allow for a program to be used and have the current window regions on all monitors to be passed to the program as standard input.\t\t",
+    "files": {
+      "regions.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-02-14"
+      }
+    }
+  },
+  "relative-mouse-resize": {
+    "default": {
+      "main": "relative-mouse-resize.patch",
+      "stable": "relative-mouse-resize.patch"
+    },
+    "description": "When resizing windows, the mouse will jump and resize the window in the quadrant that the resize starts at. ",
+    "files": {
+      "relative-mouse-resize.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-07-09"
+      }
+    }
+  },
+  "reorganizetags": {
+    "default": {
+      "main": "reorganizetags.patch",
+      "stable": "reorganizetags.patch"
+    },
+    "description": null,
+    "files": {
+      "reorganizetags-bar.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "with bar patch"
+      },
+      "reorganizetags.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "main 2026-03-25"
+      }
+    }
+  },
+  "restore-monitor": {
+    "default": {
+      "main": "restore-monitor.patch",
+      "stable": "restore-monitor.patch"
+    },
+    "description": "Moves clients to their old output when it is reattached.",
+    "files": {
+      "restore-monitor.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2026-06-20"
+      }
+    }
+  },
+  "right": {
+    "default": {
+      "main": "right.patch",
+      "stable": "right.patch"
+    },
+    "description": "Put newly connected monitors on the right, like X does.",
+    "files": {
+      "right.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-02-11"
+      }
+    }
+  },
+  "riverctl": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch adds river-control-unstable-v1 support to dwl.\nThis protocol allows sending args to dwl to execute functions via the included dwlctl.\nThis is used to allow changing rules and binds, at runtime via dwlctl.",
+    "files": {
+      "riverctl.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "rlimit_max": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Sets the current maximum open file descriptors to the maximum available limit.",
+    "files": {
+      "rlimit_max.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "rotate-clients": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Rotate clients on current monitor.",
+    "files": {
+      "rotate-clients.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "rotatetags": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch provides the ability to rotate the tagset left / right. It implements a new function rotatetags which modifies the current tagset. Same as original dwm patch. Also adds ability to move focused client to left / right adjacent tag by specifying appropriate enum value as argument.",
+    "files": {
+      "rotatetags.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-01-23"
+      }
+    }
+  },
+  "setrule": {
+    "default": {
+      "main": "setrule-0.8.patch",
+      "stable": "setrule-0.8.patch"
+    },
+    "description": "This patch adds an ability to add or change client rules at runtime.",
+    "files": {
+      "setrule-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "setrule-0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "setupenv": {
+    "default": {
+      "main": "setupenv.patch",
+      "stable": "setupenv.patch"
+    },
+    "description": "Allow configuring environment variables in config.h",
+    "files": {
+      "setupenv.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-03-26"
+      }
+    }
+  },
+  "shifttag": {
+    "default": {
+      "main": "shifttag.patch",
+      "stable": "shifttag.patch"
+    },
+    "description": "Shift to next/previous tag, with skipping occupied/unoccupied variants.",
+    "files": {
+      "shifttag-bar.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "shifttag-bar-v0.8"
+      },
+      "shifttag.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "shifttag-v0.8"
+      }
+    }
+  },
+  "shiftview": {
+    "default": {
+      "main": "shiftview.patch",
+      "stable": "shiftview.patch"
+    },
+    "description": "Add keybindings to cycle through tags with visible clients.",
+    "files": {
+      "shiftview.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2026-02-09"
+      }
+    }
+  },
+  "simple_scratchpad": {
+    "default": {
+      "main": null,
+      "stable": "simple_scratchpad-v0.8.patch"
+    },
+    "description": "# simple_scratchpad — A very simple scratchpad utility.",
+    "files": {
+      "simple_scratchpad-v0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "scratchpad-v0.8.patch"
+      },
+      "simple_scratchpad-wlroots-next-d41ecb7.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "scratchpad-wlroots-next-d41ecb7.patch"
+      }
+    }
+  },
+  "simpleborders": {
+    "default": {
+      "main": "simpleborders_main-5fd19fe.patch",
+      "stable": "simpleborders_0.8.patch"
+    },
+    "description": "Like smartborders. Don't put borders when there is only one window on the screen.",
+    "files": {
+      "simpleborders_0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "simpleborders_0.8.patch"
+      },
+      "simpleborders_main-5fd19fe.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "simpleborders_main-5fd19fe.patch"
+      },
+      "simpleborders_wlroots-next-f4249db.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "simpleborders_wlroots-next-f4249db.patch"
+      }
+    }
+  },
+  "singlemaster": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Restricts layout to only having one client in the master area.",
+    "files": {
+      "singlemaster.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.6"
+      }
+    }
+  },
+  "singletagset": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Single set of tags shared between multiple monitors.",
+    "files": {
+      "singletagset-v0.6.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-05-16 (v0.6)"
+      },
+      "singletagset-v0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-26 (v0.7)"
+      }
+    }
+  },
+  "singletagset-pertag": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Pertag keeps layouts, mfact and nmaster per tag\ninstead of per output.",
+    "files": {
+      "singletagset-pertag.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-26"
+      }
+    }
+  },
+  "singletagset-sticky": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Makes sticky work as expected with singletagset. The sticky window will\nstay on original output until you explicitly put it to a different monitor.",
+    "files": {
+      "singletagset-sticky.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-26"
+      }
+    }
+  },
+  "skipfocus": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Adds a rule-based ability to skip automatically focusing a window on creation. Expected use-case is for transient windows like notifications etc. The window can still be focused by mouse or keyboard movement.",
+    "files": {
+      "skipfocus-20240714.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-07-14"
+      },
+      "skipfocus.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-09-18"
+      },
+      "skipfocus20240108.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": null
+      }
+    }
+  },
+  "smartborders": {
+    "default": {
+      "main": null,
+      "stable": "smartborders.patch"
+    },
+    "description": "The borders of a window aren't drawn when the window is the only tiling window\nin its tag OR if the window is in a monocle layout.",
+    "files": {
+      "smartborders-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "smartborders-0.7.patch"
+      },
+      "smartborders.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "main 2025-01-20"
+      }
+    }
+  },
+  "snail": {
+    "default": {
+      "main": "snail-0.8.patch",
+      "stable": "snail-0.8.patch"
+    },
+    "description": "This layout is a scalable alternative to the \"tile\" and \"spiral\" layouts, optimized for wide monitors. Both the master area and the stack are \"spirals\", but windows in the master area are split horizontally as long as the master area has enough horizontal space, and the first window in the stack is split vertically unless the stack is wide.",
+    "files": {
+      "snail-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "snail-0.8.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "snail-gaps": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Adds support for the [gaps patch](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/gaps)\nto the [snail layout patch](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/snail).",
+    "files": {
+      "snail-gaps.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2024-08-08"
+      }
+    }
+  },
+  "spawninfo": {
+    "default": {
+      "main": null,
+      "stable": "spawninfo.patch"
+    },
+    "description": "This patch adds `spawninfo` function that is very similar to `spawn`, except it\nalso passes some information about the focused client via stdin.",
+    "files": {
+      "spawninfo.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "spawnorfocus": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Allows to assign a keybind to focus on a client with an app_id/title that contains a specified substring, or spawn command if there is no match.",
+    "files": {
+      "spawnorfocus.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2025-12-09"
+      }
+    }
+  },
+  "stacker": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Stacker is a patch that allows moving around the stack more freely. With only\none keybinding, quickly move, swap and jump around the window stack.",
+    "files": {
+      "stacker.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-05-17"
+      }
+    }
+  },
+  "stairs": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Port of the [stairs](https://dwm.suckless.org/patches/stairs/) patch from dwm.",
+    "files": {
+      "stairs.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "startargv": {
+    "default": {
+      "main": "startargv.patch",
+      "stable": "startargv.patch"
+    },
+    "description": "allow passing startup command on argv",
+    "files": {
+      "startargv.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2024-07-03"
+      }
+    }
+  },
+  "sticky": {
+    "default": {
+      "main": null,
+      "stable": "sticky.patch"
+    },
+    "description": "Adds a toggleable function that makes a sticky client that is visible on all tags.",
+    "files": {
+      "sticky.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "swallow": {
+    "default": {
+      "main": null,
+      "stable": "swallow-0.8.patch"
+    },
+    "description": "This patch adds \"window swallowing\" to dwl.",
+    "files": {
+      "swallow-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.7"
+      },
+      "swallow-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      },
+      "swallow-freebsd.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.7"
+      }
+    }
+  },
+  "swapandfocusdir": {
+    "default": {
+      "main": "swapandfocusdir.patch",
+      "stable": "swapandfocusdir.patch"
+    },
+    "description": "Focus the window (floating or no) to the left, right, above, or below the current focused window.",
+    "files": {
+      "swapandfocusdir.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "swapfocus": {
+    "default": {
+      "main": "swapfocus.patch",
+      "stable": "swapfocus.patch"
+    },
+    "description": "Swapfocus adds a new function on dwl: a shortcut to change the focus to the last focused window.\n - If the last focused window is in another tag, then the focus will change to that tag.\n - Alternatively: edit the patch and uncomment and comment out the lines instructed to keep the swapfocus shortcut from changing to another tag.",
+    "files": {
+      "swapfocus.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.8"
+      }
+    }
+  },
+  "swapmons": {
+    "default": {
+      "main": null,
+      "stable": "swapmons_v0.1.patch"
+    },
+    "description": "This patch is for dual-monitor setups (and can be extended for more monitors). It swaps the active client on Monitor-A with the active client on Monitor-B while preserving original tags of the swapped clients.",
+    "files": {
+      "swapmons_v0.1.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "swapmons-0.8.patch"
+      }
+    }
+  },
+  "switchtotag": {
+    "default": {
+      "main": "switchtotag.patch",
+      "stable": null
+    },
+    "description": "Add a rule option to switch to the configured tag when a window opens, then switch back when it closes.",
+    "files": {
+      "switchtotag.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2026-09-16"
+      }
+    }
+  },
+  "systemd": {
+    "default": {
+      "main": "systemd-0.7.patch",
+      "stable": "systemd-0.7.patch"
+    },
+    "description": "This is a simple patch that runs `systemctl --user import-environment WAYLAND_DISPLAY DISPLAY`, and `systemctl --user start dwl-session.target` after Dwl initializes, and then `systemctl --user stop dwl-session.target` when Dwl quits. This allows you to handle graceful startup and shutdown of your graphical systemd services, with the proper environment variables set. This is similar to [uwsm](https://github.com/Vladimir-csp/uwsm?tab=readme-ov-file), but it integrates natively with your existing systemd user services, and doesn't have uwsm's runtime overhead.",
+    "files": {
+      "systemd-0.7.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "tablet-input": {
+    "default": {
+      "main": null,
+      "stable": "tablet-input-0.8.patch"
+    },
+    "description": "Implements wlr-tablet-v2 for drawing tablets with cursor emulation.\nInspired by @guyuming76's [branch](https://codeberg.org/guyuming76/dwl/commits/branch/graphic_tablet), with coding help from @Palanix and testing by @Thanatos.",
+    "files": {
+      "tablet-input-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "tablet-input-0.8.patch"
+      },
+      "tablet-input-main-a2d03cf.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "tablet-input-main-a2d03cf.patch"
+      }
+    }
+  },
+  "tagshift": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Port of the [tagshift](https://dwm.suckless.org/patches/tagshift/) patch into dwl.",
+    "files": {
+      "tagshift.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "tearing": {
+    "default": {
+      "main": null,
+      "stable": "tearing.patch"
+    },
+    "description": "This patch adds support for tearing protocol. To get it working `export WLR_DRM_NO_ATOMIC=1` is probably required.\nSome apps would send ASYNC hint and tearing will \"just work\", otherwise it's possible to force specified clients to tear with a rule.",
+    "files": {
+      "tearing-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [
+          "pixman-1"
+        ],
+        "target": "0.7"
+      },
+      "tearing.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2025-04-22"
+      }
+    }
+  },
+  "titleurgent": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Whenever a client title changes set the client's urgent flag.",
+    "files": {
+      "titleurgent.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-01-02"
+      }
+    }
+  },
+  "tmux-borders": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "This patch replaces the window borders of tiled windows with borders that are similar to those found in tmux. The result is that there are no more unnecessary borders along the monitor edges in tiled mode. Borders of floating windows are not affected.",
+    "files": {
+      "tmux-borders-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      }
+    }
+  },
+  "toggle_constraints": {
+    "default": {
+      "main": "toggle_constraints.patch",
+      "stable": "toggle_constraints.patch"
+    },
+    "description": "Adds a function called togglepointerconstraints to turn pointer constraint enforcement on and off with a keybind. ",
+    "files": {
+      "toggle_constraints.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": null
+      }
+    }
+  },
+  "togglekblayoutandoptions": {
+    "default": {
+      "main": null,
+      "stable": "togglekblayoutandoptions-0.8.patch"
+    },
+    "description": "Switch between multiple keyboard layouts, variants, and options at runtime.\nSupports both assigning a specific keyboard to a shortcut and cycling through\nkeyboards.",
+    "files": {
+      "togglekblayoutandoptions-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "0.7"
+      },
+      "togglekblayoutandoptions-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "0.8"
+      }
+    }
+  },
+  "touch-input": {
+    "default": {
+      "main": null,
+      "stable": "touch-input-0.8-osu-ver.patch"
+    },
+    "description": "Adds touchscreen functionality.",
+    "files": {
+      "touch-input-0.8-osu-ver.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "touch-input-0.8-osu-ver.patch"
+      },
+      "touch-input-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "touch-input-0.8.patch"
+      },
+      "touch-input-wlroots-next-f4249db.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "touch-input-wlroots-next-f4249db.patch"
+      }
+    }
+  },
+  "unclutter": {
+    "default": {
+      "main": "unclutter.patch",
+      "stable": null
+    },
+    "description": "Hide the mouse cursor if it isn't being used for a certain period of time.",
+    "files": {
+      "unclutter.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2026-09-16"
+      }
+    }
+  },
+  "ungroup-keyboards": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Ungroup keyboard input devices based on device name.",
+    "files": {
+      "ungroup-keyboards.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-06-16"
+      }
+    }
+  },
+  "vanitygaps": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Adds (inner) gaps between client windows and (outer) gaps between windows and\nthe screen edge in a flexible manner.",
+    "files": {
+      "vanitygaps-0.7.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "vanitygaps-0.7.patch"
+      },
+      "vanitygaps-0.8.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "vanitygaps-0.8.patch"
+      },
+      "vanitygaps.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "main 2025-01-20"
+      }
+    }
+  },
+  "varcol": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "A variable column layout. ",
+    "files": {
+      "varcol.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-03-27"
+      }
+    }
+  },
+  "viewnextocctag": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "View the next or previous tag, skipping any tags that do not have any clients.",
+    "files": {
+      "viewnextocctag.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2023-01-06"
+      }
+    }
+  },
+  "virtual-pointer": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "implement wlr_virtual_pointer_v1 for things like wayvnc server to work",
+    "files": {
+      "virtual-pointer.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "v0.5"
+      }
+    }
+  },
+  "warpcursor": {
+    "default": {
+      "main": "warpcursor.patch",
+      "stable": "warpcursor.patch"
+    },
+    "description": "Warp cursor to the centre of newly focused clients.",
+    "files": {
+      "warpcursor.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.6"
+      }
+    }
+  },
+  "wayland-socket-handover": {
+    "default": {
+      "main": "wayland-socket-handover.patch",
+      "stable": "wayland-socket-handover.patch"
+    },
+    "description": "When your Wayland compositor crashes, your entire session dies with it. This\npatch allows your session to survive a restart or crash of dwl by passing in\nthe Wayland socket from an outside wrapper program such as\n[wl-restart](https://github.com/Ferdi265/wl-restart).",
+    "files": {
+      "wayland-socket-handover.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2025-03-26"
+      }
+    }
+  },
+  "winview": {
+    "default": {
+      "main": null,
+      "stable": "winview_dwl_08.patch"
+    },
+    "description": "Implements the function `winview` which switches the visible tags to the tags on which the current client is visible.",
+    "files": {
+      "winview-20240606.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-06-06"
+      },
+      "winview_dwl_07.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-09-18"
+      },
+      "winview_dwl_08.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "2026-03-14 dwl 0.8"
+      }
+    }
+  },
+  "xwayland-handle-minimize": {
+    "default": {
+      "main": null,
+      "stable": null
+    },
+    "description": "Some windows (wine) games go black screen after losing focus and never recover https://github.com/swaywm/sway/issues/4324. This patch fixes this by handling minimize requests that some xwayland clients do.",
+    "files": {
+      "xwayland-handle-minimize.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-04-01"
+      }
+    }
+  },
+  "zerotag": {
+    "default": {
+      "main": null,
+      "stable": "zerotag.patch"
+    },
+    "description": null,
+    "files": {
+      "bar_zerotag.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": null
+      },
+      "zerotag.patch": {
+        "applies": {
+          "main": false,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "git branch"
+      }
+    }
+  },
+  "zoomswap": {
+    "default": {
+      "main": "zoomswap-v0.6.patch",
+      "stable": "zoomswap-v0.6.patch"
+    },
+    "description": "This patch swaps the current window (C) with the previous master (P) when zooming.\n```\nOriginal behaviour :\n+-----------------+-------+\n|                 |       |\n|                 |       |\n|                 |       |\n|        P        +-------|\n|                 |       |\n|                 |   C   |\n|                 |       |\n+-----------------+-------+",
+    "files": {
+      "zoomswap-v0.6.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.6"
+      },
+      "zoomswap-v0.7.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "pkgConfig": [],
+        "target": "v0.7"
+      },
+      "zoomswap.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "pkgConfig": [],
+        "target": "2024-02-15"
+      }
+    }
+  }
+}
