@@ -117,6 +117,16 @@ pkgs.dwl.overrideAttrs (old: {
 })
 ```
 
+## Updates
+
+A GitHub Action checks codeberg every hour. When dwl, dwl-patches, nixpkgs or the latest dwl release changes, it updates `flake.lock` and regenerates the patch index and `docs.md`. It then opens a pull request with the lock changes in the description.
+
+The pull request merges itself once every check passes: all builds, the examples, the config checks and a VM that boots dwl. If anything fails, it stays open and `main` doesn't change.
+
+The automated pull requests are labeled `automated`. To see only the ones from people, filter with [`is:pr -label:automated`](https://github.com/rebizzz/dwl-flake/pulls?q=is%3Apr+-label%3Aautomated).
+
+In your own config, `nix flake update dwl-flake` gets the latest version that passed.
+
 ## License
 
 GPL-3.0, same as dwl.

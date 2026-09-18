@@ -24,7 +24,7 @@ jobs:
       - uses: cachix/install-nix-action@v31
 
       - name: Update
-        run: nix run .#update
+        run: nix run .#update 2>&1 | tee "$RUNNER_TEMP/update.log"
 
       - name: Open pull request
         run: |
@@ -40,13 +40,18 @@ jobs:
           git commit -m "$title"
           git push -f origin update
 
+          {
+            echo "Automatic update. It merges itself once every check passes."
+            echo
+            echo "\`\`\`"
+            grep -E "^(•|  )" "$RUNNER_TEMP/update.log" || true
+            echo "\`\`\`"
+          } > "$RUNNER_TEMP/body.md"
+
           if ! gh pr view update --json state -q .state | grep -q OPEN; then
-            gh pr create --base main --head update --title "$title" --label automated \
-              --body "Automatic update of flake.lock and nix/patches.json. Merges itself once every check passes." \
-              || gh pr create --base main --head update --title "$title" \
-                --body "Automatic update of flake.lock and nix/patches.json. Merges itself once every check passes."
+            gh pr create --base main --head update --title "$title" --label automated --label dependencies --body-file "$RUNNER_TEMP/body.md"
           else
-            gh pr edit update --title "$title"
+            gh pr edit update --title "$title" --body-file "$RUNNER_TEMP/body.md"
           fi
 
           gh pr merge update --auto --rebase
