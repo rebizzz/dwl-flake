@@ -20,10 +20,8 @@ in {
     };
 
   config = lib.mkIf cfg.enable {
-    assertions = shared.assertions shared.package;
-    inherit (shared) warnings;
-    home.packages = [cfg.package];
+    packages = lib.throwIf (shared.package.configErrors != []) (lib.concatStringsSep "\n" shared.package.configErrors) [cfg.package];
   };
 
-  _class = "homeManager";
+  _class = "hjem";
 }

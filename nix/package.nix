@@ -56,17 +56,40 @@
 
   isPatchName = p: builtins.isString p && !lib.hasPrefix "/" p;
 
+  patchError = p: let
+    entry = dwlPatches.index.${p} or null;
+  in
+    if dwlPatches == null
+    then "dwl patch '${p}' was given by name, but no dwl-patches index is available"
+    else if entry == null
+    then "dwl patch '${p}' doesn't exist in dwl-patches"
+    else if entry.default.${channel} == null
+    then "dwl patch '${p}' has no version that applies to dwl ${channel} (${lib.concatStringsSep ", " (lib.attrNames entry.files)})${lib.optionalString (channel == "main" && entry.default.stable != null) ", but it works with channel = \"stable\""}"
+    else null;
+  patchErrors = lib.filter (e: e != null) (map patchError (lib.filter isPatchName allPatches));
+
   resolved = map (p:
     if isPatchName p
-    then
-      if dwlPatches == null
-      then throw "dwl: patch '${p}' given by name but no dwl-patches index is available"
-      else dwlPatches.resolve channel p
+    then dwlPatches.resolve channel p
     else {
       src = p;
       pkgConfig = [];
     })
-  allPatches;
+  (lib.filter (p: !(isPatchName p) || patchError p == null) allPatches);
+
+  readable = p: lib.all (c: !(c ? outputs)) (lib.attrValues (builtins.getContext (toString p)));
+  patchSources = map (r: r.src) resolved;
+  canInspect = lib.all readable patchSources;
+  tokens = lib.genAttrs (lib.filter (t: lib.isString t && t != "") (builtins.split "[^A-Za-z0-9_]+" (lib.concatMapStrings builtins.readFile (["${src}/config.def.h" "${src}/dwl.c"] ++ patchSources)))) (_: true);
+  unknown = names: lib.optionals canInspect (lib.filter (n: !(tokens ? ${n})) names);
+
+  configErrors =
+    patchErrors
+    ++ lib.optionals (configH == null) (
+      configLib.errors declarative
+      ++ map (n: "dwl setting '${n}' doesn't exist in config.def.h, even with your patches applied") (unknown (lib.attrNames settings))
+      ++ map (n: "dwl function '${n}' doesn't exist, check the spelling or add the patch that provides it") (unknown (configLib.functions declarative))
+    );
 
   pkgConfigPackages = with pkgs; {
     fcft = [fcft tllist];
@@ -111,10 +134,11 @@ in
 
     outputs = ["out" "man"];
 
-    postPatch =
+    postPatch = lib.throwIf (configErrors != []) (lib.concatStringsSep "\n" configErrors) (
       if configH != null
       then "cp ${configFile} config.h"
-      else lib.optionalString (!configLib.isEmpty declarative) "awk -v dir=${editsDir} -f ${./apply-config.awk} config.def.h > config.h";
+      else lib.optionalString (!configLib.isEmpty declarative) "awk -v dir=${editsDir} -f ${./apply-config.awk} config.def.h > config.h"
+    );
 
     makeFlags =
       [
@@ -137,7 +161,10 @@ in
     strictDeps = true;
     __structuredAttrs = true;
 
-    passthru.providedSessions = ["dwl"];
+    passthru = {
+      providedSessions = ["dwl"];
+      inherit configErrors;
+    };
 
     meta = {
       homepage = "https://codeberg.org/dwl/dwl";

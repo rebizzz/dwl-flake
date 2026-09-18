@@ -160,8 +160,32 @@
   monitorEntry = m: "\t{ ${toC (m.name or null)}, ${toC (m.mfact or 0.55)}, ${toString (m.nmaster or 1)}, ${toC ((m.scale or 1) * 1.0)}, &layouts[${toString (m.layout or 0)}], WL_OUTPUT_TRANSFORM_${lib.toUpper (m.transform or "normal")}, ${toString (m.x or (-1))}, ${toString (m.y or (-1))} },";
 
   autostartEntries = cmds: concatStringsSep " " (map (cmd: "\"/bin/sh\", \"-c\", ${cString cmd}, NULL,") cmds) + " NULL";
+  actionFunction = action:
+    if isString action
+    then action
+    else if action ? fn
+    then action.fn
+    else lib.head (lib.attrNames action);
+
+  comboErrors = combo: let
+    parts = lib.splitString "+" combo;
+  in
+    lib.optional (lib.last parts == "") "keybind '${combo}' has no key after the last '+'"
+    ++ map (m: "keybind '${combo}': unknown modifier '${m}', use Mod, Super, Alt, Ctrl or Shift")
+    (lib.filter (m: !(modifiers ? ${lib.toLower m})) (lib.init parts));
+
+  actionErrors = combo: action:
+    lib.optional (!(isString action || action ? fn || lib.length (lib.attrNames action) == 1))
+    "keybind '${combo}' should be a function name, { <function> = <arg>; } or { fn = ...; arg = ...; }";
 in {
   inherit c;
+
+  errors = cfg:
+    lib.optional (cfg.modKey != null && (!(modifiers ? ${lib.toLower cfg.modKey}) || lib.toLower cfg.modKey == "mod"))
+    "modKey '${cfg.modKey}' isn't a modifier, use Super, Alt, Ctrl or Shift"
+    ++ lib.concatLists (mapAttrsToList (combo: action: comboErrors combo ++ actionErrors combo action) cfg.keybinds);
+
+  functions = cfg: lib.unique (mapAttrsToList (_: actionFunction) cfg.keybinds);
 
   isEmpty = cfg:
     cfg.settings

@@ -5,125 +5,164 @@
   mkDwl,
 }: let
   inherit (lib) mkOption types literalExpression;
+
+  rule = types.submodule {
+    options = {
+      id = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Wayland app_id to match.";
+      };
+      title = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Window title to match.";
+      };
+      tags = mkOption {
+        type = types.listOf (types.ints.between 1 31);
+        default = [];
+        description = "Tags to put the window on. Empty means the current ones.";
+      };
+      floating = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Start the window floating.";
+      };
+      monitor = mkOption {
+        type = types.int;
+        default = -1;
+        description = "Monitor index, or -1 for the current one.";
+      };
+    };
+  };
+
+  monitor = types.submodule {
+    options = {
+      name = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Output name, e.g. eDP-1.";
+      };
+      mfact = mkOption {
+        type = types.numbers.between 0.05 0.95;
+        default = 0.55;
+        description = "Size of the master area.";
+      };
+      nmaster = mkOption {
+        type = types.ints.unsigned;
+        default = 1;
+        description = "Number of windows in the master area.";
+      };
+      scale = mkOption {
+        type = types.numbers.positive;
+        default = 1;
+        description = "Output scale.";
+      };
+      layout = mkOption {
+        type = types.ints.unsigned;
+        default = 0;
+        description = "Index into layouts.";
+      };
+      transform = mkOption {
+        type = types.enum ["normal" "90" "180" "270" "flipped" "flipped_90" "flipped_180" "flipped_270"];
+        default = "normal";
+        description = "Output rotation.";
+      };
+      x = mkOption {
+        type = types.int;
+        default = -1;
+        description = "Position, or -1 to place automatically.";
+      };
+      y = mkOption {
+        type = types.int;
+        default = -1;
+        description = "Position, or -1 to place automatically.";
+      };
+    };
+  };
+
+  declarative = ["settings" "keybinds" "modKey" "rules" "monitors" "autostart" "extraConfig"];
 in {
   options = {
     channel = mkOption {
       type = types.enum ["main" "stable"];
       default = "main";
-      description = "Build dwl main (tracked continuously) or the latest dwl release.";
+      description = "Build dwl main or the latest dwl release.";
     };
 
     patches = mkOption {
       type = with types; listOf (oneOf [path package str]);
       default = [];
-      example = literalExpression ''[ "bar" "pertag" ./my-fix.patch ]'';
-      description = ''
-        Patches to apply. A plain name picks the variant from dwl-patches that
-        applies to the chosen channel and adds its build dependencies.
-      '';
+      example = literalExpression ''[ "pertag" "movestack" ./my-fix.patch ]'';
+      description = "Patches to apply. A name picks the file from dwl-patches that applies to the channel and adds its dependencies.";
     };
 
     modKey = mkOption {
       type = with types; nullOr str;
       default = null;
       example = "Super";
-      description = "The key `Mod` stands for in keybinds and in dwl's defaults. Super, Alt, Ctrl or Shift.";
+      description = "What `Mod` means in keybinds and in dwl's defaults: Super, Alt, Ctrl or Shift.";
     };
 
     keybinds = mkOption {
-      type = with types; attrsOf (either str attrs);
+      type = with types; attrsOf (either str (attrsOf anything));
       default = {};
       example = literalExpression ''
         {
-          "Mod+Return" = { spawn = "foot"; };
-          "Mod+d" = { spawn = [ "fuzzel" ]; };
+          "Mod+Return".spawn = "foot";
           "Mod+q" = "killclient";
-          "Mod+Shift+e" = "quit";
-          "Mod+h" = { setmfact = -0.05; };
-          "Mod+F1" = { view = 1; };
-          "Mod+Shift+F1" = { tag = 1; };
-          "Mod+m" = { setlayout = 2; };
-          "Mod+comma" = { focusmon = "left"; };
-          "Mod+b" = { fn = "togglebar"; };
+          "Mod+1".view = 1;
+          "Mod+Shift+1".tag = 1;
         }
       '';
-      description = ''
-        Keybinds as `"Modifiers+keysym" = action`. They take priority over
-        dwl's defaults with the same keys.
-      '';
+      description = "Keybinds as `\"Modifiers+keysym\" = action`.";
     };
 
     defaultKeybinds = mkOption {
       type = types.bool;
       default = true;
-      description = ''
-        Keep dwl's default keybinds next to your own. When false, only yours
-        are used, plus Ctrl+Alt+F1..F12 and Ctrl+Alt+BackSpace.
-      '';
+      description = "Keep dwl's default keybinds next to yours.";
     };
 
     rules = mkOption {
-      type = with types; listOf attrs;
+      type = types.listOf rule;
       default = [];
-      example = literalExpression ''
-        [
-          { id = "firefox"; tags = [ 2 ]; }
-          { id = "pavucontrol"; floating = true; }
-          { title = "Picture-in-Picture"; floating = true; }
-        ]
-      '';
-      description = "Window rules. Fields: id, title, tags (list of 1-based tags), floating, monitor.";
+      example = literalExpression ''[ { id = "firefox"; tags = [ 2 ]; } ]'';
+      description = "Window rules.";
     };
 
     monitors = mkOption {
-      type = with types; listOf attrs;
+      type = types.listOf monitor;
       default = [];
       example = literalExpression ''[ { name = "eDP-1"; scale = 1.5; } ]'';
-      description = ''
-        Monitor rules. Fields: name, mfact, nmaster, scale, layout (index into
-        layouts), transform, x, y. A catch-all rule is added at the end.
-      '';
+      description = "Monitor rules. A catch-all rule is added at the end.";
     };
 
     autostart = mkOption {
       type = with types; listOf str;
       default = [];
-      example = ["waybar" "mako" "swaybg -i ~/wall.png"];
-      description = "Shell commands started with dwl and stopped when it exits. Adds the autostart patch.";
+      example = ["waybar"];
+      description = "Commands started with dwl. Adds the autostart patch.";
     };
 
     settings = mkOption {
       type = with types; attrsOf anything;
       default = {};
-      example = literalExpression ''
-        {
-          borderpx = 2;
-          sloppyfocus = true;
-          focuscolor = "#89b4faff";
-          repeat_rate = 50;
-          natural_scrolling = true;
-          accel_profile = "LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT";
-          xkb_rules = { layout = "us,de"; options = "grp:alt_shift_toggle"; };
-          TAGCOUNT = 9;
-        }
-      '';
-      description = ''
-        Any variable or `#define` from config.def.h, including the ones your
-        patches add, by its C name.
-      '';
+      example = literalExpression ''{ borderpx = 2; focuscolor = "#89b4fa"; }'';
+      description = "Any variable or define from config.def.h, including ones added by patches.";
     };
 
     extraConfig = mkOption {
       type = types.lines;
       default = "";
-      description = "C code placed at the top of config.h, for your own helpers and command arrays.";
+      description = "C code added to the top of config.h.";
     };
 
     configH = mkOption {
       type = with types; nullOr (either path lines);
       default = null;
       example = literalExpression "./config.h";
-      description = "A complete config.h, as a file or text. Everything above except patches is ignored when set.";
+      description = "Your own config.h. The declarative options are ignored when set.";
     };
 
     xwayland = lib.mkEnableOption "XWayland support" // {default = true;};
@@ -131,12 +170,23 @@ in {
     extraBuildInputs = mkOption {
       type = with types; listOf package;
       default = [];
-      description = "Extra build inputs, for patches whose dependencies aren't detected.";
+      description = "Libraries a patch needs that aren't detected.";
     };
   };
 
   package = (mkDwl pkgs cfg.channel).override {
-    inherit (cfg) patches configH extraBuildInputs settings keybinds defaultKeybinds modKey rules monitors autostart extraConfig;
+    inherit (cfg) patches configH extraBuildInputs settings keybinds defaultKeybinds modKey autostart extraConfig;
+    inherit (cfg) rules monitors;
     enableXWayland = cfg.xwayland;
   };
+
+  assertions = build:
+    map (message: {
+      assertion = false;
+      inherit message;
+    })
+    build.configErrors or [];
+
+  warnings =
+    lib.optional (cfg.configH != null && lib.any (o: cfg.${o} != {} && cfg.${o} != [] && cfg.${o} != "" && cfg.${o} != null) declarative) "programs.dwl.configH is set, so ${lib.concatStringsSep ", " declarative} are ignored.";
 }
