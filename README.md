@@ -9,7 +9,6 @@ Nix flake for [dwl](https://codeberg.org/dwl/dwl) and [dwl-patches](https://code
 - Patches from dwl-patches can be added by name. Each one is tested against both builds.
 - dwl can be configured from Nix. Mistakes are caught before anything builds.
 - NixOS, Home Manager and hjem modules, with Stylix support.
-- Updates hourly from codeberg. An update only lands after every check passes, including booting dwl in a VM.
 
 ## Usage
 
@@ -62,8 +61,6 @@ programs.dwl = {
   keybinds."Mod+Return".spawn = "kitty";
 };
 ```
-
-Standalone Home Manager: import `inputs.dwl-flake.homeModules.default`. hjem: import `inputs.dwl-flake.hjemModules.default`.
 
 ### Stylix
 
