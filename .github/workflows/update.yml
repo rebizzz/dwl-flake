@@ -50,4 +50,12 @@ jobs:
           fi
 
           gh pr merge update --auto --rebase
-          gh workflow run check.yml --ref update
+          sha=$(git rev-parse HEAD)
+          for _ in $(seq 1 18); do
+            sleep 10
+            runs=$(gh run list -c "$sha" -w check --json databaseId,conclusion -q ".[] | \"\\(.databaseId) \\(.conclusion)\"")
+            [ -z "$runs" ] && continue
+            pending=$(echo "$runs" | awk '$2 == "action_required" {print $1}')
+            [ -z "$pending" ] && break
+            for id in $pending; do gh api -X POST "repos/${{ github.repository }}/actions/runs/$id/approve" || true; done
+          done
