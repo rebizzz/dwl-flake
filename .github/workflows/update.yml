@@ -44,7 +44,7 @@ jobs:
             echo "Automatic update. It merges itself once every check passes."
             echo
             echo "\`\`\`"
-            grep -E "^(•|  )" "$RUNNER_TEMP/update.log" || true
+            awk '/^•/ {p = 1; print; next} p && /^  (  '"'"'|→ )/ {print; next} {p = 0}' "$RUNNER_TEMP/update.log"
             echo "\`\`\`"
           } > "$RUNNER_TEMP/body.md"
 
