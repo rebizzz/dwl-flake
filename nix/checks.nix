@@ -254,6 +254,7 @@ in
     example-4-home-manager-nixos = evaluates "example-4" (evalWith nixpkgs [{inherit (import ../examples/4-home-manager.nix) programs;}]);
     example-4-home-manager-user = standalone self.homeModules.default "homeManager" (import ../examples/4-home-manager.nix).home-manager.users.alice {home.packages = packagesOption;};
     example-5-own-config-h = (evalWith nixpkgs [../examples/5-own-config-h]).programs.dwl.package;
+    example-6-chadwm = (evalWith nixpkgs [../examples/6-chadwm.nix]).programs.dwl.package;
 
     assert-modifier = failsWith "modifier" "unknown modifier 'Hyper'" {keybinds."Hyper+x" = "quit";};
     assert-modkey = failsWith "modkey" "modKey 'Meta'" {modKey = "Meta";};

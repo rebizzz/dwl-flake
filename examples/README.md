@@ -9,6 +9,7 @@ Each file is a NixOS module. Pick the one closest to what you want and import it
 | [3-patches.nix](3-patches.nix) | add patches |
 | [4-home-manager.nix](4-home-manager.nix) | keep the config in Home Manager |
 | [5-own-config-h](5-own-config-h) | write your own `config.h` in C |
+| [6-chadwm.nix](6-chadwm.nix) | get the chadwm look: floating bar, colored status blocks, gaps, icon tags |
 
 Every option is listed in [docs.md](../docs.md).
 

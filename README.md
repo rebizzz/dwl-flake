@@ -102,7 +102,7 @@ All options, and the keybind actions dwl provides, are listed in [docs.md](docs.
 | `configH` | use your own `config.h` instead |
 | `finalConfig` | read-only path to the generated `config.h` |
 
-The [examples](examples) go from a minimal setup to patches, Home Manager and your own `config.h`.
+The [examples](examples) go from a minimal setup to patches, Home Manager, your own `config.h` and a full [chadwm](https://github.com/siduck/chadwm)-style setup.
 
 ## Patches
 
