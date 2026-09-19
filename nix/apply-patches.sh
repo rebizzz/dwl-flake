@@ -17,48 +17,53 @@ for p in "${patches[@]}"; do
   [ -s "$rest" ] && patch -p1 -f -s <"$rest"
 
   rej=$(mktemp)
-  filterdiff -p1 -i config.def.h "$p" | patch -p1 -f -s -r "$rej" config.def.h >/dev/null 2>&1 || true
+  filterdiff -p1 -i config.def.h "$p" | patch -p1 -f -s -F0 -r "$rej" config.def.h >/dev/null 2>&1 || true
 
-  added=$(awk '
+  decls=$(mktemp -d)
+  awk -v dir="$decls" '
+    function flush() { if (name != "") { print block > (dir "/" name); close(dir "/" name) } name = ""; block = "" }
+    collecting && /^\+/ {
+      block = block "\n" substr($0, 2)
+      if ($0 ~ /^\+[ \t]*\};/) { collecting = 0; flush() }
+      next
+    }
     /^\+#define[ \t]/ {
       line = substr($0, 2)
       split(line, parts, /[ \t(]+/)
-      print parts[2] "\t" line
-      next
+      name = parts[2]; block = line; flush(); next
     }
     /^\+static / {
       line = substr($0, 2)
-      name = line
-      sub(/[ \t]*(\[[^]]*\])?[ \t]*=.*$/, "", name)
-      n = split(name, parts, /[ \t*]+/)
-      print parts[n] "\t" line
+      decl = line
+      sub(/[ \t]*(\[[^]]*\])?[ \t]*=.*$/, "", decl)
+      n = split(decl, parts, /[ \t*]+/)
+      name = parts[n]; block = line
+      if (line ~ /\{[^}]*$/) collecting = 1; else flush()
       next
     }
-  ' "$rej")
+    /^\+\+\+/ { next }
+    /^\+/ { print substr($0, 2) > (dir "/.dropped") }
+  ' "$rej"
 
   merged=""
-  while IFS=$'\t' read -r name line; do
-    [ -n "$name" ] || continue
+  for f in "$decls"/*; do
+    [ -e "$f" ] || continue
+    name=$(basename "$f")
     rg -q "\\b$name\\b" config.def.h && continue
-    merged="$merged$line"$'\n'
-  done <<<"$added"
+    merged="$merged$(cat "$f")"$'\n'
+  done
 
   if [ -n "$merged" ]; then
-    awk -v block="$merged" '
-      !done && /^static const Rule rules\[\]/ { printf "%s", block; done = 1 }
-      { print }
-      END { if (!done) printf "%s", block }
-    ' config.def.h >config.def.h.new
-    mv config.def.h.new config.def.h
+    printf '\n%s' "$merged" >>config.def.h
   fi
 
   echo "note: $p conflicted in config.def.h, merged its declarations:"
   printf '%s' "$merged" | sed 's/^/  /'
-  if rg -q '^\+[^+]' "$rej" && rg -v '^\+(static |#define )' "$rej" | rg -q '^\+[^+]'; then
+  if [ -s "$decls/.dropped" ]; then
     echo "note: lines from $p that aren't declarations were left out (e.g. keybinds), add them yourself if needed:"
-    rg '^\+[^+]' "$rej" | rg -v '^\+(static |#define )' | sed 's/^+/  /'
+    sed 's/^/  /' "$decls/.dropped"
   fi
-  rm -f "$rest" "$rej"
+  rm -rf "$rest" "$rej" "$decls"
 done
 
 runHook postPatch
