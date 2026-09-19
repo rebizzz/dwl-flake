@@ -81,124 +81,161 @@
     };
   };
 
-  declarative = ["settings" "keybinds" "modKey" "rules" "monitors" "autostart" "extraConfig"];
+  declarative = ["settings" "keybinds" "buttons" "modKey" "rules" "monitors" "autostart" "extraConfig"];
+
+  typed = import ./typed.nix {inherit lib;};
+  inherit (import ./config.nix {inherit lib;}) c;
 in {
-  options = {
-    channel = mkOption {
-      type = types.enum ["main" "stable"];
-      default = "main";
-      description = "Build dwl main or the latest dwl release.";
-    };
+  options =
+    typed.options
+    // {
+      channel = mkOption {
+        type = types.enum ["main" "stable"];
+        default = "main";
+        description = "Build dwl main or the latest dwl release.";
+      };
 
-    patches = mkOption {
-      type = with types; listOf (oneOf [path package str]);
-      default = [];
-      example = literalExpression ''[ "pertag" "movestack" ./my-fix.patch ]'';
-      description = "Patches to apply. A name picks the file from dwl-patches that applies to the channel and adds its dependencies.";
-    };
+      patches = mkOption {
+        type = with types; listOf (oneOf [path package str]);
+        default = [];
+        example = literalExpression ''[ "pertag" "movestack" ./my-fix.patch ]'';
+        description = "Patches to apply. A name picks the file from dwl-patches that applies to the channel and adds its dependencies.";
+      };
 
-    modKey = mkOption {
-      type = with types; nullOr str;
-      default = null;
-      example = "Super";
-      description = "What `Mod` means in keybinds and in dwl's defaults: Super, Alt, Ctrl or Shift.";
-    };
+      modKey = mkOption {
+        type = with types; nullOr str;
+        default = null;
+        example = "Super";
+        description = "What `Mod` means in keybinds and in dwl's defaults: Super, Alt, Ctrl or Shift.";
+      };
 
-    keybinds = mkOption {
-      type = with types; attrsOf (either str (attrsOf anything));
-      default = {};
-      example = literalExpression ''
-        {
-          "Mod+Return".spawn = "foot";
-          "Mod+q" = "killclient";
-          "Mod+1".view = 1;
-          "Mod+Shift+1".tag = 1;
-        }
-      '';
-      description = "Keybinds as `\"Modifiers+keysym\" = action`.";
-    };
+      keybinds = mkOption {
+        type = with types; attrsOf (either str (attrsOf anything));
+        default = {};
+        example = literalExpression ''
+          {
+            "Mod+Return".spawn = "foot";
+            "Mod+q" = "killclient";
+            "Mod+1".view = 1;
+            "Mod+Shift+1".tag = 1;
+          }
+        '';
+        description = "Keybinds as `\"Modifiers+keysym\" = action`.";
+      };
 
-    defaultKeybinds = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Keep dwl's default keybinds next to yours.";
-    };
+      defaultKeybinds = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Keep dwl's default keybinds next to yours.";
+      };
 
-    rules = mkOption {
-      type = types.listOf rule;
-      default = [];
-      example = literalExpression ''[ { id = "firefox"; tags = [ 2 ]; } ]'';
-      description = "Window rules.";
-    };
+      rules = mkOption {
+        type = types.listOf rule;
+        default = [];
+        example = literalExpression ''[ { id = "firefox"; tags = [ 2 ]; } ]'';
+        description = "Window rules.";
+      };
 
-    monitors = mkOption {
-      type = types.listOf monitor;
-      default = [];
-      example = literalExpression ''[ { name = "eDP-1"; scale = 1.5; } ]'';
-      description = "Monitor rules. A catch-all rule is added at the end.";
-    };
+      monitors = mkOption {
+        type = types.listOf monitor;
+        default = [];
+        example = literalExpression ''[ { name = "eDP-1"; scale = 1.5; } ]'';
+        description = "Monitor rules. A catch-all rule is added at the end.";
+      };
 
-    autostart = mkOption {
-      type = with types; listOf str;
-      default = [];
-      example = ["waybar"];
-      description = "Commands started with dwl. Adds the autostart patch.";
-    };
+      autostart = mkOption {
+        type = with types; listOf str;
+        default = [];
+        example = ["waybar"];
+        description = "Commands started with dwl. Adds the autostart patch.";
+      };
 
-    settings = mkOption {
-      type = with types; attrsOf anything;
-      default = {};
-      example = literalExpression ''{ borderpx = 2; focuscolor = "#89b4fa"; }'';
-      description = "Any variable or define from config.def.h, including ones added by patches.";
-    };
+      settings = mkOption {
+        type = with types; attrsOf anything;
+        default = {};
+        example = literalExpression ''{ borderpx = 2; focuscolor = "#89b4fa"; }'';
+        description = "Any variable or define from config.def.h, including ones added by patches.";
+      };
 
-    extraConfig = mkOption {
-      type = types.lines;
-      default = "";
-      description = "C code added to the top of config.h.";
-    };
+      extraConfig = mkOption {
+        type = types.lines;
+        default = "";
+        description = "C code added to the top of config.h.";
+      };
 
-    configH = mkOption {
-      type = with types; nullOr (either path lines);
-      default = null;
-      example = literalExpression "./config.h";
-      description = "Your own config.h. The declarative options are ignored when set.";
-    };
+      configH = mkOption {
+        type = with types; nullOr (either path lines);
+        default = null;
+        example = literalExpression "./config.h";
+        description = "Your own config.h. The declarative options are ignored when set.";
+      };
 
-    statusCommand = mkOption {
-      type = with types; nullOr str;
-      default = null;
-      example = "while true; do date +%H:%M; sleep 30; done";
-      description = "Shell command whose output lines become the status text in the bar patch.";
-    };
+      statusCommand = mkOption {
+        type = with types; nullOr str;
+        default = null;
+        example = "while true; do date +%H:%M; sleep 30; done";
+        description = "Shell command whose output lines become the status text in the bar patch.";
+      };
 
-    xwayland = lib.mkEnableOption "XWayland support" // {default = true;};
+      xwayland = lib.mkEnableOption "XWayland support" // {default = true;};
 
-    extraBuildInputs = mkOption {
-      type = with types; listOf package;
-      default = [];
-      description = "Libraries a patch needs that aren't detected.";
+      buttons = mkOption {
+        type = with types; attrsOf (either str (attrsOf anything));
+        default = {};
+        example = lib.literalExpression ''
+          {
+            "Mod+left".moveresize = "move";
+            "Mod+right".moveresize = "resize";
+            "Mod+middle" = "togglefloating";
+          }
+        '';
+        description = "Mouse bindings as `\"Modifiers+button\" = action`. Buttons: left, right, middle, side, extra.";
+      };
+
+      defaultButtons = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Keep dwl's default mouse bindings next to yours.";
+      };
+
+      environment = mkOption {
+        type = with types; attrsOf str;
+        default = {};
+        example = {NIXOS_OZONE_WL = "1";};
+        description = "Environment variables set for dwl and everything it starts.";
+      };
+
+      extraBuildInputs = mkOption {
+        type = with types; listOf package;
+        default = [];
+        description = "Libraries a patch needs that aren't detected.";
+      };
     };
-  };
 
   package = let
     dwl = (mkDwl pkgs cfg.channel).override {
-      inherit (cfg) patches configH extraBuildInputs settings keybinds defaultKeybinds modKey autostart extraConfig;
+      inherit (cfg) patches configH extraBuildInputs keybinds defaultKeybinds buttons defaultButtons modKey autostart extraConfig;
+      settings = typed.toSettings c cfg // cfg.settings;
       inherit (cfg) rules monitors;
       enableXWayland = cfg.xwayland;
     };
   in
-    if cfg.statusCommand == null
+    if cfg.statusCommand == null && cfg.environment == {}
     then dwl
     else
       pkgs.symlinkJoin {
-        name = "${dwl.name}-with-status";
+        name = "${dwl.name}-wrapped";
         paths = [dwl dwl.man];
         postBuild = ''
           rm $out/bin/dwl
           cat > $out/bin/dwl <<EOF
           #!${pkgs.runtimeShell}
-          ${pkgs.writeShellScript "dwl-status" cfg.statusCommand} | exec ${lib.getExe dwl} "\$@"
+          ${lib.concatStrings (lib.mapAttrsToList (k: v: "export ${k}=${lib.escapeShellArg v}\n") cfg.environment)}
+          ${
+            if cfg.statusCommand == null
+            then "exec ${lib.getExe dwl} \"\\$@\""
+            else "${pkgs.writeShellScript "dwl-status" cfg.statusCommand} | exec ${lib.getExe dwl} \"\\$@\""
+          }
           EOF
           chmod +x $out/bin/dwl
         '';

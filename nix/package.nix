@@ -32,10 +32,15 @@
   monitors ? [],
   autostart ? [],
   extraConfig ? "",
+  buttons ? {},
+  defaultButtons ? true,
   linkFarm,
 }: let
   configLib = import ./config.nix {inherit lib;};
-  declarative = {inherit settings keybinds defaultKeybinds modKey rules monitors autostart extraConfig;};
+  declarative = {
+    inherit settings keybinds defaultKeybinds modKey rules monitors autostart extraConfig buttons defaultButtons;
+    buttonClickRegion = canInspect && tokens ? ClkClient;
+  };
   edits = configLib.render declarative;
   editsDir = linkFarm "dwl-config-edits" (lib.concatLists (lib.mapAttrsToList (mode: entries:
     if mode == "extra"
@@ -72,6 +77,7 @@
     then "dwl patch '${p}' has no version that applies to dwl ${channel} (${lib.concatStringsSep ", " (lib.attrNames entry.files)})${lib.optionalString (channel == "main" && entry.default.stable != null) ", but it works with channel = \"stable\""}"
     else null;
   patchErrors = lib.filter (e: e != null) (map patchError (lib.filter isPatchName allPatches));
+  fuzzyPatches = lib.filter (p: isPatchName p && patchError p == null && dwlPatches.isFuzzy channel p) allPatches;
 
   resolved = map (p:
     if isPatchName p
@@ -127,7 +133,7 @@ in
     pname = "dwl";
     inherit src version;
 
-    patches = map (r: r.src) resolved;
+    patches = lib.warnIf (fuzzyPatches != []) "dwl: ${lib.concatStringsSep ", " fuzzyPatches} only apply to dwl ${channel} with fuzz, check that they behave as expected" (map (r: r.src) resolved);
 
     nativeBuildInputs = [installShellFiles pkg-config wayland-scanner];
 

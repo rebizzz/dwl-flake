@@ -11,6 +11,9 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-10"
@@ -30,6 +33,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-01-15"
@@ -48,6 +52,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -68,6 +75,9 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -86,6 +96,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -106,6 +119,9 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "autostart_0.8.patch"
@@ -113,6 +129,9 @@
       "autostart_main-5fd19fe.patch": {
         "applies": {
           "main": true,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {},
@@ -123,6 +142,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -143,6 +165,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [
           "fcft",
@@ -156,6 +179,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [
           "fcft",
@@ -169,6 +193,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [
           "fcft",
@@ -192,6 +217,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": null
@@ -211,6 +237,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {
           "stable": true
         },
@@ -232,6 +259,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -251,6 +279,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {
           "stable": true
         },
@@ -272,6 +301,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "git branch"
@@ -291,6 +321,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [
           "dbus-1",
@@ -314,6 +345,9 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {
           "stable": true
         },
@@ -333,6 +367,9 @@
       "barcolors.patch": {
         "applies": {
           "main": false,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {
@@ -356,6 +393,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {
           "stable": true
         },
@@ -377,6 +415,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {
           "stable": true
         },
@@ -398,6 +437,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {
           "stable": true
         },
@@ -419,6 +459,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -438,6 +479,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-11-29"
@@ -455,6 +497,9 @@
       "borders.patch": {
         "applies": {
           "main": false,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {},
@@ -476,6 +521,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -495,6 +541,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8 WITH gaps"
@@ -504,6 +551,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -513,6 +561,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "wlroots-next WITH gaps"
@@ -522,6 +571,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "wlroots-next"
@@ -539,6 +589,9 @@
       "buttonbystate.patch": {
         "applies": {
           "main": false,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {},
@@ -560,6 +613,7 @@
           "main": true,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-09-16"
@@ -579,6 +633,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -588,6 +643,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -607,6 +663,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
@@ -616,6 +673,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7-gaps"
@@ -625,6 +683,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
@@ -634,6 +693,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-15"
@@ -653,6 +713,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
@@ -672,6 +733,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-20"
@@ -691,6 +753,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-01-20"
@@ -710,6 +773,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-04-27"
@@ -727,6 +791,9 @@
       "color_manager.patch": {
         "applies": {
           "main": false,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {},
@@ -750,6 +817,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-01-02"
@@ -769,6 +837,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "dwl 0.8"
@@ -778,6 +847,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-10-08"
@@ -787,6 +857,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-11-13"
@@ -806,6 +877,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "coredump-0.7.patch"
@@ -815,6 +887,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
@@ -834,6 +907,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-09"
@@ -853,6 +927,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "customfloat_0.8"
@@ -862,6 +937,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "customfloat_main-5fd19fe"
@@ -871,6 +947,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "customfloat_wlroots-next-f4249db"
@@ -890,6 +967,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -909,6 +987,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": null
@@ -918,6 +997,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-16"
@@ -927,6 +1007,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-14"
@@ -936,6 +1017,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-03"
@@ -945,6 +1027,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-18"
@@ -954,6 +1037,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-03-10"
@@ -973,6 +1057,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-02-09"
@@ -992,6 +1077,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -1011,6 +1097,10 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true,
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
@@ -1020,12 +1110,20 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true,
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
       },
       "dragmfact.patch": {
         "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {
           "main": true,
           "stable": true
         },
@@ -1048,6 +1146,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-10"
@@ -1065,6 +1164,9 @@
       "drm_lease.patch": {
         "applies": {
           "main": false,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {},
@@ -1086,6 +1188,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -1105,6 +1208,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -1114,6 +1218,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -1131,6 +1236,9 @@
       "envcfg.patch": {
         "applies": {
           "main": false,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {},
@@ -1152,6 +1260,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": null
@@ -1171,6 +1280,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-03-29"
@@ -1190,6 +1300,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-11"
@@ -1209,6 +1320,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2023-01-22"
@@ -1228,6 +1340,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main dwl 0.8"
@@ -1246,6 +1359,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1266,6 +1382,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-02"
@@ -1285,6 +1402,9 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -1293,6 +1413,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1313,6 +1436,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [
           "libevdev",
@@ -1335,6 +1459,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2023-08-01"
@@ -1344,6 +1469,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-14"
@@ -1353,6 +1479,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-18"
@@ -1362,6 +1489,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-10-31"
@@ -1371,6 +1499,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -1390,6 +1519,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-12"
@@ -1409,6 +1539,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7 2025-02-11"
@@ -1418,6 +1549,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -1435,6 +1567,9 @@
       "globalkey.patch": {
         "applies": {
           "main": false,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {},
@@ -1456,6 +1591,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -1475,6 +1611,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "hide-behind-fullscreen-0.7.patch"
@@ -1484,6 +1621,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
@@ -1503,6 +1641,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "hide-behind-monocle-0.7.patch"
@@ -1511,6 +1650,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1521,6 +1663,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
@@ -1540,6 +1683,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -1559,6 +1703,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {
           "stable": true
         },
@@ -1580,6 +1725,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "yyyy-mm-dd"
@@ -1599,6 +1745,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -1608,6 +1755,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-05-30"
@@ -1627,6 +1775,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
@@ -1636,6 +1785,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
@@ -1644,6 +1794,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1664,6 +1817,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -1673,6 +1827,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -1692,6 +1847,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-10"
@@ -1711,6 +1867,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "keycodes-0.7.patch"
@@ -1720,6 +1877,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
@@ -1739,6 +1897,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-07-20"
@@ -1758,6 +1917,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -1777,6 +1937,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-03-15"
@@ -1796,6 +1957,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "git branch"
@@ -1815,6 +1977,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-11"
@@ -1834,6 +1997,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -1843,6 +2007,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -1862,6 +2027,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-03-21 v0.7"
@@ -1870,6 +2036,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1890,6 +2059,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -1899,6 +2069,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -1918,6 +2089,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-12-07"
@@ -1937,6 +2109,9 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.5"
@@ -1946,6 +2121,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -1965,6 +2141,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -1974,6 +2151,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "wlroots-next-f4249db"
@@ -1993,6 +2171,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2012,6 +2191,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
@@ -2030,6 +2210,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -2050,6 +2233,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2059,6 +2243,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -2069,15 +2254,16 @@
   "namedscratchpads": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "namedscratchpads-0.8.patch"
     },
     "description": "Allows for the creation of multiple scratchpad windows, each assigned to a different keybinding. In simple terms, it enables 'run or raise' functionality",
     "files": {
       "namedscratchpads-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "namedscratchpads-0.8.patch"
@@ -2087,6 +2273,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-13 (v0.6)"
@@ -2106,6 +2293,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2125,6 +2313,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2144,6 +2333,9 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_0.8.patch"
@@ -2153,6 +2345,9 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_main-5fd19fe.patch"
@@ -2161,6 +2356,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -2181,6 +2379,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-26"
@@ -2200,6 +2399,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "per-app-share-wlroots-next-d41ecb745c"
@@ -2219,6 +2419,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-08"
@@ -2228,6 +2429,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-11-19 (keyboard)"
@@ -2237,6 +2439,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-11-19 (pointer)"
@@ -2246,6 +2449,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.5"
@@ -2262,6 +2466,10 @@
     "files": {
       "pertag.patch": {
         "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {
           "main": true,
           "stable": true
         },
@@ -2284,6 +2492,9 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-12"
@@ -2303,6 +2514,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-06"
@@ -2312,6 +2524,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-11-19"
@@ -2331,6 +2544,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "push-0.7.patch"
@@ -2340,6 +2554,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-01-20"
@@ -2359,6 +2574,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-11"
@@ -2378,6 +2594,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-14"
@@ -2397,6 +2614,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-09"
@@ -2416,6 +2634,10 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true,
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "with bar patch"
@@ -2425,6 +2647,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2026-03-25"
@@ -2443,6 +2666,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -2463,6 +2689,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-11"
@@ -2482,6 +2709,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2501,6 +2729,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2520,6 +2749,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2539,6 +2769,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-01-23"
@@ -2558,6 +2789,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2566,6 +2798,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -2583,6 +2818,10 @@
     "files": {
       "setupenv.patch": {
         "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {
           "main": true,
           "stable": true
         },
@@ -2605,6 +2844,9 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "shifttag-bar-v0.8"
@@ -2613,6 +2855,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -2633,6 +2878,9 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-02-09"
@@ -2652,6 +2900,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "scratchpad-v0.8.patch"
@@ -2661,6 +2910,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "scratchpad-wlroots-next-d41ecb7.patch"
@@ -2680,6 +2930,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "simpleborders_0.8.patch"
@@ -2689,6 +2940,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "simpleborders_main-5fd19fe.patch"
@@ -2698,6 +2950,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "simpleborders_wlroots-next-f4249db.patch"
@@ -2717,6 +2970,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
@@ -2736,6 +2990,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-16 (v0.6)"
@@ -2745,6 +3000,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-26 (v0.7)"
@@ -2764,6 +3020,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-26"
@@ -2783,6 +3040,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-26"
@@ -2802,6 +3060,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-14"
@@ -2811,6 +3070,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-18"
@@ -2820,6 +3080,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": null
@@ -2839,6 +3100,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "smartborders-0.7.patch"
@@ -2848,6 +3110,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
@@ -2867,6 +3130,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2876,6 +3140,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -2895,6 +3160,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2024-08-08"
@@ -2912,6 +3178,9 @@
       "spawninfo.patch": {
         "applies": {
           "main": false,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {},
@@ -2933,6 +3202,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-12-09"
@@ -2952,6 +3222,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-17"
@@ -2971,6 +3242,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -2990,6 +3262,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-03"
@@ -3009,6 +3282,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -3028,6 +3302,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
@@ -3037,6 +3312,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -3046,6 +3322,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
@@ -3065,6 +3342,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -3083,6 +3361,9 @@
         "applies": {
           "main": true,
           "stable": true
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -3103,6 +3384,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "swapmons-0.8.patch"
@@ -3121,6 +3403,9 @@
         "applies": {
           "main": true,
           "stable": false
+        },
+        "fuzzy": {
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -3141,6 +3426,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -3160,6 +3446,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "tablet-input-0.8.patch"
@@ -3169,6 +3456,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "tablet-input-main-a2d03cf.patch"
@@ -3188,6 +3476,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -3207,6 +3496,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [
           "pixman-1"
@@ -3216,6 +3506,9 @@
       "tearing.patch": {
         "applies": {
           "main": false,
+          "stable": true
+        },
+        "fuzzy": {
           "stable": true
         },
         "needsRequired": {},
@@ -3237,6 +3530,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-01-02"
@@ -3256,6 +3550,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -3275,6 +3570,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": null
@@ -3294,6 +3590,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -3303,6 +3600,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
@@ -3322,6 +3620,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "touch-input-0.8-osu-ver.patch"
@@ -3331,6 +3630,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "touch-input-0.8.patch"
@@ -3340,6 +3640,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "touch-input-wlroots-next-f4249db.patch"
@@ -3359,6 +3660,7 @@
           "main": true,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-09-16"
@@ -3378,6 +3680,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-16"
@@ -3388,7 +3691,7 @@
   "vanitygaps": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "vanitygaps-0.8.patch"
     },
     "description": "Adds (inner) gaps between client windows and (outer) gaps between windows and\nthe screen edge in a flexible manner.",
     "files": {
@@ -3397,6 +3700,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "vanitygaps-0.7.patch"
@@ -3404,8 +3708,9 @@
       "vanitygaps-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "vanitygaps-0.8.patch"
@@ -3415,6 +3720,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
@@ -3434,6 +3740,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-03-27"
@@ -3453,6 +3760,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2023-01-06"
@@ -3472,6 +3780,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.5"
@@ -3488,6 +3797,10 @@
     "files": {
       "warpcursor.patch": {
         "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {
           "main": true,
           "stable": true
         },
@@ -3510,6 +3823,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-03-26"
@@ -3529,6 +3843,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-06"
@@ -3538,6 +3853,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-18"
@@ -3547,6 +3863,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-03-14 dwl 0.8"
@@ -3566,6 +3883,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-01"
@@ -3585,6 +3903,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {
           "stable": true
         },
@@ -3596,6 +3915,7 @@
           "main": false,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "git branch"
@@ -3615,6 +3935,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
@@ -3624,6 +3945,7 @@
           "main": true,
           "stable": true
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
@@ -3633,6 +3955,7 @@
           "main": false,
           "stable": false
         },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-15"

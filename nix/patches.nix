@@ -25,6 +25,15 @@ in {
     then p.requires
     else null;
 
+  isFuzzy = channel: name: let
+    p = index.${name} or null;
+    file =
+      if p == null
+      then null
+      else p.default.${channel};
+  in
+    file != null && (p.files.${file}.fuzzy.${channel} or false);
+
   compatible = lib.genAttrs channels (channel: lib.attrNames (compatibleWith channel));
 
   resolve = channel: name: let

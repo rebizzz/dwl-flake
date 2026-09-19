@@ -10,7 +10,7 @@
       flake = false;
     };
     dwl-stable-src = {
-      url = "git+https://codeberg.org/dwl/dwl?ref=refs/tags/v0.8&shallow=1";
+      url = "git+https://codeberg.org/dwl/dwl?ref=0.8&shallow=1";
       flake = false;
     };
     dwl-patches-src = {
@@ -91,9 +91,11 @@
         name = "update";
         runtimeInputs = with pkgs; [git gnused gnugrep coreutils];
         text = ''
-          latest=$(git ls-remote --tags --refs https://codeberg.org/dwl/dwl.git \
-            | sed 's|.*refs/tags/||' | grep -E '^v[0-9.]+$' | sort -V | tail -n1)
-          sed -i -E "s|(codeberg.org/dwl/dwl\?ref=refs/tags/)[^&\"]+|\1$latest|" flake.nix
+          remote=https://codeberg.org/dwl/dwl.git
+          tags=$(git ls-remote --tags --refs "$remote" | sed 's|.*refs/tags/v||')
+          latest=$(git ls-remote --heads "$remote" | sed 's|.*refs/heads/||' | grep -E '^[0-9]+\.[0-9]+$' \
+            | while read -r b; do echo "$tags" | grep -qxF "$b" && echo "$b"; done | sort -V | tail -n1)
+          sed -i -E "s|(codeberg.org/dwl/dwl\?ref=)[0-9.]+|\1$latest|" flake.nix
           nix flake update
           nix run .#update-index
           nix run .#update-docs
@@ -151,7 +153,17 @@
       inherit mkDwl;
       inherit (import ./nix/config.nix {inherit lib;}) c;
       inherit (dwlPatches) index compatible resolve;
+      actions = lib.mapAttrs (_: ch:
+        lib.sort lib.lessThan (lib.concatMap (m: lib.optional (lib.isList m) (lib.head m))
+          (builtins.split "\n([a-z_]+)\\(const Arg \\*arg\\)\n" (builtins.readFile "${ch.src}/dwl.c"))))
+      channels;
     };
+
+    legacyPackages = forAllSystems (pkgs: {
+      patchTests = lib.genAttrs ["main" "stable"] (channel:
+        lib.genAttrs dwlPatches.compatible.${channel} (name:
+          (mkDwl pkgs channel).override {patches = [name];}));
+    });
 
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {

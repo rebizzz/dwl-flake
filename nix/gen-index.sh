@@ -4,6 +4,12 @@ shift
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
 
+tryApply() {
+  rm -rf "$work/try"
+  cp -r "$1" "$work/try"
+  patch -d "$work/try" -p1 -f --silent ${3:+"$3"} <"$2" >/dev/null 2>&1
+}
+
 channels=()
 for arg in "$@"; do
   channel=${arg%%=*}
@@ -46,13 +52,19 @@ for dir in "$patchesSrc"/patches/*/; do
 
     applies='{}'
     needs='{}'
+    fuzzy='{}'
     for channel in "${channels[@]}"; do
       ok=false
-      if patch -d "$work/$channel" -p1 -f --dry-run --silent <"$f" >/dev/null 2>&1; then
+      base="$work/$channel"
+      if tryApply "$base" "$f"; then
         ok=true
-      elif [ -d "$work/$channel-base" ] && patch -d "$work/$channel-base" -p1 -f --dry-run --silent <"$f" >/dev/null 2>&1; then
+      elif [ -d "$work/$channel-base" ] && tryApply "$work/$channel-base" "$f"; then
         ok=true
+        base="$work/$channel-base"
         needs=$(jq -c --arg c "$channel" '. + {($c): true}' <<<"$needs")
+      fi
+      if $ok && ! tryApply "$base" "$f" -F0; then
+        fuzzy=$(jq -c --arg c "$channel" '. + {($c): true}' <<<"$fuzzy")
       fi
       applies=$(jq -c --arg c "$channel" --argjson ok "$ok" '. + {($c): $ok}' <<<"$applies")
     done
@@ -75,8 +87,8 @@ for dir in "$patchesSrc"/patches/*/; do
       sed -E 's/^\[([^]]+)\].*/\1/' || true)
 
     jq -nc --arg file "$file" --arg target "$target" \
-      --argjson applies "$applies" --argjson needs "$needs" --argjson pkgConfig "$pkgConfig" \
-      '{file: $file, applies: $applies, needsRequired: $needs, pkgConfig: $pkgConfig,
+      --argjson applies "$applies" --argjson needs "$needs" --argjson fuzzy "$fuzzy" --argjson pkgConfig "$pkgConfig" \
+      '{file: $file, applies: $applies, needsRequired: $needs, fuzzy: $fuzzy, pkgConfig: $pkgConfig,
         target: (if $target == "" then null else $target end)}'
   done >"$work/files.jsonl"
 
@@ -87,7 +99,7 @@ for dir in "$patchesSrc"/patches/*/; do
   jq -sc --arg name "$name" --arg description "$description" --arg requires "$requires" --argjson versions "$versions" '
     . as $files
     | def pick($channel):
-        ($files | map(select(.applies[$channel])) | map(.file)) as $ok
+        ($files | map(select(.applies[$channel])) | sort_by(.fuzzy[$channel] // false) | map(.file)) as $ok
         | ([$ok[] | select(($channel != "main") and contains($versions[$channel]))]
            + [$ok[] | select(. == "\($name).patch")]
            + [$ok[] | select(contains("main"))]

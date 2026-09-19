@@ -39,14 +39,14 @@
       "locked": {
         "lastModified": 1766876912,
         "narHash": "sha256-J76L5ZOCYgfcY08wH5cSLG+UdgDrv50lQyEnJNqDkXI=",
-        "ref": "refs/tags/v0.8",
+        "ref": "0.8",
         "rev": "9b11a49cb757b80f8589088b487b5f1e56643aa1",
         "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/dwl/dwl"
       },
       "original": {
-        "ref": "refs/tags/v0.8",
+        "ref": "0.8",
         "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/dwl/dwl"

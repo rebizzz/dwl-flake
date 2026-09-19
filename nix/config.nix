@@ -151,6 +151,33 @@
       else throw "dwl keybinds: '${combo}' should be a function name, { <function> = <arg>; } or { fn = ...; arg = ...; }";
   in "\t{ ${k.mods}, ${k.key}, ${call.fn}, ${call.arg} },";
 
+  mouseButtons = {
+    left = "BTN_LEFT";
+    right = "BTN_RIGHT";
+    middle = "BTN_MIDDLE";
+    side = "BTN_SIDE";
+    extra = "BTN_EXTRA";
+  };
+
+  buttonEntry = clickRegion: combo: action: let
+    parts = lib.splitString "+" combo;
+    k = parseCombo (concatStringsSep "+" (lib.init parts ++ ["x"]));
+    button = mouseButtons.${lib.toLower (lib.last parts)};
+    fn = actionFunction action;
+    arg =
+      if isString action
+      then "{0}"
+      else if action ? fn
+      then genericArg (action.arg or null)
+      else if fn == "moveresize"
+      then "{ .ui = ${
+        if action.moveresize == "move"
+        then "CurMove"
+        else "CurResize"
+      } }"
+      else argFor fn action.${fn};
+  in "\t{ ${lib.optionalString clickRegion "ClkClient, "}${k.mods}, ${button}, ${fn}, ${arg} },";
+
   vtKeys =
     ["\t{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT, XKB_KEY_BackSpace, quit, {0} },"]
     ++ map (n: "\t{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT, XKB_KEY_F${toString n}, chvt, { .ui = ${toString n} } },") (lib.range 1 12);
@@ -183,9 +210,17 @@ in {
   errors = cfg:
     lib.optional (cfg.modKey != null && (!(modifiers ? ${lib.toLower cfg.modKey}) || lib.toLower cfg.modKey == "mod"))
     "modKey '${cfg.modKey}' isn't a modifier, use Super, Alt, Ctrl or Shift"
-    ++ lib.concatLists (mapAttrsToList (combo: action: comboErrors combo ++ actionErrors combo action) cfg.keybinds);
+    ++ lib.concatLists (mapAttrsToList (combo: action: comboErrors combo ++ actionErrors combo action) cfg.keybinds)
+    ++ lib.concatLists (mapAttrsToList (combo: action: let
+      parts = lib.splitString "+" combo;
+    in
+      comboErrors (concatStringsSep "+" (lib.init parts ++ ["x"]))
+      ++ lib.optional (!(mouseButtons ? ${lib.toLower (lib.last parts)})) "mouse binding '${combo}': unknown button '${lib.last parts}', use left, right, middle, side or extra"
+      ++ lib.optional (action ? moveresize && !(lib.elem action.moveresize ["move" "resize"])) "mouse binding '${combo}': moveresize takes \"move\" or \"resize\""
+      ++ actionErrors combo action)
+    cfg.buttons);
 
-  functions = cfg: lib.unique (mapAttrsToList (_: actionFunction) cfg.keybinds);
+  functions = cfg: lib.unique (mapAttrsToList (_: actionFunction) (cfg.keybinds // cfg.buttons));
 
   isEmpty = cfg:
     cfg.settings
@@ -196,10 +231,13 @@ in {
     && cfg.rules == []
     && cfg.monitors == []
     && cfg.autostart == []
+    && cfg.buttons == {}
+    && cfg.defaultButtons
     && cfg.extraConfig == "";
 
   render = cfg: let
     keyLines = mapAttrsToList keyEntry cfg.keybinds;
+    buttonLines = mapAttrsToList (buttonEntry cfg.buttonClickRegion) cfg.buttons;
   in {
     define =
       lib.optionalAttrs (cfg.modKey != null) {MODKEY = (parseCombo "${cfg.modKey}+x").mods;}
@@ -208,11 +246,14 @@ in {
     replace =
       lib.mapAttrs (_: toC) (lib.filterAttrs (n: _: n != lib.toUpper n) cfg.settings)
       // lib.optionalAttrs (!cfg.defaultKeybinds) {keys = "{\n${concatStringsSep "\n" (keyLines ++ vtKeys)}\n}";}
+      // lib.optionalAttrs (!cfg.defaultButtons) {buttons = "{\n${concatStringsSep "\n" buttonLines}\n}";}
       // lib.optionalAttrs (cfg.rules != []) {rules = "{\n${concatMapStringsSep "\n" ruleEntry cfg.rules}\n}";}
       // lib.optionalAttrs (cfg.monitors != []) {monrules = "{\n${concatMapStringsSep "\n" monitorEntry (cfg.monitors ++ [{}])}\n}";}
       // lib.optionalAttrs (cfg.autostart != []) {autostart = "{ ${autostartEntries cfg.autostart} }";};
 
-    prepend = lib.optionalAttrs (cfg.defaultKeybinds && keyLines != []) {keys = concatStringsSep "\n" keyLines;};
+    prepend =
+      lib.optionalAttrs (cfg.defaultKeybinds && keyLines != []) {keys = concatStringsSep "\n" keyLines;}
+      // lib.optionalAttrs (cfg.defaultButtons && buttonLines != []) {buttons = concatStringsSep "\n" buttonLines;};
 
     extra = cfg.extraConfig;
   };

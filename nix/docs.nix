@@ -33,5 +33,11 @@ in
       echo "\`useHomeManagerBuild\`, \`extraSessionCommands\`, \`startupCommand\`, \`polkitAgent\` and \`keyring\` only exist in the NixOS module."
       echo
       cat -s ${doc.optionsCommonMark} | sed -e '/^## /s/\\\././g'
+      echo
+      echo "# Keybind actions"
+      echo
+      echo "Functions dwl itself provides, usable in \`keybinds\` and \`buttons\`. Patches add more."
+      echo
+      ${pkgs.lib.concatMapStrings (a: "echo \"- \\\`${a}\\\`\"\n") self.lib.actions.main}
     } > $out
   ''

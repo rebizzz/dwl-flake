@@ -34,6 +34,123 @@ package
 *Default:*
 dwl built from the options above
 
+## programs.dwl.appearance.borderWidth
+
+Window border width in pixels\. dwl default: ` 1 `\.
+
+*Type:*
+null or (unsigned integer, meaning >=0)
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.appearance.bypassSurfaceVisibility
+
+Idle inhibitors disable idle tracking even when their surface isn’t visible\. dwl default: ` false `\.
+
+*Type:*
+null or boolean
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.appearance.colors.border
+
+Border of unfocused windows\. dwl default: ` #444444 `\. Removed by the bar patch\.
+
+*Type:*
+null or string matching the pattern \#(\[0-9a-fA-F]{6}|\[0-9a-fA-F]{8})
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.appearance.colors.focus
+
+Border of the focused window\. dwl default: ` #005577 `\. Removed by the bar patch\.
+
+*Type:*
+null or string matching the pattern \#(\[0-9a-fA-F]{6}|\[0-9a-fA-F]{8})
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.appearance.colors.fullscreenBackground
+
+Background behind fullscreen windows, as a color or four floats\. dwl default: black\.
+
+*Type:*
+null or string matching the pattern \#(\[0-9a-fA-F]{6}|\[0-9a-fA-F]{8}) or list of floating point number
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.appearance.colors.root
+
+Background color\. dwl default: ` #222222 `\.
+
+*Type:*
+null or string matching the pattern \#(\[0-9a-fA-F]{6}|\[0-9a-fA-F]{8})
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.appearance.colors.urgent
+
+Border of urgent windows\. dwl default: ` #ff0000 `\. Removed by the bar patch\.
+
+*Type:*
+null or string matching the pattern \#(\[0-9a-fA-F]{6}|\[0-9a-fA-F]{8})
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.appearance.sloppyFocus
+
+Focus follows the mouse\. dwl default: ` true `\.
+
+*Type:*
+null or boolean
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.appearance.snap
+
+Snap distance in pixels when moving floating windows (main only)\. dwl default: ` 32 `\.
+
+*Type:*
+null or (unsigned integer, meaning >=0)
+
+*Default:*
+
+```nix
+null
+```
+
 ## programs.dwl.autostart
 
 Commands started with dwl\. Adds the autostart patch\.
@@ -53,6 +170,30 @@ list of string
 [
   "waybar"
 ]
+```
+
+## programs.dwl.buttons
+
+Mouse bindings as ` "Modifiers+button" = action `\. Buttons: left, right, middle, side, extra\.
+
+*Type:*
+attribute set of (string or attribute set of anything)
+
+*Default:*
+
+```nix
+{ }
+```
+
+*Example:*
+
+```nix
+{
+  "Mod+left".moveresize = "move";
+  "Mod+right".moveresize = "resize";
+  "Mod+middle" = "togglefloating";
+}
+
 ```
 
 ## programs.dwl.channel
@@ -87,6 +228,19 @@ null
 ./config.h
 ```
 
+## programs.dwl.defaultButtons
+
+Keep dwl’s default mouse bindings next to yours\.
+
+*Type:*
+boolean
+
+*Default:*
+
+```nix
+true
+```
+
 ## programs.dwl.defaultKeybinds
 
 Keep dwl’s default keybinds next to yours\.
@@ -98,6 +252,27 @@ boolean
 
 ```nix
 true
+```
+
+## programs.dwl.environment
+
+Environment variables set for dwl and everything it starts\.
+
+*Type:*
+attribute set of string
+
+*Default:*
+
+```nix
+{ }
+```
+
+*Example:*
+
+```nix
+{
+  NIXOS_OZONE_WL = "1";
+}
 ```
 
 ## programs.dwl.extraBuildInputs
@@ -145,6 +320,276 @@ strings concatenated with “\\n”
 "export MOZ_ENABLE_WAYLAND=1"
 ```
 
+## programs.dwl.finalConfig
+
+Path to the config\.h dwl is built with\.
+
+*Type:*
+string *(read only)*
+
+*Default:*
+the generated config\.h
+
+## programs.dwl.input.keyboard.repeatDelay
+
+Milliseconds before a key starts repeating\. dwl default: ` 600 `\.
+
+*Type:*
+null or (unsigned integer, meaning >=0)
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.keyboard.repeatRate
+
+Key repeats per second\. dwl default: ` 25 `\.
+
+*Type:*
+null or (unsigned integer, meaning >=0)
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.keyboard.xkb.layout
+
+XKB layout, e\.g\. ` us,de `\.
+
+*Type:*
+null or string
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.keyboard.xkb.model
+
+XKB model\.
+
+*Type:*
+null or string
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.keyboard.xkb.options
+
+XKB options, e\.g\. ` caps:escape `\.
+
+*Type:*
+null or string
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.keyboard.xkb.rules
+
+XKB rules\.
+
+*Type:*
+null or string
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.keyboard.xkb.variant
+
+XKB variant\.
+
+*Type:*
+null or string
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.accelProfile
+
+Pointer acceleration profile\. dwl default: ` adaptive `\.
+
+*Type:*
+null or one of “adaptive”, “flat”
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.accelSpeed
+
+Pointer acceleration, from -1 to 1\. dwl default: ` 0 `\.
+
+*Type:*
+null or integer or floating point number between -1\.0 and 1\.0 (both inclusive)
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.clickMethod
+
+Click method\. dwl default: ` button-areas `\.
+
+*Type:*
+null or one of “button-areas”, “clickfinger”, “none”
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.disableWhileTyping
+
+Disable the touchpad while typing\. dwl default: ` true `\.
+
+*Type:*
+null or boolean
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.dragLock
+
+Drag lock\. dwl default: ` true `\.
+
+*Type:*
+null or boolean
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.leftHanded
+
+Left-handed mode\. dwl default: ` false `\.
+
+*Type:*
+null or boolean
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.middleButtonEmulation
+
+Emulate a middle click\. dwl default: ` false `\.
+
+*Type:*
+null or boolean
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.naturalScroll
+
+Natural scrolling\. dwl default: ` false `\.
+
+*Type:*
+null or boolean
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.scrollMethod
+
+Scroll method\. dwl default: ` two-finger `\.
+
+*Type:*
+null or one of “edge”, “none”, “on-button-down”, “two-finger”
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.sendEvents
+
+When the touchpad sends events\. dwl default: ` enabled `\.
+
+*Type:*
+null or one of “disabled”, “disabled-on-external-mouse”, “enabled”
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.tapAndDrag
+
+Tap and drag\. dwl default: ` true `\.
+
+*Type:*
+null or boolean
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.tapButtonMap
+
+What 1, 2 and 3 finger taps click\. dwl default: ` left-right-middle `\.
+
+*Type:*
+null or one of “left-middle-right”, “left-right-middle”
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.input.touchpad.tapToClick
+
+Tap to click\. dwl default: ` true `\.
+
+*Type:*
+null or boolean
+
+*Default:*
+
+```nix
+null
+```
+
 ## programs.dwl.keybinds
 
 Keybinds as ` "Modifiers+keysym" = action `\.
@@ -187,6 +632,63 @@ true
 
 ```nix
 true
+```
+
+## programs.dwl.layouts
+
+Layouts, in order\. ` setlayout ` indexes into this list\. dwl default: tile, floating, monocle\.
+
+*Type:*
+null or (list of (submodule))
+
+*Default:*
+
+```nix
+null
+```
+
+*Example:*
+
+```nix
+[
+  { symbol = "[]="; arrange = "tile"; }
+  { symbol = "><>"; }
+  { symbol = "[M]"; arrange = "monocle"; }
+]
+
+```
+
+## programs.dwl.layouts.\*.arrange
+
+Arrange function, e\.g\. ` tile ` or ` monocle `\. ` null ` means floating\.
+
+*Type:*
+null or string
+
+*Default:*
+
+```nix
+null
+```
+
+## programs.dwl.layouts.\*.symbol
+
+Symbol shown for the layout\.
+
+*Type:*
+string
+
+## programs.dwl.logLevel
+
+wlroots log level\. dwl default: ` error `\.
+
+*Type:*
+null or one of “debug”, “error”, “info”, “silent”
+
+*Default:*
+
+```nix
+null
 ```
 
 ## programs.dwl.modKey
@@ -510,6 +1012,19 @@ null
 "while true; do date +%H:%M; sleep 30; done"
 ```
 
+## programs.dwl.tagCount
+
+Number of tags\. dwl default: ` 9 `\.
+
+*Type:*
+null or integer between 1 and 31 (both inclusive)
+
+*Default:*
+
+```nix
+null
+```
+
 ## programs.dwl.useHomeManagerBuild
 
 Start the dwl each user builds with the Home Manager module\. Users without one get the build from these options\.
@@ -542,3 +1057,26 @@ true
 true
 ```
 
+
+# Keybind actions
+
+Functions dwl itself provides, usable in `keybinds` and `buttons`. Patches add more.
+
+- `chvt`
+- `focusmon`
+- `focusstack`
+- `incnmaster`
+- `killclient`
+- `moveresize`
+- `quit`
+- `setlayout`
+- `setmfact`
+- `spawn`
+- `tag`
+- `tagmon`
+- `togglefloating`
+- `togglefullscreen`
+- `toggletag`
+- `toggleview`
+- `view`
+- `zoom`

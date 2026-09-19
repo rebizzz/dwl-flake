@@ -159,6 +159,69 @@ in
     module-stable-channel = (evalSystem nixpkgs (full // {channel = "stable";})).programs.dwl.package;
     nixos-unstable = evaluates "nixos-unstable" (evalSystem nixpkgs full);
     nixos-stable = evaluates "nixos-stable" (evalSystem nixpkgs-stable {channel = "stable";});
+    typed-options =
+      (evalSystem nixpkgs {
+        appearance = {
+          sloppyFocus = false;
+          bypassSurfaceVisibility = true;
+          borderWidth = 3;
+          snap = 16;
+          colors = {
+            root = "#1e1e2e";
+            border = "#313244";
+            focus = "#89b4fa";
+            urgent = "#f38ba8";
+            fullscreenBackground = [0.1 0.1 0.1 1.0];
+          };
+        };
+        tagCount = 5;
+        logLevel = "info";
+        layouts = [
+          {
+            symbol = "[]=";
+            arrange = "tile";
+          }
+          {symbol = "><>";}
+        ];
+        input = {
+          keyboard = {
+            xkb = {
+              layout = "us,de";
+              options = "caps:escape";
+            };
+            repeatRate = 50;
+            repeatDelay = 250;
+          };
+          touchpad = {
+            tapToClick = false;
+            tapAndDrag = false;
+            dragLock = false;
+            naturalScroll = true;
+            disableWhileTyping = false;
+            leftHanded = true;
+            middleButtonEmulation = true;
+            scrollMethod = "edge";
+            clickMethod = "clickfinger";
+            sendEvents = "disabled-on-external-mouse";
+            accelProfile = "flat";
+            accelSpeed = -0.3;
+            tapButtonMap = "left-middle-right";
+          };
+        };
+        buttons = {
+          "Mod+left".moveresize = "move";
+          "Mod+Shift+right".moveresize = "resize";
+          "Mod+middle" = "togglefloating";
+        };
+        environment.NIXOS_OZONE_WL = "1";
+        statusCommand = "echo hi";
+      }).programs.dwl.package;
+    buttons-with-bar = dwl-stable.override {
+      patches = ["bar"];
+      defaultButtons = false;
+      buttons."Mod+left".moveresize = "move";
+    };
+    assert-button = failsWith "button" "unknown button 'wheel'" {buttons."Mod+wheel" = "zoom";};
     status-command = (evalSystem nixpkgs {statusCommand = "echo hi";}).programs.dwl.package;
     nixos-home-manager-build = evaluates "hm-build" (evalSystem nixpkgs {useHomeManagerBuild = true;});
 
