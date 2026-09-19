@@ -25,11 +25,14 @@
     export XDG_CURRENT_DESKTOP=''${XDG_CURRENT_DESKTOP:-dwl}
     export XDG_SESSION_DESKTOP=''${XDG_SESSION_DESKTOP:-dwl}
     export XDG_SESSION_TYPE=wayland
-    exec ${lib.getExe cfg.package} -s ${pkgs.writeShellScript "dwl-startup" ''
+    ${lib.getExe cfg.package} ${lib.escapeShellArgs cfg.extraOptions} -s ${pkgs.writeShellScript "dwl-startup" ''
       ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE
       systemctl --user start dwl-session.target
       ${cfg.startupCommand}
     ''} "$@"
+    status=$?
+    systemctl --user stop dwl-session.target
+    exit $status
   '';
 
   sessionPackage =
@@ -81,6 +84,13 @@ in {
         description = "Shell commands run before dwl starts.";
       };
 
+      extraOptions = lib.mkOption {
+        type = with lib.types; listOf str;
+        default = [];
+        example = ["-d"];
+        description = "Command line arguments passed to dwl.";
+      };
+
       startupCommand = lib.mkOption {
         type = lib.types.lines;
         default = "";
@@ -98,9 +108,14 @@ in {
     (lib.mkIf cfg.enable (lib.mkMerge [
       {
         assertions = shared.assertions shared.package;
-        inherit (shared) warnings;
+        warnings =
+          shared.warnings
+          ++ lib.optional (
+            lib.elem "nvidia" config.services.xserver.videoDrivers
+            && lib.versionOlder (lib.versions.major (lib.getVersion config.hardware.nvidia.package)) "551"
+          ) "Using dwl with Nvidia driver version <= 550 may result in a broken system. Configure hardware.nvidia.package to use a newer version.";
 
-        environment.systemPackages = [cfg.package session pkgs.xdg-utils];
+        environment.systemPackages = [cfg.package session pkgs.xdg-utils] ++ cfg.extraPackages;
         services.displayManager.sessionPackages = [sessionPackage];
         hardware.graphics.enable = lib.mkDefault true;
         fonts.enableDefaultPackages = lib.mkDefault true;
@@ -113,7 +128,12 @@ in {
           icons.enable = lib.mkDefault true;
           portal = {
             enable = true;
-            config.dwl.default = lib.mkDefault ["wlr" "gtk"];
+            config.dwl = {
+              default = lib.mkDefault ["gtk"];
+              "org.freedesktop.impl.portal.ScreenCast" = lib.mkDefault "wlr";
+              "org.freedesktop.impl.portal.Screenshot" = lib.mkDefault "wlr";
+              "org.freedesktop.impl.portal.Inhibit" = lib.mkDefault "none";
+            };
           };
         };
 

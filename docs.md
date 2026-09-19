@@ -324,6 +324,46 @@ strings concatenated with “\\n”
 ""
 ```
 
+## programs.dwl.extraOptions
+
+Command line arguments passed to dwl\.
+
+*Type:*
+list of string
+
+*Default:*
+
+```nix
+[ ]
+```
+
+*Example:*
+
+```nix
+[
+  "-d"
+]
+```
+
+## programs.dwl.extraPackages
+
+Programs installed alongside dwl\. The default is what dwl’s own keybinds launch\.
+
+*Type:*
+list of package
+
+*Default:*
+
+```nix
+with pkgs; [ foot wmenu ]
+```
+
+*Example:*
+
+```nix
+with pkgs; [ foot rofi swaybg grim slurp ]
+```
+
 ## programs.dwl.extraSessionCommands
 
 Shell commands run before dwl starts\.

@@ -217,6 +217,14 @@ in {
         description = "Environment variables set for dwl and everything it starts.";
       };
 
+      extraPackages = mkOption {
+        type = with types; listOf package;
+        default = with pkgs; [foot wmenu];
+        defaultText = lib.literalExpression "with pkgs; [ foot wmenu ]";
+        example = lib.literalExpression "with pkgs; [ foot rofi swaybg grim slurp ]";
+        description = "Programs installed alongside dwl. The default is what dwl's own keybinds launch.";
+      };
+
       extraBuildInputs = mkOption {
         type = with types; listOf package;
         default = [];

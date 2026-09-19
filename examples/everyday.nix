@@ -2,6 +2,8 @@
 # window rules, colors and input settings.
 {pkgs, ...}: {
   programs.dwl = {
+    extraPackages = with pkgs; [foot fuzzel waybar mako grim slurp wl-clipboard];
+
     enable = true;
     modKey = "Super";
 
@@ -46,6 +48,4 @@
       xkb_rules.options = "caps:escape";
     };
   };
-
-  environment.systemPackages = with pkgs; [foot fuzzel waybar mako grim slurp wl-clipboard];
 }

@@ -32,7 +32,7 @@ in {
     (lib.mkIf cfg.enable {
       assertions = shared.assertions shared.package;
       inherit (shared) warnings;
-      home.packages = [cfg.package];
+      home.packages = [cfg.package] ++ cfg.extraPackages;
     })
   ];
 

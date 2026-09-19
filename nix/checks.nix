@@ -297,6 +297,7 @@ in
           keybinds."Mod+Return".spawn = "foot";
           autostart = lib.optionals (compatible "main" "autostart") ["touch /tmp/autostart"];
           startupCommand = "touch /tmp/startup";
+          extraPackages = with pkgs; [foot wmenu swaylock wayland-utils xdpyinfo];
         };
         services.greetd = {
           enable = true;
@@ -308,18 +309,54 @@ in
             };
           };
         };
-        environment.systemPackages = [pkgs.foot];
         virtualisation.qemu.options = ["-vga none -device virtio-gpu-pci"];
       };
-      testScript = ''
-        machine.wait_for_file("/run/user/1000/wayland-0")
-        machine.wait_for_file("/tmp/startup")
-        ${lib.optionalString (compatible "main" "autostart") ''machine.wait_for_file("/tmp/autostart")''}
-        machine.wait_until_succeeds("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 systemctl --user is-active dwl-session.target'")
-        machine.sleep(2)
-        machine.send_key("meta_l-ret")
-        machine.wait_until_succeeds("pgrep -u alice foot")
-        machine.screenshot("dwl")
+      testScript = {nodes, ...}: ''
+        def as_alice(cmd):
+            env = "XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 DISPLAY=:0"
+            return machine.succeed(f"su alice -c '{env} {cmd}'")
+
+        start_all()
+        machine.wait_for_unit("multi-user.target")
+        print(machine.execute("dwl -v 2>&1")[1])
+
+        with subtest("session starts"):
+            machine.wait_for_file("/run/user/1000/wayland-0")
+            machine.wait_for_file("/tmp/startup")
+            ${lib.optionalString (compatible "main" "autostart") ''machine.wait_for_file("/tmp/autostart")''}
+            machine.wait_until_succeeds("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 systemctl --user is-active dwl-session.target'")
+
+        with subtest("environment reaches systemd and D-Bus"):
+            env = machine.succeed("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 systemctl --user show-environment'")
+            assert "WAYLAND_DISPLAY=wayland-0" in env, env
+            assert "XDG_CURRENT_DESKTOP=dwl" in env, env
+
+        with subtest("wayland clients work"):
+            print(as_alice("wayland-info"))
+
+        with subtest("xwayland works"):
+            machine.wait_until_succeeds("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 DISPLAY=:0 xdpyinfo'", timeout=60)
+
+        with subtest("keybinds open and close windows"):
+            machine.sleep(2)
+            machine.send_key("meta_l-ret")
+            machine.wait_until_succeeds("pgrep -u alice -x foot")
+            machine.screenshot("foot")
+            machine.send_key("meta_l-shift-c")
+            machine.wait_until_fails("pgrep -u alice -x foot")
+
+        with subtest("screen locking works"):
+            machine.execute("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 swaylock' >&2 &")
+            machine.wait_until_succeeds("pgrep -x swaylock")
+            machine.sleep(3)
+            machine.send_chars("${nodes.machine.users.users.alice.password}")
+            machine.send_key("ret")
+            machine.wait_until_fails("pgrep -x swaylock")
+
+        with subtest("quitting ends the session"):
+            machine.send_key("meta_l-shift-q")
+            machine.wait_until_fails("pgrep -x dwl")
+            machine.wait_until_fails("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 systemctl --user is-active dwl-session.target'")
       '';
     };
   }

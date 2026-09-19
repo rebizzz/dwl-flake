@@ -28,7 +28,7 @@ in {
     };
 
   config = lib.mkIf cfg.enable {
-    packages = lib.throwIf (shared.package.configErrors != []) (lib.concatStringsSep "\n" shared.package.configErrors) [cfg.package];
+    packages = lib.throwIf (shared.package.configErrors != []) (lib.concatStringsSep "\n" shared.package.configErrors) ([cfg.package] ++ cfg.extraPackages);
   };
 
   _class = "hjem";

@@ -8,6 +8,8 @@
   inherit (config.lib.dwl) c;
 in {
   programs.dwl = {
+    extraPackages = [pkgs.foot pkgs.rofi];
+
     enable = true;
     channel = "stable";
     modKey = "Super";
@@ -97,6 +99,5 @@ in {
     '';
   };
 
-  fonts.packages = [pkgs.iosevka pkgs.nerd-fonts.jetbrains-mono];
-  environment.systemPackages = [pkgs.foot pkgs.rofi];
+  fonts.packages = [pkgs.iosevka-bin pkgs.nerd-fonts.jetbrains-mono];
 }

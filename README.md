@@ -96,6 +96,7 @@ All options, and the keybind actions dwl provides, are listed in [docs.md](docs.
 | `input.touchpad` | tap, scrolling, acceleration and the rest of libinput |
 | `layouts`, `tagCount`, `logLevel` | layouts, number of tags, log level |
 | `autostart` | commands to start with dwl |
+| `extraPackages` | programs installed with dwl, by default `foot` and `wmenu` for dwl's own keybinds |
 | `statusCommand` | a script whose output becomes the bar status (bar patch) |
 | `environment` | environment variables for dwl and its children |
 | `settings` | any variable from `config.def.h`, including ones added by patches |
