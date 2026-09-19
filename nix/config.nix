@@ -178,6 +178,25 @@
       else argFor fn action.${fn};
   in "\t{ ${lib.optionalString clickRegion "ClkClient, "}${k.mods}, ${button}, ${fn}, ${arg} },";
 
+  axisDirections = {
+    up = "AxisUp";
+    down = "AxisDown";
+    left = "AxisLeft";
+    right = "AxisRight";
+  };
+
+  axisEntry = combo: action: let
+    parts = lib.splitString "+" combo;
+    k = parseCombo (concatStringsSep "+" (lib.init parts ++ ["x"]));
+    fn = actionFunction action;
+    arg =
+      if isString action
+      then "{0}"
+      else if action ? fn
+      then genericArg (action.arg or null)
+      else argFor fn action.${fn};
+  in "\t{ ${k.mods}, ${axisDirections.${lib.toLower (lib.last parts)}}, ${fn}, ${arg} },";
+
   vtKeys =
     ["\t{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT, XKB_KEY_BackSpace, quit, {0} },"]
     ++ map (n: "\t{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT, XKB_KEY_F${toString n}, chvt, { .ui = ${toString n} } },") (lib.range 1 12);
@@ -218,9 +237,16 @@ in {
       ++ lib.optional (!(mouseButtons ? ${lib.toLower (lib.last parts)})) "mouse binding '${combo}': unknown button '${lib.last parts}', use left, right, middle, side or extra"
       ++ lib.optional (action ? moveresize && !(lib.elem action.moveresize ["move" "resize"])) "mouse binding '${combo}': moveresize takes \"move\" or \"resize\""
       ++ actionErrors combo action)
-    cfg.buttons);
+    cfg.buttons)
+    ++ lib.concatLists (mapAttrsToList (combo: action: let
+      parts = lib.splitString "+" combo;
+    in
+      comboErrors (concatStringsSep "+" (lib.init parts ++ ["x"]))
+      ++ lib.optional (!(axisDirections ? ${lib.toLower (lib.last parts)})) "scroll binding '${combo}': unknown direction '${lib.last parts}', use up, down, left or right"
+      ++ actionErrors combo action)
+    cfg.axes);
 
-  functions = cfg: lib.unique (mapAttrsToList (_: actionFunction) (cfg.keybinds // cfg.buttons));
+  functions = cfg: lib.unique (mapAttrsToList (_: actionFunction) (cfg.keybinds // cfg.buttons // cfg.axes));
 
   isEmpty = cfg:
     cfg.settings
@@ -233,6 +259,7 @@ in {
     && cfg.autostart == []
     && cfg.buttons == {}
     && cfg.defaultButtons
+    && cfg.axes == {}
     && cfg.extraConfig == "";
 
   render = cfg: let
@@ -246,6 +273,7 @@ in {
     replace =
       lib.mapAttrs (_: toC) (lib.filterAttrs (n: _: n != lib.toUpper n) cfg.settings)
       // lib.optionalAttrs (!cfg.defaultKeybinds) {keys = "{\n${concatStringsSep "\n" (keyLines ++ vtKeys)}\n}";}
+      // lib.optionalAttrs (cfg.axes != {}) {axes = "{\n${concatStringsSep "\n" (mapAttrsToList axisEntry cfg.axes)}\n}";}
       // lib.optionalAttrs (!cfg.defaultButtons) {buttons = "{\n${concatStringsSep "\n" buttonLines}\n}";}
       // lib.optionalAttrs (cfg.rules != []) {rules = "{\n${concatMapStringsSep "\n" ruleEntry cfg.rules}\n}";}
       // lib.optionalAttrs (cfg.monitors != []) {monrules = "{\n${concatMapStringsSep "\n" monitorEntry (cfg.monitors ++ [{}])}\n}";}

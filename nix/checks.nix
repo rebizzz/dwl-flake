@@ -221,6 +221,17 @@ in
       defaultButtons = false;
       buttons."Mod+left".moveresize = "move";
     };
+    axes = dwl.override {
+      axes = {
+        "Mod+up".spawn = "true";
+        "Mod+Shift+down" = "zoom";
+      };
+    };
+    assert-axis = failsWith "axis" "unknown direction 'sideways'" {axes."Mod+sideways" = "zoom";};
+    assert-axes-stable = failsWith "axes-stable" "setting 'axes'" {
+      channel = "stable";
+      axes."Mod+up" = "zoom";
+    };
     assert-button = failsWith "button" "unknown button 'wheel'" {buttons."Mod+wheel" = "zoom";};
     status-command = (evalSystem nixpkgs {statusCommand = "echo hi";}).programs.dwl.package;
     nixos-home-manager-build = evaluates "hm-build" (evalSystem nixpkgs {useHomeManagerBuild = true;});

@@ -79,7 +79,7 @@ inputs.dwl-flake.packages.${system}.dwl.override {
 
 ## Options
 
-All options are listed in [docs.md](docs.md). The main ones:
+All options, and the keybind actions dwl provides, are listed in [docs.md](docs.md). The main ones:
 
 | option | description |
 | --- | --- |
@@ -87,11 +87,20 @@ All options are listed in [docs.md](docs.md). The main ones:
 | `patches` | patch names from dwl-patches, paths, or `fetchpatch` results |
 | `modKey` | what `Mod` means: `Super`, `Alt`, `Ctrl` or `Shift` |
 | `keybinds` | `"Mod+key" = function` or `{ function = arg; }` |
+| `buttons` | mouse bindings, e.g. `"Mod+left".moveresize = "move"` |
+| `axes` | scroll wheel bindings (main only) |
 | `rules` | window rules |
 | `monitors` | monitor rules |
+| `appearance` | focus behavior, border width, colors |
+| `input.keyboard` | xkb layout and options, key repeat |
+| `input.touchpad` | tap, scrolling, acceleration and the rest of libinput |
+| `layouts`, `tagCount`, `logLevel` | layouts, number of tags, log level |
 | `autostart` | commands to start with dwl |
+| `statusCommand` | a script whose output becomes the bar status (bar patch) |
+| `environment` | environment variables for dwl and its children |
 | `settings` | any variable from `config.def.h`, including ones added by patches |
 | `configH` | use your own `config.h` instead |
+| `finalConfig` | read-only path to the generated `config.h` |
 
 The [examples](examples) go from a minimal setup to patches, Home Manager and your own `config.h`.
 
@@ -104,7 +113,7 @@ nix eval github:rebizzz/dwl-flake#lib.compatible.main
 nix eval github:rebizzz/dwl-flake#lib.compatible.stable
 ```
 
-More patches support `stable` than `main`. Patches that apply on their own can still conflict with each other.
+More patches support `stable` than `main`. Patches that need another patch, like `barpadding` on top of `bar`, pull it in automatically. Some patches only apply with fuzz; the build warns about those, since fuzz can put a change in the wrong place. Patches that apply on their own can still conflict with each other.
 
 The patches are also exposed directly, for use with any dwl package:
 

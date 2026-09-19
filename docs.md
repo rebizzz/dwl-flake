@@ -172,6 +172,29 @@ list of string
 ]
 ```
 
+## programs.dwl.axes
+
+Scroll wheel bindings as ` "Modifiers+direction" = action ` (main only)\. Directions: up, down, left, right\. Replaces dwl’s example bindings\.
+
+*Type:*
+attribute set of (string or attribute set of anything)
+
+*Default:*
+
+```nix
+{ }
+```
+
+*Example:*
+
+```nix
+{
+  "Mod+up".spawn = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+  "Mod+down".spawn = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+}
+
+```
+
 ## programs.dwl.buttons
 
 Mouse bindings as ` "Modifiers+button" = action `\. Buttons: left, right, middle, side, extra\.

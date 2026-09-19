@@ -34,11 +34,12 @@
   extraConfig ? "",
   buttons ? {},
   defaultButtons ? true,
+  axes ? {},
   linkFarm,
 }: let
   configLib = import ./config.nix {inherit lib;};
   declarative = {
-    inherit settings keybinds defaultKeybinds modKey rules monitors autostart extraConfig buttons defaultButtons;
+    inherit settings keybinds defaultKeybinds modKey rules monitors autostart extraConfig buttons defaultButtons axes;
     buttonClickRegion = canInspect && tokens ? ClkClient;
   };
   edits = configLib.render declarative;
@@ -98,7 +99,7 @@
     patchErrors
     ++ lib.optionals (configH == null) (
       configLib.errors declarative
-      ++ map (n: "dwl setting '${n}' doesn't exist in config.def.h, even with your patches applied") (unknown (lib.attrNames settings))
+      ++ map (n: "dwl setting '${n}' doesn't exist in config.def.h, even with your patches applied") (unknown (lib.attrNames settings ++ lib.optional (axes != {}) "axes"))
       ++ map (n: "dwl function '${n}' doesn't exist, check the spelling or add the patch that provides it") (unknown (configLib.functions declarative))
     );
 

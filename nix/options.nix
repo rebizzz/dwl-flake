@@ -81,7 +81,7 @@
     };
   };
 
-  declarative = ["settings" "keybinds" "buttons" "modKey" "rules" "monitors" "autostart" "extraConfig"];
+  declarative = ["settings" "keybinds" "buttons" "axes" "modKey" "rules" "monitors" "autostart" "extraConfig"];
 
   typed = import ./typed.nix {inherit lib;};
   inherit (import ./config.nix {inherit lib;}) c;
@@ -192,6 +192,18 @@ in {
         description = "Mouse bindings as `\"Modifiers+button\" = action`. Buttons: left, right, middle, side, extra.";
       };
 
+      axes = mkOption {
+        type = with types; attrsOf (either str (attrsOf anything));
+        default = {};
+        example = lib.literalExpression ''
+          {
+            "Mod+up".spawn = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+            "Mod+down".spawn = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+          }
+        '';
+        description = "Scroll wheel bindings as `\"Modifiers+direction\" = action` (main only). Directions: up, down, left, right. Replaces dwl's example bindings.";
+      };
+
       defaultButtons = mkOption {
         type = types.bool;
         default = true;
@@ -214,7 +226,7 @@ in {
 
   package = let
     dwl = (mkDwl pkgs cfg.channel).override {
-      inherit (cfg) patches configH extraBuildInputs keybinds defaultKeybinds buttons defaultButtons modKey autostart extraConfig;
+      inherit (cfg) patches configH extraBuildInputs keybinds defaultKeybinds buttons defaultButtons axes modKey autostart extraConfig;
       settings = typed.toSettings c cfg // cfg.settings;
       inherit (cfg) rules monitors;
       enableXWayland = cfg.xwayland;
