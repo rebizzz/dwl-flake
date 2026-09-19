@@ -68,7 +68,7 @@
 
       gen-index = pkgs.writeShellApplication {
         name = "gen-index";
-        runtimeInputs = with pkgs; [gnupatch jq gawk coreutils gnugrep gnused];
+        runtimeInputs = with pkgs; [gnupatch jq gawk coreutils ripgrep gnused];
         text = builtins.readFile ./nix/gen-index.sh;
       };
 
@@ -87,17 +87,24 @@
 
       update-docs = pkgs.writeShellScriptBin "update-docs" "install -m644 ${docs} docs.md";
 
+      verify-patches = pkgs.writeShellApplication {
+        name = "verify-patches";
+        runtimeInputs = [pkgs.jq];
+        text = builtins.readFile ./nix/verify-patches.sh;
+      };
+
       update = pkgs.writeShellApplication {
         name = "update";
-        runtimeInputs = with pkgs; [git gnused gnugrep coreutils];
+        runtimeInputs = with pkgs; [git gnused ripgrep coreutils];
         text = ''
           remote=https://codeberg.org/dwl/dwl.git
           tags=$(git ls-remote --tags --refs "$remote" | sed 's|.*refs/tags/v||')
-          latest=$(git ls-remote --heads "$remote" | sed 's|.*refs/heads/||' | grep -E '^[0-9]+\.[0-9]+$' \
-            | while read -r b; do echo "$tags" | grep -qxF "$b" && echo "$b"; done | sort -V | tail -n1)
+          latest=$(git ls-remote --heads "$remote" | sed 's|.*refs/heads/||' | rg '^[0-9]+\.[0-9]+$' \
+            | while read -r b; do echo "$tags" | rg -qxF "$b" && echo "$b"; done | sort -V | tail -n1)
           sed -i -E "s|(codeberg.org/dwl/dwl\?ref=)[0-9.]+|\1$latest|" flake.nix
           nix flake update
           nix run .#update-index
+          nix run .#verify-patches
           nix run .#update-docs
         '';
       };
@@ -153,6 +160,14 @@
       inherit mkDwl;
       inherit (import ./nix/config.nix {inherit lib;}) c;
       inherit (dwlPatches) index compatible resolve;
+      verifyPlan = lib.concatMap (channel:
+        lib.mapAttrsToList (name: p: {
+          inherit channel name;
+          candidates = let
+            ok = lib.attrNames (lib.filterAttrs (_: f: f.applies.${channel}) p.files);
+          in
+            [p.default.${channel}] ++ lib.remove p.default.${channel} ok;
+        }) (lib.filterAttrs (_: p: p.default.${channel} != null) dwlPatches.index)) ["main" "stable"];
       actions = lib.mapAttrs (_: ch:
         lib.sort lib.lessThan (lib.concatMap (m: lib.optional (lib.isList m) (lib.head m))
           (builtins.split "\n([a-z_]+)\\(const Arg \\*arg\\)\n" (builtins.readFile "${ch.src}/dwl.c"))))
@@ -163,6 +178,12 @@
       patchTests = lib.genAttrs ["main" "stable"] (channel:
         lib.genAttrs dwlPatches.compatible.${channel} (name:
           (mkDwl pkgs channel).override {patches = [name];}));
+
+      variantTests = lib.genAttrs ["main" "stable"] (channel:
+        lib.mapAttrs (name: p:
+          lib.mapAttrs (file: _: (mkDwl pkgs channel).override {patches = ["${name}:${file}"];})
+          (lib.filterAttrs (_: f: f.applies.${channel}) p.files))
+        dwlPatches.index);
     });
 
     devShells = forAllSystems (pkgs: {

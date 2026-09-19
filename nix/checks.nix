@@ -270,6 +270,11 @@ in
   }
   // lib.optionalAttrs (compatible "stable" "bar") {
     dwl-stable-bar = dwl-stable.override {patches = ["bar"];};
+    patch-merge = dwl-stable.override {patches = ["bar" "vanitygaps"];};
+    assert-broken-patch = failsWith "broken-patch" "doesn't build" {
+      channel = "stable";
+      patches = ["gamepad-bindings"];
+    };
     dwl-stable-bar-addon = dwl-stable.override {patches = ["barpadding" "barcolors"];};
   }
   // lib.optionalAttrs (!(compatible "main" "bar") && compatible "stable" "bar") {

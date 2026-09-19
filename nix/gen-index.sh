@@ -30,7 +30,7 @@ for dir in "$patchesSrc"/patches/*/; do
     found && NF > 0 { started = 1; print }
   ' "$readme")
 
-  requires=$(grep -oE "/(patches|wiki)/[A-Za-z0-9_.-]+" "$readme" | cut -d/ -f3 | grep -vxF "$name" | while read -r dep; do
+  requires=$(rg -o "/(patches|wiki)/[A-Za-z0-9_.-]+" "$readme" | cut -d/ -f3 | rg -vxF "$name" | while read -r dep; do
     [ -d "$patchesSrc/patches/$dep" ] && echo "$dep"
   done | head -n1 || true)
 
@@ -83,7 +83,7 @@ for dir in "$patchesSrc"/patches/*/; do
       /^\+#include <libudev\.h>/ { print "libudev" }
       ' "$f" | sort -u | jq -R . | jq -sc .)
 
-    target=$(grep -oE "\[[^]]+\]\([^)]*/$file\)" "$readme" | head -n1 |
+    target=$(rg -o "\[[^\]]+\]\([^)]*/$file\)" "$readme" | head -n1 |
       sed -E 's/^\[([^]]+)\].*/\1/' || true)
 
     jq -nc --arg file "$file" --arg target "$target" \

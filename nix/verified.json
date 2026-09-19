@@ -1,0 +1,10 @@
+{
+  "main": {
+    "switchtotag": null
+  },
+  "stable": {
+    "btrtile": "btrtile-v0.8.patch",
+    "color_manager": null,
+    "gamepad-bindings": null
+  }
+}

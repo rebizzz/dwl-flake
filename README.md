@@ -113,7 +113,9 @@ nix eval github:rebizzz/dwl-flake#lib.compatible.main
 nix eval github:rebizzz/dwl-flake#lib.compatible.stable
 ```
 
-More patches support `stable` than `main`. Patches that need another patch, like `barpadding` on top of `bar`, pull it in automatically. Some patches only apply with fuzz; the build warns about those, since fuzz can put a change in the wrong place. Patches that apply on their own can still conflict with each other.
+More patches support `stable` than `main`. Every patch is built, not just applied: patches that apply but don't compile are marked broken, and when a patch has several versions the one that builds is used. To pick a version yourself, write `"name:file"`, e.g. `"btrtile:btrtile-v0.8.patch"`.
+
+Patches that need another patch, like `barpadding` on top of `bar`, pull it in automatically. When two patches only clash in `config.def.h`, like `bar` and `vanitygaps`, the new variables get merged instead of failing the build. Clashes in code still fail, with an error naming the patch. Some patches only apply with fuzz; the build warns about those, since fuzz can put a change in the wrong place.
 
 The patches are also exposed directly, for use with any dwl package:
 

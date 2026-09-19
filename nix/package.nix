@@ -15,6 +15,8 @@
   wayland-scanner,
   writeText,
   xwayland,
+  patchutils,
+  ripgrep,
   src,
   version,
   channel ? "main",
@@ -68,14 +70,25 @@
   isPatchName = p: builtins.isString p && !lib.hasPrefix "/" p;
 
   patchError = p: let
-    entry = dwlPatches.index.${p} or null;
+    spec = dwlPatches.parse p;
+    entry = dwlPatches.index.${spec.name} or null;
+    other =
+      if channel == "main"
+      then "stable"
+      else "main";
   in
     if dwlPatches == null
     then "dwl patch '${p}' was given by name, but no dwl-patches index is available"
     else if entry == null
-    then "dwl patch '${p}' doesn't exist in dwl-patches"
-    else if entry.default.${channel} == null
-    then "dwl patch '${p}' has no version that applies to dwl ${channel} (${lib.concatStringsSep ", " (lib.attrNames entry.files)})${lib.optionalString (channel == "main" && entry.default.stable != null) ", but it works with channel = \"stable\""}"
+    then "dwl patch '${spec.name}' doesn't exist in dwl-patches"
+    else if spec.file != null && !(entry.files ? ${spec.file})
+    then "dwl patch '${spec.name}' has no file '${spec.file}' (${lib.concatStringsSep ", " (lib.attrNames entry.files)})"
+    else if spec.file != null && dwlPatches.fileFor channel p == null
+    then "dwl patch file '${p}' doesn't apply to dwl ${channel}"
+    else if dwlPatches.isBroken channel p
+    then "dwl patch '${p}' applies to dwl ${channel} but doesn't build${lib.optionalString (dwlPatches.fileFor other p != null) ", but it works with channel = \"${other}\""}"
+    else if dwlPatches.fileFor channel p == null
+    then "dwl patch '${p}' has no version that applies to dwl ${channel} (${lib.concatStringsSep ", " (lib.attrNames entry.files)})${lib.optionalString (dwlPatches.fileFor other p != null) ", but it works with channel = \"${other}\""}"
     else null;
   patchErrors = lib.filter (e: e != null) (map patchError (lib.filter isPatchName allPatches));
   fuzzyPatches = lib.filter (p: isPatchName p && patchError p == null && dwlPatches.isFuzzy channel p) allPatches;
@@ -136,7 +149,9 @@ in
 
     patches = lib.warnIf (fuzzyPatches != []) "dwl: ${lib.concatStringsSep ", " fuzzyPatches} only apply to dwl ${channel} with fuzz, check that they behave as expected" (map (r: r.src) resolved);
 
-    nativeBuildInputs = [installShellFiles pkg-config wayland-scanner];
+    nativeBuildInputs = [installShellFiles pkg-config wayland-scanner patchutils ripgrep];
+
+    patchPhase = builtins.readFile ./apply-patches.sh;
 
     buildInputs =
       [libinput libxcb libxkbcommon pixman wayland wayland-protocols wlroots']
@@ -169,6 +184,8 @@ in
       install -Dm644 config.def.h $out/share/dwl/config.def.h
       install -Dm644 config.h $out/share/dwl/config.h
     '';
+
+    env.NIX_CFLAGS_COMPILE = lib.optionalString (lib.any (r: lib.elem "libdrm" r.pkgConfig) resolved) "-I${lib.getDev pkgs.libdrm}/include/libdrm";
 
     strictDeps = true;
     __structuredAttrs = true;
