@@ -14,6 +14,17 @@ in {
 
   variants = lib.mapAttrs (name: p: lib.mapAttrs (file: _: pathOf name file) p.files) index;
 
+  requiredBy = channel: name: let
+    p = index.${name} or null;
+    file =
+      if p == null
+      then null
+      else p.default.${channel};
+  in
+    if p != null && (p.requires or null) != null && file != null && (p.files.${file}.needsRequired.${channel} or false)
+    then p.requires
+    else null;
+
   compatible = lib.genAttrs channels (channel: lib.attrNames (compatibleWith channel));
 
   resolve = channel: name: let

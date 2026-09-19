@@ -165,6 +165,13 @@ in {
       description = "Your own config.h. The declarative options are ignored when set.";
     };
 
+    statusCommand = mkOption {
+      type = with types; nullOr str;
+      default = null;
+      example = "while true; do date +%H:%M; sleep 30; done";
+      description = "Shell command whose output lines become the status text in the bar patch.";
+    };
+
     xwayland = lib.mkEnableOption "XWayland support" // {default = true;};
 
     extraBuildInputs = mkOption {
@@ -174,11 +181,30 @@ in {
     };
   };
 
-  package = (mkDwl pkgs cfg.channel).override {
-    inherit (cfg) patches configH extraBuildInputs settings keybinds defaultKeybinds modKey autostart extraConfig;
-    inherit (cfg) rules monitors;
-    enableXWayland = cfg.xwayland;
-  };
+  package = let
+    dwl = (mkDwl pkgs cfg.channel).override {
+      inherit (cfg) patches configH extraBuildInputs settings keybinds defaultKeybinds modKey autostart extraConfig;
+      inherit (cfg) rules monitors;
+      enableXWayland = cfg.xwayland;
+    };
+  in
+    if cfg.statusCommand == null
+    then dwl
+    else
+      pkgs.symlinkJoin {
+        name = "${dwl.name}-with-status";
+        paths = [dwl dwl.man];
+        postBuild = ''
+          rm $out/bin/dwl
+          cat > $out/bin/dwl <<EOF
+          #!${pkgs.runtimeShell}
+          ${pkgs.writeShellScript "dwl-status" cfg.statusCommand} | exec ${lib.getExe dwl} "\$@"
+          EOF
+          chmod +x $out/bin/dwl
+        '';
+        inherit (dwl) passthru;
+        meta = dwl.meta // {outputsToInstall = ["out"];};
+      };
 
   assertions = build:
     map (message: {

@@ -491,6 +491,25 @@ strings concatenated with “\\n”
 "exec waybar"
 ```
 
+## programs.dwl.statusCommand
+
+Shell command whose output lines become the status text in the bar patch\.
+
+*Type:*
+null or string
+
+*Default:*
+
+```nix
+null
+```
+
+*Example:*
+
+```nix
+"while true; do date +%H:%M; sleep 30; done"
+```
+
 ## programs.dwl.useHomeManagerBuild
 
 Start the dwl each user builds with the Home Manager module\. Users without one get the build from these options\.

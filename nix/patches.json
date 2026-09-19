@@ -11,10 +11,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-10"
       }
-    }
+    },
+    "requires": null
   },
   "alwayscenter": {
     "default": {
@@ -28,10 +30,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-01-15"
       }
-    }
+    },
+    "requires": null
   },
   "attachbottom": {
     "default": {
@@ -45,10 +49,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-16"
       }
-    }
+    },
+    "requires": null
   },
   "attachfocused": {
     "default": {
@@ -62,10 +68,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "attachtop": {
     "default": {
@@ -79,10 +87,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-06-16"
       }
-    }
+    },
+    "requires": null
   },
   "autostart": {
     "default": {
@@ -96,6 +106,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "autostart_0.8.patch"
       },
@@ -104,6 +115,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "autostart_main-5fd19fe"
       },
@@ -112,10 +124,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "autostart_wlroots-next-f4249db.patch"
       }
-    }
+    },
+    "requires": null
   },
   "bar": {
     "default": {
@@ -129,6 +143,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [
           "fcft",
           "libdrm",
@@ -141,6 +156,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [
           "fcft",
           "libdrm",
@@ -153,6 +169,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [
           "fcft",
           "libdrm",
@@ -160,7 +177,8 @@
         ],
         "target": "main 2026-01-05"
       }
-    }
+    },
+    "requires": null
   },
   "bar-appicons": {
     "default": {
@@ -174,27 +192,33 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": null
       }
-    }
+    },
+    "requires": null
   },
   "bar-awesomebar": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "bar-awesomebar.patch"
     },
     "description": "Based on the corresponding `dwm` patch, this patch implements the AwesomeWM-style bar for `dwl`.",
     "files": {
       "bar-awesomebar.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
+        },
+        "needsRequired": {
+          "stable": true
         },
         "pkgConfig": [],
         "target": "main 2026-08-03"
       }
-    }
+    },
+    "requires": "bar"
   },
   "bar-modes": {
     "default": {
@@ -208,27 +232,33 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "bar-notitle": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "bar-notitle.patch"
     },
     "description": "Add a `window_title` option to toggle showing window titles in the bar, similar to the DWM `notitle` patch.",
     "files": {
       "bar-notitle.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
+        },
+        "needsRequired": {
+          "stable": true
         },
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": "bar"
   },
   "bar-recolr": {
     "default": {
@@ -242,10 +272,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "git branch"
       }
-    }
+    },
+    "requires": null
   },
   "bar-systray": {
     "default": {
@@ -259,6 +291,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [
           "dbus-1",
           "fcft",
@@ -266,92 +299,113 @@
         ],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "barborder": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "barborder.patch"
     },
     "description": "Add a border around the [bar](/dwl/dwl-patches/wiki/bar) similar to how a client is given a border.",
     "files": {
       "barborder.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
+        },
+        "needsRequired": {
+          "stable": true
         },
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": "bar"
   },
   "barcolors": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "barcolors.patch"
     },
     "description": "Add support for colored status text to the [bar](/dwl/dwl-patches/src/branch/main/patches/bar). Text can be colored in the same manner as with dwlb, namely by wrapping it between `^fg(color)` and `^fg()` or `^bg(color)` and `^bg()`, where `color` is a 6-digit hexadecimal value.",
     "files": {
       "barcolors.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
+        },
+        "needsRequired": {
+          "stable": true
         },
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": "bar"
   },
   "barconfig": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "barconfig.patch"
     },
     "description": "This patch **requires** the dwl [barconfig](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar) patch be applied first! The barconfig patch provides configuration for the dwl bar via the variable\n`barlayout`. This determines which of the elements listed below to\ndisplay on the bar and in which order:",
     "files": {
       "barconfig.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
+        },
+        "needsRequired": {
+          "stable": true
         },
         "pkgConfig": [],
         "target": "main 2025-10-24"
       }
-    }
+    },
+    "requires": "bar"
   },
   "barpadding": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "barpadding.patch"
     },
     "description": "Add vertical and horizontal space between the [bar](/dwl/dwl-patches/wiki/bar) and the edge of the screen.",
     "files": {
       "barpadding.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
+        },
+        "needsRequired": {
+          "stable": true
         },
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": "bar"
   },
   "bartruecenteredtitle": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "bartruecenteredtitle.patch"
     },
     "description": "A homegrown port of dwm's _truecenteredtitle_ patch, with the addition of a config option to toggle its effects.<br>Requires [the bar patch](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar) to be applied beforehand.",
     "files": {
       "bartruecenteredtitle.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
+        },
+        "needsRequired": {
+          "stable": true
         },
         "pkgConfig": [],
         "target": "v0.7/v0.6"
       }
-    }
+    },
+    "requires": "bar"
   },
   "better-resize": {
     "default": {
@@ -365,10 +419,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "borderlessrule": {
     "default": {
@@ -382,10 +438,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-11-29"
       }
-    }
+    },
+    "requires": null
   },
   "borders": {
     "default": {
@@ -399,10 +457,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-04"
       }
-    }
+    },
+    "requires": null
   },
   "bottomstack": {
     "default": {
@@ -416,10 +476,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "btrtile": {
     "default": {
@@ -433,6 +495,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8 WITH gaps"
       },
@@ -441,6 +504,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       },
@@ -449,6 +513,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "wlroots-next WITH gaps"
       },
@@ -457,10 +522,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "wlroots-next"
       }
-    }
+    },
+    "requires": null
   },
   "buttonbystate": {
     "default": {
@@ -474,10 +541,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-06"
       }
-    }
+    },
+    "requires": null
   },
   "center-terminal": {
     "default": {
@@ -491,10 +560,12 @@
           "main": true,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-09-16"
       }
-    }
+    },
+    "requires": null
   },
   "centeredmaster": {
     "default": {
@@ -508,6 +579,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -516,10 +588,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "cfact": {
     "default": {
@@ -533,6 +607,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
       },
@@ -541,6 +616,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7-gaps"
       },
@@ -549,6 +625,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
       },
@@ -557,10 +634,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-15"
       }
-    }
+    },
+    "requires": null
   },
   "cfact-snail": {
     "default": {
@@ -574,10 +653,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
       }
-    }
+    },
+    "requires": null
   },
   "chainkeys": {
     "default": {
@@ -591,10 +672,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-20"
       }
-    }
+    },
+    "requires": null
   },
   "client-opacity": {
     "default": {
@@ -608,10 +691,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-01-20"
       }
-    }
+    },
+    "requires": null
   },
   "client-opacity-focus": {
     "default": {
@@ -625,10 +710,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-04-27"
       }
-    }
+    },
+    "requires": null
   },
   "color_manager": {
     "default": {
@@ -642,12 +729,14 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [
           "libdrm"
         ],
         "target": "main 2025-06-18"
       }
-    }
+    },
+    "requires": null
   },
   "column": {
     "default": {
@@ -661,10 +750,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-01-02"
       }
-    }
+    },
+    "requires": null
   },
   "controlled_fullscreen": {
     "default": {
@@ -678,6 +769,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "dwl 0.8"
       },
@@ -686,6 +778,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-10-08"
       },
@@ -694,10 +787,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-11-13"
       }
-    }
+    },
+    "requires": null
   },
   "coredump": {
     "default": {
@@ -711,6 +806,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "coredump-0.7.patch"
       },
@@ -719,10 +815,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
       }
-    }
+    },
+    "requires": null
   },
   "cursortheme": {
     "default": {
@@ -736,10 +834,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-09"
       }
-    }
+    },
+    "requires": null
   },
   "customfloat": {
     "default": {
@@ -753,6 +853,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "customfloat_0.8"
       },
@@ -761,6 +862,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "customfloat_main-5fd19fe"
       },
@@ -769,10 +871,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "customfloat_wlroots-next-f4249db"
       }
-    }
+    },
+    "requires": null
   },
   "decklayout": {
     "default": {
@@ -786,10 +890,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "dim-unfocused": {
     "default": {
@@ -803,6 +909,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": null
       },
@@ -811,6 +918,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-16"
       },
@@ -819,6 +927,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-14"
       },
@@ -827,6 +936,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-03"
       },
@@ -835,6 +945,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-18"
       },
@@ -843,10 +954,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-03-10"
       }
-    }
+    },
+    "requires": null
   },
   "disable-keybindings-on-fullscreen": {
     "default": {
@@ -860,10 +973,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-02-09"
       }
-    }
+    },
+    "requires": null
   },
   "disable-keybindings-on-fullscreen-toggle": {
     "default": {
@@ -877,10 +992,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "dragmfact": {
     "default": {
@@ -894,6 +1011,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
       },
@@ -902,6 +1020,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
       },
@@ -910,10 +1029,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-16"
       }
-    }
+    },
+    "requires": null
   },
   "dragresize": {
     "default": {
@@ -927,10 +1048,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-10"
       }
-    }
+    },
+    "requires": null
   },
   "drm_lease": {
     "default": {
@@ -944,10 +1067,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2026-02-25"
       }
-    }
+    },
+    "requires": null
   },
   "dwindle": {
     "default": {
@@ -961,10 +1086,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "en-keycodes": {
     "default": {
@@ -978,6 +1105,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -986,10 +1114,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "envcfg": {
     "default": {
@@ -1003,10 +1133,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-11"
       }
-    }
+    },
+    "requires": null
   },
   "extrabar": {
     "default": {
@@ -1020,10 +1152,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": null
       }
-    }
+    },
+    "requires": null
   },
   "fakefullscreenclient": {
     "default": {
@@ -1037,10 +1171,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-03-29"
       }
-    }
+    },
+    "requires": null
   },
   "fallback": {
     "default": {
@@ -1054,10 +1190,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-11"
       }
-    }
+    },
+    "requires": null
   },
   "focusdir": {
     "default": {
@@ -1071,10 +1209,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2023-01-22"
       }
-    }
+    },
+    "requires": null
   },
   "focusonurgent": {
     "default": {
@@ -1088,10 +1228,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main dwl 0.8"
       }
-    }
+    },
+    "requires": null
   },
   "follow": {
     "default": {
@@ -1105,10 +1247,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
       }
-    }
+    },
+    "requires": null
   },
   "foreign-toplevel-management": {
     "default": {
@@ -1122,10 +1266,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-02"
       }
-    }
+    },
+    "requires": null
   },
   "fullscreenadaptivesync": {
     "default": {
@@ -1139,6 +1285,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       },
@@ -1147,10 +1294,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "wlroots-next-d41ecb7"
       }
-    }
+    },
+    "requires": null
   },
   "gamepad-bindings": {
     "default": {
@@ -1164,13 +1313,15 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [
           "libevdev",
           "libudev"
         ],
         "target": "2026-07-18"
       }
-    }
+    },
+    "requires": null
   },
   "gaplessgrid": {
     "default": {
@@ -1184,6 +1335,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2023-08-01"
       },
@@ -1192,6 +1344,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-14"
       },
@@ -1200,6 +1353,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-18"
       },
@@ -1208,6 +1362,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-10-31"
       },
@@ -1216,10 +1371,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "gaps": {
     "default": {
@@ -1233,10 +1390,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-12"
       }
-    }
+    },
+    "requires": null
   },
   "genericgaps": {
     "default": {
@@ -1250,6 +1409,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7 2025-02-11"
       },
@@ -1258,10 +1418,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "globalkey": {
     "default": {
@@ -1275,10 +1437,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-08"
       }
-    }
+    },
+    "requires": null
   },
   "hide-behind-deck": {
     "default": {
@@ -1292,10 +1456,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "hide-behind-fullscreen": {
     "default": {
@@ -1309,6 +1475,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "hide-behind-fullscreen-0.7.patch"
       },
@@ -1317,10 +1484,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
       }
-    }
+    },
+    "requires": null
   },
   "hide-behind-monocle": {
     "default": {
@@ -1334,6 +1503,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "hide-behind-monocle-0.7.patch"
       },
@@ -1342,6 +1512,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "hide-behind-monocle-0.8.patch"
       },
@@ -1350,10 +1521,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
       }
-    }
+    },
+    "requires": null
   },
   "hide-cursor-when-typing": {
     "default": {
@@ -1367,27 +1540,33 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "hide_vacant_tags": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "hide_vacant_tags.patch"
     },
     "description": "Prevent [bar](/dwl/dwl-patches/wiki/bar) from drawing tags with no clients (i.e. vacant).\nIt also stops drawing empty rectangles on the bar for non-vacant tags as there is no need anymore to distinguish vacant tags and it offers a more visible contrast than if there were filled/empty rectangles.",
     "files": {
       "hide_vacant_tags.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
+        },
+        "needsRequired": {
+          "stable": true
         },
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": "bar"
   },
   "hiderule": {
     "default": {
@@ -1401,10 +1580,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "yyyy-mm-dd"
       }
-    }
+    },
+    "requires": null
   },
   "hot-reload": {
     "default": {
@@ -1418,6 +1599,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -1426,10 +1608,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-05-30"
       }
-    }
+    },
+    "requires": null
   },
   "inputdevicerules": {
     "default": {
@@ -1443,6 +1627,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
       },
@@ -1451,6 +1636,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
       },
@@ -1459,10 +1645,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "kblayout": {
     "default": {
@@ -1476,6 +1664,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -1484,10 +1673,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "keyboardshortcutsinhibit": {
     "default": {
@@ -1501,10 +1692,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-10"
       }
-    }
+    },
+    "requires": null
   },
   "keycodes": {
     "default": {
@@ -1518,6 +1711,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "keycodes-0.7.patch"
       },
@@ -1526,10 +1720,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
       }
-    }
+    },
+    "requires": null
   },
   "killunsel": {
     "default": {
@@ -1543,10 +1739,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-07-20"
       }
-    }
+    },
+    "requires": null
   },
   "launchtag": {
     "default": {
@@ -1560,10 +1758,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "limitnmaster": {
     "default": {
@@ -1577,10 +1777,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-03-15"
       }
-    }
+    },
+    "requires": null
   },
   "lock-size": {
     "default": {
@@ -1594,10 +1796,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "git branch"
       }
-    }
+    },
+    "requires": null
   },
   "lockedkeys": {
     "default": {
@@ -1611,10 +1815,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-11"
       }
-    }
+    },
+    "requires": null
   },
   "mastercolumn": {
     "default": {
@@ -1628,6 +1834,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -1636,10 +1843,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "menu": {
     "default": {
@@ -1653,6 +1862,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-03-21 v0.7"
       },
@@ -1661,10 +1871,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "menurule": {
     "default": {
@@ -1678,6 +1890,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -1686,10 +1899,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "meson": {
     "default": {
@@ -1703,10 +1918,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-12-07"
       }
-    }
+    },
+    "requires": null
   },
   "modes": {
     "default": {
@@ -1720,6 +1937,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.5"
       },
@@ -1728,10 +1946,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "monitorconfig": {
     "default": {
@@ -1745,6 +1965,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       },
@@ -1753,10 +1974,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "wlroots-next-f4249db"
       }
-    }
+    },
+    "requires": null
   },
   "mouse-trackpad-split": {
     "default": {
@@ -1770,10 +1993,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "movecenter": {
     "default": {
@@ -1787,10 +2012,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
       }
-    }
+    },
+    "requires": null
   },
   "moveresizekb": {
     "default": {
@@ -1804,10 +2031,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "movestack": {
     "default": {
@@ -1821,6 +2050,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -1829,10 +2059,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "namedscratchpads": {
     "default": {
@@ -1846,6 +2078,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "namedscratchpads-0.8.patch"
       },
@@ -1854,10 +2087,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-13 (v0.6)"
       }
-    }
+    },
+    "requires": null
   },
   "naturalscrolltrackpad": {
     "default": {
@@ -1871,10 +2106,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "nextlayout": {
     "default": {
@@ -1888,10 +2125,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "numlock-capslock": {
     "default": {
@@ -1905,6 +2144,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_0.8.patch"
       },
@@ -1913,6 +2153,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_main-5fd19fe.patch"
       },
@@ -1921,10 +2162,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_wlroots-next-f4249db.patch"
       }
-    }
+    },
+    "requires": null
   },
   "passthrough": {
     "default": {
@@ -1938,10 +2181,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-26"
       }
-    }
+    },
+    "requires": null
   },
   "per-app-cast": {
     "default": {
@@ -1955,10 +2200,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "per-app-share-wlroots-next-d41ecb745c"
       }
-    }
+    },
+    "requires": null
   },
   "perinputconfig": {
     "default": {
@@ -1972,6 +2219,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-08"
       },
@@ -1980,6 +2228,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-11-19 (keyboard)"
       },
@@ -1988,6 +2237,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-11-19 (pointer)"
       },
@@ -1996,10 +2246,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.5"
       }
-    }
+    },
+    "requires": null
   },
   "pertag": {
     "default": {
@@ -2013,10 +2265,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
       }
-    }
+    },
+    "requires": null
   },
   "pointer-gestures-unstable-v1": {
     "default": {
@@ -2030,10 +2284,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-12"
       }
-    }
+    },
+    "requires": null
   },
   "primaryselection": {
     "default": {
@@ -2047,6 +2303,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-06"
       },
@@ -2055,10 +2312,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-11-19"
       }
-    }
+    },
+    "requires": null
   },
   "push": {
     "default": {
@@ -2072,6 +2331,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "push-0.7.patch"
       },
@@ -2080,10 +2340,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-01-20"
       }
-    }
+    },
+    "requires": null
   },
   "regexrules": {
     "default": {
@@ -2097,10 +2359,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-11"
       }
-    }
+    },
+    "requires": null
   },
   "regions": {
     "default": {
@@ -2114,10 +2378,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-14"
       }
-    }
+    },
+    "requires": null
   },
   "relative-mouse-resize": {
     "default": {
@@ -2131,10 +2397,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-09"
       }
-    }
+    },
+    "requires": null
   },
   "reorganizetags": {
     "default": {
@@ -2148,6 +2416,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "with bar patch"
       },
@@ -2156,10 +2425,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2026-03-25"
       }
-    }
+    },
+    "requires": null
   },
   "restore-monitor": {
     "default": {
@@ -2173,10 +2444,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-06-20"
       }
-    }
+    },
+    "requires": null
   },
   "right": {
     "default": {
@@ -2190,10 +2463,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-11"
       }
-    }
+    },
+    "requires": null
   },
   "riverctl": {
     "default": {
@@ -2207,10 +2482,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "rlimit_max": {
     "default": {
@@ -2224,10 +2501,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "rotate-clients": {
     "default": {
@@ -2241,10 +2520,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "rotatetags": {
     "default": {
@@ -2258,10 +2539,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-01-23"
       }
-    }
+    },
+    "requires": null
   },
   "setrule": {
     "default": {
@@ -2275,6 +2558,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -2283,10 +2567,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "setupenv": {
     "default": {
@@ -2300,10 +2586,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-03-26"
       }
-    }
+    },
+    "requires": null
   },
   "shifttag": {
     "default": {
@@ -2317,6 +2605,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "shifttag-bar-v0.8"
       },
@@ -2325,10 +2614,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "shifttag-v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "shiftview": {
     "default": {
@@ -2342,10 +2633,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-02-09"
       }
-    }
+    },
+    "requires": null
   },
   "simple_scratchpad": {
     "default": {
@@ -2359,6 +2652,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "scratchpad-v0.8.patch"
       },
@@ -2367,10 +2661,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "scratchpad-wlroots-next-d41ecb7.patch"
       }
-    }
+    },
+    "requires": null
   },
   "simpleborders": {
     "default": {
@@ -2384,6 +2680,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "simpleborders_0.8.patch"
       },
@@ -2392,6 +2689,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "simpleborders_main-5fd19fe.patch"
       },
@@ -2400,10 +2698,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "simpleborders_wlroots-next-f4249db.patch"
       }
-    }
+    },
+    "requires": null
   },
   "singlemaster": {
     "default": {
@@ -2417,10 +2717,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
       }
-    }
+    },
+    "requires": null
   },
   "singletagset": {
     "default": {
@@ -2434,6 +2736,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-16 (v0.6)"
       },
@@ -2442,10 +2745,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-26 (v0.7)"
       }
-    }
+    },
+    "requires": null
   },
   "singletagset-pertag": {
     "default": {
@@ -2459,10 +2764,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-26"
       }
-    }
+    },
+    "requires": null
   },
   "singletagset-sticky": {
     "default": {
@@ -2476,10 +2783,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-26"
       }
-    }
+    },
+    "requires": null
   },
   "skipfocus": {
     "default": {
@@ -2493,6 +2802,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-14"
       },
@@ -2501,6 +2811,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-18"
       },
@@ -2509,10 +2820,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": null
       }
-    }
+    },
+    "requires": null
   },
   "smartborders": {
     "default": {
@@ -2526,6 +2839,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "smartborders-0.7.patch"
       },
@@ -2534,10 +2848,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
       }
-    }
+    },
+    "requires": null
   },
   "snail": {
     "default": {
@@ -2551,6 +2867,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -2559,10 +2876,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "snail-gaps": {
     "default": {
@@ -2576,10 +2895,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2024-08-08"
       }
-    }
+    },
+    "requires": null
   },
   "spawninfo": {
     "default": {
@@ -2593,10 +2914,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "spawnorfocus": {
     "default": {
@@ -2610,10 +2933,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-12-09"
       }
-    }
+    },
+    "requires": null
   },
   "stacker": {
     "default": {
@@ -2627,10 +2952,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-17"
       }
-    }
+    },
+    "requires": null
   },
   "stairs": {
     "default": {
@@ -2644,10 +2971,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "startargv": {
     "default": {
@@ -2661,10 +2990,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-03"
       }
-    }
+    },
+    "requires": null
   },
   "sticky": {
     "default": {
@@ -2678,10 +3009,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "swallow": {
     "default": {
@@ -2695,6 +3028,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
       },
@@ -2703,6 +3037,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       },
@@ -2711,10 +3046,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
       }
-    }
+    },
+    "requires": null
   },
   "swapandfocusdir": {
     "default": {
@@ -2728,10 +3065,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "swapfocus": {
     "default": {
@@ -2745,10 +3084,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
       }
-    }
+    },
+    "requires": null
   },
   "swapmons": {
     "default": {
@@ -2762,10 +3103,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "swapmons-0.8.patch"
       }
-    }
+    },
+    "requires": null
   },
   "switchtotag": {
     "default": {
@@ -2779,10 +3122,12 @@
           "main": true,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-09-16"
       }
-    }
+    },
+    "requires": null
   },
   "systemd": {
     "default": {
@@ -2796,10 +3141,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "tablet-input": {
     "default": {
@@ -2813,6 +3160,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "tablet-input-0.8.patch"
       },
@@ -2821,10 +3169,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "tablet-input-main-a2d03cf.patch"
       }
-    }
+    },
+    "requires": null
   },
   "tagshift": {
     "default": {
@@ -2838,10 +3188,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "tearing": {
     "default": {
@@ -2855,6 +3207,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [
           "pixman-1"
         ],
@@ -2865,10 +3218,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-04-22"
       }
-    }
+    },
+    "requires": null
   },
   "titleurgent": {
     "default": {
@@ -2882,10 +3237,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-01-02"
       }
-    }
+    },
+    "requires": null
   },
   "tmux-borders": {
     "default": {
@@ -2899,10 +3256,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
-    }
+    },
+    "requires": null
   },
   "toggle_constraints": {
     "default": {
@@ -2916,10 +3275,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": null
       }
-    }
+    },
+    "requires": null
   },
   "togglekblayoutandoptions": {
     "default": {
@@ -2933,6 +3294,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       },
@@ -2941,10 +3303,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
       }
-    }
+    },
+    "requires": null
   },
   "touch-input": {
     "default": {
@@ -2958,6 +3322,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "touch-input-0.8-osu-ver.patch"
       },
@@ -2966,6 +3331,7 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "touch-input-0.8.patch"
       },
@@ -2974,10 +3340,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "touch-input-wlroots-next-f4249db.patch"
       }
-    }
+    },
+    "requires": null
   },
   "unclutter": {
     "default": {
@@ -2991,10 +3359,12 @@
           "main": true,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-09-16"
       }
-    }
+    },
+    "requires": null
   },
   "ungroup-keyboards": {
     "default": {
@@ -3008,10 +3378,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-16"
       }
-    }
+    },
+    "requires": null
   },
   "vanitygaps": {
     "default": {
@@ -3025,6 +3397,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "vanitygaps-0.7.patch"
       },
@@ -3033,6 +3406,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "vanitygaps-0.8.patch"
       },
@@ -3041,10 +3415,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
       }
-    }
+    },
+    "requires": null
   },
   "varcol": {
     "default": {
@@ -3058,10 +3434,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-03-27"
       }
-    }
+    },
+    "requires": null
   },
   "viewnextocctag": {
     "default": {
@@ -3075,10 +3453,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2023-01-06"
       }
-    }
+    },
+    "requires": null
   },
   "virtual-pointer": {
     "default": {
@@ -3092,10 +3472,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.5"
       }
-    }
+    },
+    "requires": null
   },
   "warpcursor": {
     "default": {
@@ -3109,10 +3491,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
       }
-    }
+    },
+    "requires": null
   },
   "wayland-socket-handover": {
     "default": {
@@ -3126,10 +3510,12 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-03-26"
       }
-    }
+    },
+    "requires": null
   },
   "winview": {
     "default": {
@@ -3143,6 +3529,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-06"
       },
@@ -3151,6 +3538,7 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-18"
       },
@@ -3159,10 +3547,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-03-14 dwl 0.8"
       }
-    }
+    },
+    "requires": null
   },
   "xwayland-handle-minimize": {
     "default": {
@@ -3176,10 +3566,12 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-01"
       }
-    }
+    },
+    "requires": null
   },
   "zerotag": {
     "default": {
@@ -3191,7 +3583,10 @@
       "bar_zerotag.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
+        },
+        "needsRequired": {
+          "stable": true
         },
         "pkgConfig": [],
         "target": null
@@ -3201,10 +3596,12 @@
           "main": false,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "git branch"
       }
-    }
+    },
+    "requires": "bar"
   },
   "zoomswap": {
     "default": {
@@ -3218,6 +3615,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
       },
@@ -3226,6 +3624,7 @@
           "main": true,
           "stable": true
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
       },
@@ -3234,9 +3633,11 @@
           "main": false,
           "stable": false
         },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-15"
       }
-    }
+    },
+    "requires": null
   }
 }

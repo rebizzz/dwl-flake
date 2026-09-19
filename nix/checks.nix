@@ -159,6 +159,7 @@ in
     module-stable-channel = (evalSystem nixpkgs (full // {channel = "stable";})).programs.dwl.package;
     nixos-unstable = evaluates "nixos-unstable" (evalSystem nixpkgs full);
     nixos-stable = evaluates "nixos-stable" (evalSystem nixpkgs-stable {channel = "stable";});
+    status-command = (evalSystem nixpkgs {statusCommand = "echo hi";}).programs.dwl.package;
     nixos-home-manager-build = evaluates "hm-build" (evalSystem nixpkgs {useHomeManagerBuild = true;});
 
     lib-helper = evaluates "lib-helper" (evalWith nixpkgs [
@@ -195,6 +196,7 @@ in
   }
   // lib.optionalAttrs (compatible "stable" "bar") {
     dwl-stable-bar = dwl-stable.override {patches = ["bar"];};
+    dwl-stable-bar-addon = dwl-stable.override {patches = ["barpadding" "barcolors"];};
   }
   // lib.optionalAttrs (!(compatible "main" "bar") && compatible "stable" "bar") {
     assert-patch-channel = failsWith "patch-channel" "works with channel = \"stable\"" {patches = ["bar"];};

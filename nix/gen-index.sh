@@ -24,14 +24,36 @@ for dir in "$patchesSrc"/patches/*/; do
     found && NF > 0 { started = 1; print }
   ' "$readme")
 
+  requires=$(grep -oE "/(patches|wiki)/[A-Za-z0-9_.-]+" "$readme" | cut -d/ -f3 | grep -vxF "$name" | while read -r dep; do
+    [ -d "$patchesSrc/patches/$dep" ] && echo "$dep"
+  done | head -n1 || true)
+
+  for channel in "${channels[@]}"; do
+    rm -rf "$work/$channel-base"
+    if [ -n "$requires" ]; then
+      for dep in "$patchesSrc/patches/$requires"/*.patch; do
+        rm -rf "$work/$channel-base"
+        cp -r "$work/$channel" "$work/$channel-base"
+        patch -d "$work/$channel-base" -p1 -f --silent <"$dep" >/dev/null 2>&1 && break
+        rm -rf "$work/$channel-base"
+      done
+    fi
+  done
+
   for f in "$dir"*.patch; do
     [ -e "$f" ] || continue
     file=$(basename "$f")
 
     applies='{}'
+    needs='{}'
     for channel in "${channels[@]}"; do
       ok=false
-      patch -d "$work/$channel" -p1 -f --dry-run --silent <"$f" >/dev/null 2>&1 && ok=true
+      if patch -d "$work/$channel" -p1 -f --dry-run --silent <"$f" >/dev/null 2>&1; then
+        ok=true
+      elif [ -d "$work/$channel-base" ] && patch -d "$work/$channel-base" -p1 -f --dry-run --silent <"$f" >/dev/null 2>&1; then
+        ok=true
+        needs=$(jq -c --arg c "$channel" '. + {($c): true}' <<<"$needs")
+      fi
       applies=$(jq -c --arg c "$channel" --argjson ok "$ok" '. + {($c): $ok}' <<<"$applies")
     done
 
@@ -53,8 +75,8 @@ for dir in "$patchesSrc"/patches/*/; do
       sed -E 's/^\[([^]]+)\].*/\1/' || true)
 
     jq -nc --arg file "$file" --arg target "$target" \
-      --argjson applies "$applies" --argjson pkgConfig "$pkgConfig" \
-      '{file: $file, applies: $applies, pkgConfig: $pkgConfig,
+      --argjson applies "$applies" --argjson needs "$needs" --argjson pkgConfig "$pkgConfig" \
+      '{file: $file, applies: $applies, needsRequired: $needs, pkgConfig: $pkgConfig,
         target: (if $target == "" then null else $target end)}'
   done >"$work/files.jsonl"
 
@@ -62,7 +84,7 @@ for dir in "$patchesSrc"/patches/*/; do
     jq -nc --arg c "$channel" --arg v "$(cat "$work/$channel.version")" '{($c): $v}'
   done | jq -sc add)
 
-  jq -sc --arg name "$name" --arg description "$description" --argjson versions "$versions" '
+  jq -sc --arg name "$name" --arg description "$description" --arg requires "$requires" --argjson versions "$versions" '
     . as $files
     | def pick($channel):
         ($files | map(select(.applies[$channel])) | map(.file)) as $ok
@@ -74,6 +96,7 @@ for dir in "$patchesSrc"/patches/*/; do
       key: $name,
       value: {
         description: (if $description == "" then null else $description end),
+        requires: (if $requires == "" or ($files | all(.needsRequired == {})) then null else $requires end),
         default: ($versions | keys | map({key: ., value: pick(.)}) | from_entries),
         files: ($files | map({key: .file, value: del(.file)}) | from_entries)
       }

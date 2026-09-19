@@ -52,7 +52,12 @@
       entries)
   edits));
 
-  allPatches = patches ++ lib.optional (autostart != [] && !lib.elem "autostart" patches) "autostart";
+  withAutostart = patches ++ lib.optional (autostart != [] && !lib.elem "autostart" patches) "autostart";
+  requiredBy = p:
+    if isPatchName p && dwlPatches != null
+    then dwlPatches.requiredBy channel p
+    else null;
+  allPatches = lib.unique (lib.concatMap (p: lib.optional (requiredBy p != null) (requiredBy p) ++ [p]) withAutostart);
 
   isPatchName = p: builtins.isString p && !lib.hasPrefix "/" p;
 
