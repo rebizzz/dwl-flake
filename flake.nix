@@ -93,6 +93,12 @@
         text = builtins.readFile ./nix/verify-patches.sh;
       };
 
+      compare-upstream = pkgs.writeShellApplication {
+        name = "compare-upstream";
+        runtimeInputs = with pkgs; [git jq gnupatch diffutils coreutils];
+        text = builtins.readFile ./nix/compare-upstream.sh;
+      };
+
       update = pkgs.writeShellApplication {
         name = "update";
         runtimeInputs = with pkgs; [git gnused ripgrep coreutils];
@@ -159,7 +165,22 @@
     lib = {
       inherit mkDwl;
       inherit (import ./nix/config.nix {inherit lib;}) c;
-      inherit (dwlPatches) index compatible resolve;
+      inherit (dwlPatches) index compatible resolve fileFor requiredBy;
+      upstreamPlan = lib.genAttrs ["main" "stable"] (channel:
+        map (name: let
+          dep = dwlPatches.requiredBy channel name;
+        in {
+          inherit name;
+          file = dwlPatches.fileFor channel name;
+          requires =
+            if dep == null
+            then null
+            else {
+              name = dep;
+              file = dwlPatches.fileFor channel dep;
+            };
+        })
+        dwlPatches.compatible.${channel});
       verifyPlan = lib.concatMap (channel:
         lib.mapAttrsToList (name: p: {
           inherit channel name;
@@ -175,15 +196,29 @@
     };
 
     legacyPackages = forAllSystems (pkgs: {
-      patchTests = lib.genAttrs ["main" "stable"] (channel:
-        lib.genAttrs dwlPatches.compatible.${channel} (name:
-          (mkDwl pkgs channel).override {patches = [name];}));
-
       variantTests = lib.genAttrs ["main" "stable"] (channel:
         lib.mapAttrs (name: p:
           lib.mapAttrs (file: _: (mkDwl pkgs channel).override {patches = ["${name}:${file}"];})
           (lib.filterAttrs (_: f: f.applies.${channel}) p.files))
         dwlPatches.index);
+
+      patchedSources = lib.genAttrs ["main" "stable"] (channel:
+        lib.genAttrs dwlPatches.compatible.${channel} (name:
+          ((mkDwl pkgs channel).override {patches = [name];}).overrideAttrs {
+            name = "dwl-source-${channel}-${name}";
+            outputs = ["out"];
+            dontConfigure = true;
+            dontBuild = true;
+            dontFixup = true;
+            installPhase = "cp -r . $out";
+          }));
+
+      patchedSourcesAll = pkgs.linkFarm "dwl-patched-sources" (lib.concatMap (channel:
+        map (name: {
+          name = "${channel}/${name}";
+          path = self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.patchedSources.${channel}.${name};
+        })
+        dwlPatches.compatible.${channel}) ["main" "stable"]);
     });
 
     devShells = forAllSystems (pkgs: {

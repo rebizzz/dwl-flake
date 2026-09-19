@@ -76,6 +76,8 @@
     then pkgs.writeText "dwl-assert-${name}" (lib.concatStringsSep "\n" messages)
     else throw "check ${name}: expected an assertion containing '${expected}', got: ${builtins.toJSON messages}";
 
+  brokenPatch = lib.findFirst (name: self.lib.index.${name}.default.stable != null && self.lib.fileFor "stable" name == null) null (lib.attrNames self.lib.index);
+
   full = {
     modKey = "Super";
     patches = lib.filter (compatible "main") ["pertag"];
@@ -233,7 +235,6 @@ in
       axes."Mod+up" = "zoom";
     };
     assert-button = failsWith "button" "unknown button 'wheel'" {buttons."Mod+wheel" = "zoom";};
-    status-command = (evalSystem nixpkgs {statusCommand = "echo hi";}).programs.dwl.package;
     nixos-home-manager-build = evaluates "hm-build" (evalSystem nixpkgs {useHomeManagerBuild = true;});
 
     lib-helper = evaluates "lib-helper" (evalWith nixpkgs [
@@ -248,13 +249,13 @@ in
     home-manager-module = standalone self.homeModules.default "homeManager" {programs.dwl.enable = true;} {home.packages = packagesOption;};
     hjem-module = standalone self.hjemModules.default "hjem" {programs.dwl.enable = true;} {packages = packagesOption;};
 
-    example-1-minimal = (evalWith nixpkgs [../examples/1-minimal.nix]).programs.dwl.package;
-    example-2-everyday = (evalWith nixpkgs [../examples/2-everyday.nix]).programs.dwl.package;
-    example-3-patches = (evalWith nixpkgs [../examples/3-patches.nix]).programs.dwl.package;
-    example-4-home-manager-nixos = evaluates "example-4" (evalWith nixpkgs [{inherit (import ../examples/4-home-manager.nix) programs;}]);
-    example-4-home-manager-user = standalone self.homeModules.default "homeManager" (import ../examples/4-home-manager.nix).home-manager.users.alice {home.packages = packagesOption;};
-    example-5-own-config-h = (evalWith nixpkgs [../examples/5-own-config-h]).programs.dwl.package;
-    example-6-chadwm = (evalWith nixpkgs [../examples/6-chadwm.nix]).programs.dwl.package;
+    example-minimal = (evalWith nixpkgs [../examples/minimal.nix]).programs.dwl.package;
+    example-everyday = (evalWith nixpkgs [../examples/everyday.nix]).programs.dwl.package;
+    example-patches = (evalWith nixpkgs [../examples/patches.nix]).programs.dwl.package;
+    example-home-manager-nixos = evaluates "example-home-manager" (evalWith nixpkgs [{inherit (import ../examples/home-manager.nix) programs;}]);
+    example-home-manager-user = standalone self.homeModules.default "homeManager" (import ../examples/home-manager.nix).home-manager.users.alice {home.packages = packagesOption;};
+    example-config-h = (evalWith nixpkgs [../examples/config-h]).programs.dwl.package;
+    example-chadwm = (evalWith nixpkgs [../examples/chadwm.nix]).programs.dwl.package;
 
     assert-modifier = failsWith "modifier" "unknown modifier 'Hyper'" {keybinds."Hyper+x" = "quit";};
     assert-modkey = failsWith "modkey" "modKey 'Meta'" {modKey = "Meta";};
@@ -270,16 +271,17 @@ in
     assert-patch-name = failsWith "patch-name" "doesn't exist in dwl-patches" {patches = ["no-such-patch"];};
   }
   // lib.optionalAttrs (compatible "stable" "bar") {
-    dwl-stable-bar = dwl-stable.override {patches = ["bar"];};
     patch-merge = dwl-stable.override {patches = ["bar" "vanitygaps"];};
-    assert-broken-patch = failsWith "broken-patch" "doesn't build" {
-      channel = "stable";
-      patches = ["gamepad-bindings"];
-    };
     dwl-stable-bar-addon = dwl-stable.override {patches = ["barpadding" "barcolors"];};
   }
   // lib.optionalAttrs (!(compatible "main" "bar") && compatible "stable" "bar") {
     assert-patch-channel = failsWith "patch-channel" "works with channel = \"stable\"" {patches = ["bar"];};
+  }
+  // lib.optionalAttrs (brokenPatch != null) {
+    assert-broken-patch = failsWith "broken-patch" "doesn't build" {
+      channel = "stable";
+      patches = [brokenPatch];
+    };
   }
   // lib.optionalAttrs (system == "x86_64-linux") {
     vm = pkgs.testers.runNixOSTest {

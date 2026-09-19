@@ -9,7 +9,7 @@
     patches = [
       "attachbottom"
       "movestack"
-      ./3-thick-borders.patch
+      ./thick-borders.patch
     ];
 
     keybinds = {
