@@ -147,7 +147,7 @@ in
     pname = "dwl";
     inherit src version;
 
-    patches = lib.warnIf (fuzzyPatches != []) "dwl: ${lib.concatStringsSep ", " fuzzyPatches} only apply to dwl ${channel} with fuzz, check that they behave as expected" (map (r: r.src) resolved);
+    patches = lib.warnIf (fuzzyPatches != []) "dwl: these patches need fuzz to apply to dwl ${channel}, check that they behave as expected: ${lib.concatStringsSep ", " fuzzyPatches}" (map (r: r.src) resolved);
 
     nativeBuildInputs = [installShellFiles pkg-config wayland-scanner patchutils ripgrep];
 
@@ -185,7 +185,10 @@ in
       install -Dm644 config.h $out/share/dwl/config.h
     '';
 
-    env.NIX_CFLAGS_COMPILE = lib.optionalString (lib.any (r: lib.elem "libdrm" r.pkgConfig) resolved) "-I${lib.getDev pkgs.libdrm}/include/libdrm";
+    env.NIX_CFLAGS_COMPILE = lib.concatStringsSep " " (
+      lib.optional (lib.any (r: lib.elem "libdrm" r.pkgConfig) resolved) "-I${lib.getDev pkgs.libdrm}/include/libdrm"
+      ++ lib.optionals (configH == null && (!defaultKeybinds || !defaultButtons || axes != {})) ["-Wno-unused-function" "-Wno-unused-variable"]
+    );
 
     strictDeps = true;
     __structuredAttrs = true;

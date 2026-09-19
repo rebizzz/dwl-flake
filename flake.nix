@@ -150,7 +150,6 @@
       };
       default = dwl;
     };
-    homeManagerModules = self.homeModules;
 
     hjemModules = rec {
       dwl = {
@@ -160,12 +159,10 @@
       default = dwl;
     };
 
-    inherit (dwlPatches) patches variants;
-
     lib = {
       inherit mkDwl;
       inherit (import ./nix/config.nix {inherit lib;}) c;
-      inherit (dwlPatches) index compatible resolve fileFor requiredBy;
+      inherit (dwlPatches) index compatible resolve fileFor requiredBy patches variants;
       upstreamPlan = lib.genAttrs ["main" "stable"] (channel:
         map (name: let
           dep = dwlPatches.requiredBy channel name;

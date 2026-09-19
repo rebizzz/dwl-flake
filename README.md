@@ -121,7 +121,7 @@ The patches are also exposed directly, for use with any dwl package:
 
 ```nix
 pkgs.dwl.overrideAttrs (old: {
-  patches = (old.patches or [ ]) ++ (with inputs.dwl-flake.patches.stable; [ pertag autostart ]);
+  patches = (old.patches or [ ]) ++ (with inputs.dwl-flake.lib.patches.stable; [ pertag autostart ]);
 })
 ```
 
