@@ -187,7 +187,7 @@ in
 
     env.NIX_CFLAGS_COMPILE = lib.concatStringsSep " " (
       lib.optional (lib.any (r: lib.elem "libdrm" r.pkgConfig) resolved) "-I${lib.getDev pkgs.libdrm}/include/libdrm"
-      ++ lib.optionals (configH == null && (!defaultKeybinds || !defaultButtons || axes != {})) ["-Wno-unused-function" "-Wno-unused-variable"]
+      ++ lib.optionals (configH == null && (!defaultKeybinds || !defaultButtons || axes != {} || settings ? layouts)) ["-Wno-unused-function" "-Wno-unused-variable"]
     );
 
     strictDeps = true;
