@@ -31,8 +31,11 @@ for dir in "$patchesSrc"/patches/*/; do
   ' "$readme")
 
   requires=$(rg -o "/(patches|wiki)/[A-Za-z0-9_.-]+" "$readme" | cut -d/ -f3 | rg -vxF "$name" | while read -r dep; do
-    [ -d "$patchesSrc/patches/$dep" ] && echo "$dep"
-  done | head -n1 || true)
+    if [ -d "$patchesSrc/patches/$dep" ]; then
+      echo "$dep"
+      break
+    fi
+  done || true)
 
   for channel in "${channels[@]}"; do
     rm -rf "$work/$channel-base"

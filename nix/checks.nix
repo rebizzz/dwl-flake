@@ -294,7 +294,12 @@ in
         programs.dwl = {
           enable = true;
           modKey = "Super";
-          keybinds."Mod+Return".spawn = "foot";
+          keybinds = {
+            "Mod+Return".spawn = "foot";
+            "Mod+q" = "killclient";
+            "Mod+Escape" = "quit";
+            "Mod+l".spawn = "swaylock";
+          };
           autostart = lib.optionals (compatible "main" "autostart") ["touch /tmp/autostart"];
           startupCommand = "touch /tmp/startup";
           extraPackages = with pkgs; [foot wmenu swaylock wayland-utils xdpyinfo];
@@ -335,18 +340,19 @@ in
             print(as_alice("wayland-info"))
 
         with subtest("xwayland works"):
-            machine.wait_until_succeeds("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 DISPLAY=:0 xdpyinfo'", timeout=60)
+            machine.wait_until_succeeds("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 DISPLAY=:0 xdpyinfo'")
 
         with subtest("keybinds open and close windows"):
             machine.sleep(2)
             machine.send_key("meta_l-ret")
             machine.wait_until_succeeds("pgrep -u alice -x foot")
+            machine.sleep(3)
             machine.screenshot("foot")
-            machine.send_key("meta_l-shift-c")
+            machine.send_key("meta_l-q")
             machine.wait_until_fails("pgrep -u alice -x foot")
 
         with subtest("screen locking works"):
-            machine.execute("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 swaylock' >&2 &")
+            machine.send_key("meta_l-l")
             machine.wait_until_succeeds("pgrep -x swaylock")
             machine.sleep(3)
             machine.send_chars("${nodes.machine.users.users.alice.password}")
@@ -354,7 +360,7 @@ in
             machine.wait_until_fails("pgrep -x swaylock")
 
         with subtest("quitting ends the session"):
-            machine.send_key("meta_l-shift-q")
+            machine.send_key("meta_l-esc")
             machine.wait_until_fails("pgrep -x dwl")
             machine.wait_until_fails("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 systemctl --user is-active dwl-session.target'")
       '';
