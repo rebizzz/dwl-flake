@@ -104,6 +104,8 @@ The [examples](examples) go from a minimal setup to patches, Home Manager, your 
 
 ## Patches
 
+All patches and their compatibility are documented in [`patches.md`](patches.md).
+
 A patch name is resolved to the file that applies to your channel, and the libraries it needs are added to the build. To list what applies:
 
 ```sh

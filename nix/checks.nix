@@ -155,6 +155,7 @@ in
 
     docs-fresh = pkgs.runCommand "dwl-docs-fresh" {} ''
       diff -u ${../docs.md} ${self.packages.${system}.docs}
+      diff -u ${../patches.md} ${self.packages.${system}.patch-docs}
       touch $out
     '';
 

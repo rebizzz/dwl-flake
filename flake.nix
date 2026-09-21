@@ -84,8 +84,12 @@
       };
 
       docs = import ./nix/docs.nix {inherit pkgs nixpkgs self;};
+      patch-docs = import ./nix/patch-docs.nix {inherit pkgs;};
 
-      update-docs = pkgs.writeShellScriptBin "update-docs" "install -m644 ${docs} docs.md";
+      update-docs = pkgs.writeShellScriptBin "update-docs" ''
+        install -m644 ${docs} docs.md
+        install -m644 ${patch-docs} patches.md
+      '';
 
       verify-patches = pkgs.writeShellApplication {
         name = "verify-patches";
