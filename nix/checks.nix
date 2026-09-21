@@ -291,6 +291,7 @@ in
           self.nixosModules.default
           "${nixpkgs}/nixos/tests/common/user-account.nix"
         ];
+        security.pam.services.swaylock = {};
         programs.dwl = {
           enable = true;
           modKey = "Super";
@@ -298,6 +299,7 @@ in
             "Mod+Return".spawn = "foot";
             "Mod+q" = "killclient";
             "Mod+Escape" = "quit";
+            "Mod+l".spawn = "swaylock";
           };
           autostart = lib.optionals (compatible "main" "autostart") ["touch /tmp/autostart"];
           startupCommand = "touch /tmp/startup";
@@ -351,7 +353,8 @@ in
             machine.wait_until_fails("pgrep -u alice -x foot")
 
         with subtest("screen locking works"):
-            machine.execute("su alice -c 'XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 swaylock' >&2 &")
+            machine.sleep(2)
+            machine.send_key("meta_l-l")
             machine.wait_until_succeeds("pgrep -x swaylock")
             machine.sleep(3)
             machine.send_chars("${nodes.machine.users.users.alice.password}")
