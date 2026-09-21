@@ -1,14 +1,8 @@
-# justfile for dwl-flake
-
-# List available recipes
-default:
-    @just --list
-
-# Format all Nix files
+# Format nix files
 fmt:
     nix fmt -- .
 
-# Check formatting without modifying
+# Check formatting
 fmt-check:
     nix fmt -- --check .
 
@@ -16,30 +10,30 @@ fmt-check:
 check:
     nix flake check -L
 
-# Run evaluation checks across all systems without building
+# Eval-only check, all systems
 eval:
     nix flake check --no-build --all-systems
 
-# Run the NixOS QEMU VM integration test driver
+# Boot the VM integration test
 test-vm:
     nix build .#checks.x86_64-linux.vm.driver && ./result/bin/nixos-test-driver
 
-# Update dwl, patches, and lockfile
+# Update dwl, patches, lockfile
 update:
     nix run .#update
 
-# Regenerate patch compatibility index (nix/patches.json)
+# Regenerate nix/patches.json
 update-index:
     nix run .#update-index
 
-# Verify that all default patches apply cleanly
+# Verify all default patches apply
 verify-patches:
     nix run .#verify-patches
 
-# Compare patches with upstream dwl
+# Compare with upstream nixpkgs module
 compare-upstream:
     nix run .#compare-upstream
 
-# Update docs.md from NixOS and Home Manager options
+# Regenerate docs.md
 update-docs:
     nix run .#update-docs
