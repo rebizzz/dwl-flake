@@ -14,3 +14,8 @@ Investigate the patch application mechanism and design the Automated Conflict Re
 4. Document your architectural analysis, concrete reconciliation mechanisms, risk analysis, and recommended implementation steps in `/home/rebiz/opt/dwl-flake/.agents/survey_conflict_engine_1/handoff.md`.
 Update your `progress.md` with timestamps as you work.
 When finished, write `/home/rebiz/opt/dwl-flake/.agents/survey_conflict_engine_1/handoff.md` and send a message back to the parent orchestrator with a summary and link to your handoff.
+
+## 2026-09-21T19:16:25Z
+**Context**: Conflict Engine Investigation & Architecture
+**Content**: User directive received: The orchestrator and implementation agents have full freedom to use any programming language (e.g. Python, Rust, C, Go, etc.) for tooling, the conflict resolution engine, patch merging, or verification harnesses—not just shell/awk. Choose whatever technology stack delivers the best compatibility, reliability, and highest quality flake.
+**Action**: Please factor this into your architecture analysis and recommended reconciliation strategies in your survey report.

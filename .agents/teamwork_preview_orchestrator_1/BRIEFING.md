@@ -49,6 +49,7 @@ Exhaustively test, resolve, and automate patch compatibility across the entire d
 
 ## Key Decisions Made
 - Initialized Project Orchestrator state. Initiating Step 0 Survey with 3 parallel Explorers / Spec Miners.
+- User Directive (2026-09-21T19:15:45Z): Orchestrator and implementation agents have full freedom to use any language (Python, Rust, C, Go, etc.) for tooling, conflict resolution engine, patch merging, or verification harnesses.
 
 ## Team Roster
 | Agent | Type | Work Item | Status | Conv ID |

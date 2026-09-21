@@ -28,3 +28,7 @@ Resolve the `compare-upstream` script failure by ensuring all options and featur
 - [ ] `nix run .#compare-upstream` executes successfully and reports zero missing features or regressions.
 - [ ] `nix flake check -L` passes with all checks enabled.
 - [ ] Code formatting complies with Alejandra (`nix fmt -- --check .`).
+
+## Follow-up — 2026-09-21T19:15:45Z
+
+User directive: The orchestrator and implementation agents have full freedom to use any programming language (e.g. Python, Rust, C, Go, etc.) for tooling, the conflict resolution engine, patch merging, or verification harnesses—not just shell/awk. Choose whatever technology stack delivers the best compatibility, reliability, and highest quality flake.

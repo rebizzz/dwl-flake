@@ -1,4 +1,4 @@
-# BRIEFING — 2026-09-21T19:10:30Z
+# BRIEFING — 2026-09-21T19:15:45Z
 
 ## Mission
 Coordinate and oversee patch compatibility testing, conflict resolution automation, and upstream parity verification for dwl-flake.
@@ -16,7 +16,7 @@ Coordinate and oversee patch compatibility testing, conflict resolution automati
 - Forward user request and monitor progress without writing code or making technical decisions
 
 ## User Context
-- **Last user request**: Exhaustively test, resolve, and automate patch compatibility across the entire dwl-flake patch matrix for stable and main channels, enhance nix/apply-patches.sh for automated conflict resolution, and fix upstream nixpkgs module comparison failures.
+- **Last user request**: [Follow-up 2026-09-21T19:15:45Z] Full freedom granted to use any programming language (Python, Rust, C, Go, etc.) for tooling, conflict resolution engine, patch merging, or verification harnesses.
 - **Pending clarifications**: none
 - **Delivered results**: none
 

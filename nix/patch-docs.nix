@@ -5,10 +5,12 @@
   formatPatch = name: data: let
     mainCompat = (data.default.main or null) != null;
     stableCompat = (data.default.stable or null) != null;
-    channels = lib.concatStringsSep ", " (
-      (lib.optional mainCompat "main")
-      ++ (lib.optional stableCompat "stable")
-    );
+    channels = let
+      list = (lib.optional mainCompat "main") ++ (lib.optional stableCompat "stable");
+    in
+      if list == []
+      then "unsupported"
+      else lib.concatStringsSep ", " list;
     req =
       if (data.requires or null) != null
       then "`" + data.requires + "`"

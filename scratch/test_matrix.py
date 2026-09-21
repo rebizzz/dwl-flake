@@ -18,8 +18,8 @@ in lib.mapAttrs (channel: names: lib.genAttrs names (name:
   let
     pkg = (flake.lib.mkDwl pkgs channel).override { patches = [ name ]; };
   in {
-    drvPath = builtins.unsafeDiscardStringContext pkg.drvPath;
-    outPath = builtins.unsafeDiscardStringContext pkg.outPath;
+    drv = builtins.unsafeDiscardStringContext pkg.drvPath;
+    out = builtins.unsafeDiscardStringContext pkg.outPath;
   }
 )) flake.lib.compatible'
 """
@@ -38,35 +38,31 @@ for channel in ["main", "stable"]:
     print(f"Testing {len(patches)} individual patches on {channel}...")
     print(f"==========================================")
     
-    drv_list = [info["drvPath"] for info in patches.values()]
+    drv_list = [info["drv"] for info in patches.values()]
     
-    # Build in parallel
+    # Build in parallel using nix build
     build_cmd = f"nix build --keep-going --no-link {' '.join(drv_list)}"
     print(f"Starting build of {len(drv_list)} derivations for {channel}...", flush=True)
     b_res = run(build_cmd, capture=False)
     
     # Now check each patch individually
     for name, info in patches.items():
-        drv = info["drvPath"]
-        out = info["outPath"]
-        # Check if out exists in nix store
+        drv = info["drv"]
+        out = info["out"]
         chk = run(f"nix path-info {out} 2>/dev/null")
         if chk.returncode == 0:
             results[channel][name] = {"status": "SUCCESS"}
             print(f"  [{channel}] {name}: SUCCESS")
         else:
-            # Check build log
             log_res = run(f"nix log {drv}")
             log = log_res.stdout + "\n" + log_res.stderr
-            # Determine failure reason
             fail_type = "UNKNOWN"
             if "conflicts outside config.def.h" in log or "patch: ****" in log or "FAILED" in log or "Reversed (or previously applied) patch" in log:
                 fail_type = "PATCH_REJECTION"
             elif "error:" in log or "fatal error:" in log:
                 fail_type = "COMPILATION_ERROR"
             
-            # Extract relevant error snippet
-            lines = [l for l in log.splitlines() if any(k in l for k in ["error:", "fatal error:", "FAILED", "conflicts", "rejected"])]
+            lines = [l.strip() for l in log.splitlines() if any(k in l for k in ["error:", "fatal error:", "FAILED", "conflicts outside", "rejected"])]
             snippet = "\n".join(lines[:10])
             
             results[channel][name] = {

@@ -32,3 +32,12 @@ Resolve the `compare-upstream` script failure by ensuring all options and featur
   - Code formatting complies with Alejandra (`nix fmt -- --check .`).
 
 Maintain your `progress.md` and `BRIEFING.md` regularly in your working directory. Dispatch work to specialized subagents as needed, monitor progress, synthesize results, and report completion when all acceptance criteria are rigorously tested and fulfilled.
+
+## 2026-09-21T19:15:59Z
+[User Directive]
+Timestamp: 2026-09-21T19:15:45Z
+Content:
+The orchestrator and implementation agents have full freedom to use any programming language (e.g. Python, Rust, C, Go, etc.) for tooling, the conflict resolution engine, patch merging, or verification harnesses—not just shell/awk. Choose whatever technology stack delivers the best compatibility, reliability, and highest quality flake.
+
+This directive has also been recorded in ORIGINAL_REQUEST.md. Please factor this into your architecture and delegation planning.
+
