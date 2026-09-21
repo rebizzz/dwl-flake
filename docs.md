@@ -680,7 +680,7 @@ attribute set of (string or attribute set of anything)
 
 ## programs.dwl.keyring.enable
 
-Whether to enable gnome-keyring for storing secrets in the dwl session\.
+Whether to enable oo7 secret service for storing secrets in the dwl session\.
 
 *Type:*
 boolean

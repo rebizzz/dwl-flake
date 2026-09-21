@@ -56,7 +56,7 @@ in {
 
       polkitAgent.enable = lib.mkEnableOption "a polkit authentication agent in the dwl session" // {default = true;};
 
-      keyring.enable = lib.mkEnableOption "gnome-keyring for storing secrets in the dwl session" // {default = true;};
+      keyring.enable = lib.mkEnableOption "oo7 secret service for storing secrets in the dwl session" // {default = true;};
     };
 
   config = lib.mkMerge [
@@ -72,14 +72,13 @@ in {
           ) "Using dwl with Nvidia driver version <= 550 may result in a broken system. Configure hardware.nvidia.package to use a newer version.";
 
         environment.etc."xdg/dwl-session".source = "${session}/bin/dwl-session";
-        environment.systemPackages = [cfg.package session pkgs.xdg-utils] ++ cfg.extraPackages;
+        environment.systemPackages = [cfg.package session pkgs.xdg-utils] ++ cfg.extraPackages ++ lib.optional cfg.keyring.enable pkgs.oo7;
         services.displayManager.sessionPackages = [sessionPackage];
         hardware.graphics.enable = lib.mkDefault true;
         fonts.enableDefaultPackages = lib.mkDefault true;
         programs.dconf.enable = lib.mkDefault true;
         security.pam.services.swaylock = lib.mkDefault {};
         security.polkit.enable = lib.mkIf cfg.polkitAgent.enable (lib.mkDefault true);
-        services.gnome.gnome-keyring.enable = lib.mkIf cfg.keyring.enable (lib.mkDefault true);
 
         xdg = {
           autostart.enable = lib.mkDefault true;

@@ -98,34 +98,7 @@ inputs.dwl-flake.packages.${system}.dwl.override {
 
 ## Options
 
-All options, and the keybind actions dwl provides, are listed in [docs.md](docs.md). The main ones:
-
-| option | description |
-| --- | --- |
-| `channel` | `"main"` (default) or `"stable"` |
-| `patches` | patch names from dwl-patches, paths, or `fetchpatch` results |
-| `modKey` | what `Mod` means: `Super`, `Alt`, `Ctrl` or `Shift` |
-| `keybinds` | `"Mod+key" = function` or `{ function = arg; }` |
-| `buttons` | mouse bindings, e.g. `"Mod+left".moveresize = "move"` |
-| `axes` | scroll wheel bindings (main only) |
-| `rules` | window rules |
-| `monitors` | monitor rules |
-| `appearance` | focus behavior, border width, colors |
-| `input.keyboard` | xkb layout and options, key repeat |
-| `input.touchpad` | tap, scrolling, acceleration and the rest of libinput |
-| `layouts`, `tagCount`, `logLevel` | layouts, number of tags, log level |
-| `autostart` | commands to start with dwl |
-| `extraSessionCommands` | shell commands run before dwl starts |
-| `startupCommand` | shell commands run once dwl is up, with the Wayland env set |
-| `extraOptions` | command line arguments passed to dwl |
-| `extraPackages` | programs installed with dwl, by default `foot` and `wmenu` for dwl's own keybinds |
-| `statusCommand` | a script whose output becomes the bar status (bar patch) |
-| `environment` | environment variables for dwl and its children |
-| `settings` | any variable from `config.def.h`, including ones added by patches |
-| `configH` | use your own `config.h` instead |
-| `finalConfig` | read-only path to the generated `config.h` |
-
-The NixOS module additionally provides `useHomeManagerBuild`, `polkitAgent.enable` and `keyring.enable`.
+All options and keybind actions are documented in [`docs.md`](docs.md). The highlights: `channel`, `patches`, `modKey`, `keybinds`, `buttons`, `rules`, `monitors`, `autostart`, `appearance`, `input`, `settings`, `configH`. The NixOS module also has `useHomeManagerBuild`, `polkitAgent` and `keyring`.
 
 The [examples](examples) go from a minimal setup to patches, Home Manager, your own `config.h` and a full [chadwm](https://github.com/siduck/chadwm)-style setup.
 
