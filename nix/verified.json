@@ -1,5 +1,6 @@
 {
   "main": {
+    "btrtile": "btrtile-v0.9.patch",
     "switchtotag": null
   },
   "stable": {
