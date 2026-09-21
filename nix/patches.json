@@ -531,12 +531,12 @@
   },
   "btrtile": {
     "default": {
-      "main": "btrtile-d16036e.patch",
+      "main": "btrtile-gaps-v0.9.patch",
       "stable": "btrtile-v0.8-gaps.patch"
     },
     "description": "# btrtile - A Focus-Driven Tiling Layout",
     "files": {
-      "btrtile-d16036e.patch": {
+      "btrtile-gaps-v0.9.patch": {
         "applies": {
           "main": true,
           "stable": false
@@ -544,17 +544,7 @@
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "main-d16036e"
-      },
-      "btrtile-gaps-d16036e.patch": {
-        "applies": {
-          "main": true,
-          "stable": false
-        },
-        "fuzzy": {},
-        "needsRequired": {},
-        "pkgConfig": [],
-        "target": "main-d16036e WITH gaps"
+        "target": "btrtile-0.9 WITH gaps"
       },
       "btrtile-v0.8-gaps.patch": {
         "applies": {
@@ -564,7 +554,7 @@
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "0.8 WITH gaps"
+        "target": "btrtile-0.8 WITH gaps"
       },
       "btrtile-v0.8.patch": {
         "applies": {
@@ -574,7 +564,17 @@
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "0.8"
+        "target": "btrtile-0.8"
+      },
+      "btrtile-v0.9.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "btrtile-0.9"
       }
     },
     "requires": null
@@ -1392,23 +1392,11 @@
   },
   "fullscreenadaptivesync": {
     "default": {
-      "main": "fullscreenadaptivesync-d16036e.patch",
+      "main": "fullscreenadaptivesync-v0.9.patch",
       "stable": "fullscreenadaptivesync-v0.8.patch"
     },
     "description": "# fullscreenadaptivesync - Enables adaptive sync/VRR when a client is fullscreen.",
     "files": {
-      "fullscreenadaptivesync-d16036e.patch": {
-        "applies": {
-          "main": true,
-          "stable": true
-        },
-        "fuzzy": {
-          "stable": true
-        },
-        "needsRequired": {},
-        "pkgConfig": [],
-        "target": "main-d16036e"
-      },
       "fullscreenadaptivesync-v0.8.patch": {
         "applies": {
           "main": true,
@@ -1419,7 +1407,19 @@
         },
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "0.8"
+        "target": "fullscreenadaptivesync-v0.8"
+      },
+      "fullscreenadaptivesync-v0.9.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {
+          "stable": true
+        },
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "fullscreenadaptivesync-v0.9"
       }
     },
     "requires": null
@@ -1830,7 +1830,7 @@
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "main-d16036e"
+        "target": "v0.9"
       },
       "ipcpertag.patch": {
         "applies": {
@@ -2930,21 +2930,11 @@
   },
   "simple_scratchpad": {
     "default": {
-      "main": "simple_scratchpad-d16036e.patch",
+      "main": "simple_scratchpad-v0.9.patch",
       "stable": "simple_scratchpad-v0.8.patch"
     },
     "description": "# simple_scratchpad - A very simple scratchpad utility.",
     "files": {
-      "simple_scratchpad-d16036e.patch": {
-        "applies": {
-          "main": true,
-          "stable": false
-        },
-        "fuzzy": {},
-        "needsRequired": {},
-        "pkgConfig": [],
-        "target": "main-d16036e"
-      },
       "simple_scratchpad-v0.8.patch": {
         "applies": {
           "main": false,
@@ -2954,6 +2944,16 @@
         "needsRequired": {},
         "pkgConfig": [],
         "target": "scratchpad-v0.8.patch"
+      },
+      "simple_scratchpad-v0.9.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "scratchpad-v0.9.patch"
       }
     },
     "requires": null
