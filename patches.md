@@ -38,7 +38,7 @@ Run `nix run .#update-docs` to regenerate.
 | `client-opacity-focus` |  | - | This patch is based on the [client-opacity](https://codeberg.org/dwl/dwl-patches/raw/branch/main/patches/client-opacity/client-opacity.patch) patch. This patch adds differing opacity levels depending upon whether the client is focused or not. |
 | `color_manager` | stable | - | Adds simple support for color management using `wp_color_manager_v1`. |
 | `column` |  | - | A column layout patch. This patch just puts the visible clients into equal-width columns on the screen. |
-| `controlled_fullscreen` | stable | - | 	This patch allows a window to adjust its layout as if it was fullscreen, but it won't change its size and position, and it will stays under the control of dwl. For example a video on a browser can occupy the whole space reserved to the window, but we can still resize it and move it and see the status bar.  |
+| `controlled_fullscreen` | stable | - | 	This patch allows a window to adjust its layout as if it was fullscreen, but it won't change its size and position, and it will stays under the control of dwl. For example a video on a browser can occupy the whole space reserved to the window, but we can still resize it and move it and see the status bar. |
 | `coredump` | main, stable | - | Generate a coredump if dwl exited abnormally (to be more useful you need to compile dwl and wlroots with debug symbols) |
 | `cursortheme` |  | - | Adds ability to change cursor's theme and size. |
 | `customfloat` | main, stable | - | Rules for floating windows support default x, y, width, height. Defaults to the center of the screen and the client size. |
@@ -56,17 +56,17 @@ Run `nix run .#update-docs` to regenerate.
 | `fakefullscreenclient` |  | - | Allow setting fake fullscreen per client |
 | `fallback` | main, stable | - | Tries a different display mode if the preferred mode doesn't work. |
 | `focusdir` |  | - | Focus the window to the left, right, above or below the current focused window |
-| `focusonurgent` | main, stable | - | By default, dwl responds to client requests to client messages by setting the urgency bit on the named window. This patch changes the focus to the window instead. Both behaviours are legitimate according to the cursed spec.  This is the approximately the equivalent of the focusonactive patch of dwm. If you want a more controlled behavior, for example setting which clients can focus, check [activation-rule patch](https://codeberg.org/sevz/dwl-patches/src/branch/activation-rules). |
+| `focusonurgent` | main, stable | - | By default, dwl responds to client requests to client messages by setting the urgency bit on the named window. This patch changes the focus to the window instead. Both behaviours are legitimate according to the cursed spec. This is the approximately the equivalent of the focusonactive patch of dwm. If you want a more controlled behavior, for example setting which clients can focus, check [activation-rule patch](https://codeberg.org/sevz/dwl-patches/src/branch/activation-rules). |
 | `follow` | main, stable | - | An extremely simple patch that adds the option to change DWL's window sending behavior; when active, sent windows will be followed, i.e. when a window is sent to another tag, the view changes to that tag.<br>No dependencies. |
 | `foreign-toplevel-management` |  | - | Implement `foreign-toplevel-management`, it add handlers for activate, close, fullscreen and destroy request events, it's missing minimize and maximize request handlers. |
 | `fullscreenadaptivesync` | main, stable | - | # fullscreenadaptivesync - Enables adaptive sync/VRR when a client is fullscreen. |
 | `gamepad-bindings` | stable | - | Gamepad bindings to dwl. Press `LB + RB` toggle gamepad bindings. |
 | `gaplessgrid` | main, stable | - | Arranges windows in a grid. Except it adjusts the number of windows in the first few columns to avoid empty cells. |
-| `gaps` |  | - | Adds gaps between clients, providing the ability to disable them at run-time.  |
+| `gaps` |  | - | Adds gaps between clients, providing the ability to disable them at run-time. |
 | `genericgaps` | stable | - | This patch adds gaps around windows and works with any layout (the layout code does not need to know about the gaps). This patch is a modified version of [vanitygaps][vanitygaps] patch. |
 | `globalkey` | stable | - | This patch adds the ability to pass keys that are specified in the config header globally, similar to Hyprland's approach. This might deal with Wayland's lack of global shortcuts. |
 | `hide-behind-deck` |  | - | Hides all slave clients behind last focused slave in deck layout. |
-| `hide-behind-fullscreen` |  | - | Hide all clients (and layer surfaces) behind the current client if it is fullscreen, only the background  (layer surfaces at the background layer) will be shown |
+| `hide-behind-fullscreen` |  | - | Hide all clients (and layer surfaces) behind the current client if it is fullscreen, only the background (layer surfaces at the background layer) will be shown |
 | `hide-behind-monocle` | main, stable | - | Hide all clients behind the focused one in the monocle layout |
 | `hide-cursor-when-typing` | stable | - | Hide the mouse cursor when you start typing, and restore it again when the mouse cursor moves or a mouse button is pressed, just like [xbanish](https://github.com/jcs/xbanish). |
 | `hide_vacant_tags` | stable | `bar` | Prevent [bar](/dwl/dwl-patches/wiki/bar) from drawing tags with no clients (i.e. vacant). It also stops drawing empty rectangles on the bar for non-vacant tags as there is no need anymore to distinguish vacant tags and it offers a more visible contrast than if there were filled/empty rectangles. |
@@ -77,7 +77,7 @@ Run `nix run .#update-docs` to regenerate.
 | `kblayout` | stable | - | This patch adds per-client keyboard layout and ability to send current keyboard layout information to a status bar. |
 | `keyboardshortcutsinhibit` |  | - | Allows clients to use the keyboard-shortcuts-inhibit protocol to block the compositor from using keybinds. This is useful for virtualization software like looking-glass which requires this protocol to run. |
 | `keycodes` |  | - | Use keycodes instead of keysyms. This way, input is independent from keyboard layout (you can use the keys.h file to customize, or get the keycodes with `wev` or `xkbcli interactive-wayland` (x11-libs/libxkbcommon[tools] in gentoo)). |
-| `killunsel` |  | - |  A very simple patch that introduces the functionality to terminate all  visible, unselected clients, similar to the dwm  [killunsel](https://dwm.suckless.org/patches/killunsel/) patch. |
+| `killunsel` |  | - | A very simple patch that introduces the functionality to terminate all visible, unselected clients, similar to the dwm [killunsel](https://dwm.suckless.org/patches/killunsel/) patch. |
 | `launchtag` |  | - | Straight port of the dwm taglayouts patch, renamed because I have a hard time finding it on the suckless site. |
 | `limitnmaster` | main, stable | - | Limits nmaster to within the range of currently-opened windows (nmaster will not change past the full horizontal split layout) |
 | `lock-size` | main, stable | - |  |
@@ -86,11 +86,11 @@ Run `nix run .#update-docs` to regenerate.
 | `menu` | main, stable | - | This patch adds `menu` command, which allows dwl to interface with dmenu-like programs. |
 | `menurule` |  | - | This patch adds a dmenu interface to [setrule][setrule], which allows to add or change client rules at runtime. It must be applied on top of [setrule][setrule] and [menu][menu] patches. |
 | `meson` | main, stable | - | Add the meson build system. |
-| `modes` | stable | - | Implement  modes, that way each mapping is associated with a mode and is only active while in that mode, default mode is `NORMAL` |
+| `modes` | stable | - | Implement modes, that way each mapping is associated with a mode and is only active while in that mode, default mode is `NORMAL` |
 | `monitorconfig` | main, stable | - | Allows more monitor configuration in config.h |
 | `mouse-trackpad-split` | main, stable | - | Separates natural scrolling and acceleration settings for trackpad and mouse. |
 | `movecenter` |  | - | > This patch is no longer being maintained by me [wochap](https://codeberg.org/wochap), since I'm now using a different patch specific to my use case: https://codeberg.org/wochap/dwl/src/branch/v0.6-c/betterfloat/betterfloat-diff.patch. |
-| `moveresizekb` | main, stable | - | This allows the user to change size and placement of floating windows using only the keyboard, default keybindings:  |
+| `moveresizekb` | main, stable | - | This allows the user to change size and placement of floating windows using only the keyboard, default keybindings: |
 | `movestack` | main, stable | - | Allows you to move a window up and down the stack. |
 | `namedscratchpads` | stable | - | Allows for the creation of multiple scratchpad windows, each assigned to a different keybinding. In simple terms, it enables 'run or raise' functionality |
 | `naturalscrolltrackpad` | main, stable | - | Set natural scrolling only for trackpads. Without this patch, setting `natural_scrolling` to 1 in `config.h` results in a regular mouse wheel having natural scrolling enabled as well. |
@@ -105,7 +105,7 @@ Run `nix run .#update-docs` to regenerate.
 | `push` | stable | - | Adds functions `pushup` and `pushdown` to move windows within the tiling order. |
 | `regexrules` |  | - | Allows the use of regular expressions for window rules "app_id" and "title" |
 | `regions` |  | - | This patch will allow for a program to be used and have the current window regions on all monitors to be passed to the program as standard input.		 |
-| `relative-mouse-resize` | main, stable | - | When resizing windows, the mouse will jump and resize the window in the quadrant that the resize starts at.  |
+| `relative-mouse-resize` | main, stable | - | When resizing windows, the mouse will jump and resize the window in the quadrant that the resize starts at. |
 | `reorganizetags` | main, stable | - |  |
 | `restore-monitor` | main, stable | - | Moves clients to their old output when it is reattached. |
 | `right` | main, stable | - | Put newly connected monitors on the right, like X does. |
@@ -135,7 +135,7 @@ Run `nix run .#update-docs` to regenerate.
 | `sticky` | stable | - | Adds a toggleable function that makes a sticky client that is visible on all tags. |
 | `swallow` | stable | - | This patch adds "window swallowing" to dwl. |
 | `swapandfocusdir` | main, stable | - | Focus the window (floating or no) to the left, right, above, or below the current focused window. |
-| `swapfocus` | main, stable | - | Swapfocus adds a new function on dwl: a shortcut to change the focus to the last focused window.  - If the last focused window is in another tag, then the focus will change to that tag.  - Alternatively: edit the patch and uncomment and comment out the lines instructed to keep the swapfocus shortcut from changing to another tag. |
+| `swapfocus` | main, stable | - | Swapfocus adds a new function on dwl: a shortcut to change the focus to the last focused window. - If the last focused window is in another tag, then the focus will change to that tag. - Alternatively: edit the patch and uncomment and comment out the lines instructed to keep the swapfocus shortcut from changing to another tag. |
 | `swapmons` | stable | - | This patch is for dual-monitor setups (and can be extended for more monitors). It swaps the active client on Monitor-A with the active client on Monitor-B while preserving original tags of the swapped clients. |
 | `switchtotag` | main | - | Add a rule option to switch to the configured tag when a window opens, then switch back when it closes. |
 | `systemd` | main, stable | - | This is a simple patch that runs `systemctl --user import-environment WAYLAND_DISPLAY DISPLAY`, and `systemctl --user start dwl-session.target` after Dwl initializes, and then `systemctl --user stop dwl-session.target` when Dwl quits. This allows you to handle graceful startup and shutdown of your graphical systemd services, with the proper environment variables set. This is similar to [uwsm](https://github.com/Vladimir-csp/uwsm?tab=readme-ov-file), but it integrates natively with your existing systemd user services, and doesn't have uwsm's runtime overhead. |
@@ -144,13 +144,13 @@ Run `nix run .#update-docs` to regenerate.
 | `tearing` | stable | - | This patch adds support for tearing protocol. To get it working `export WLR_DRM_NO_ATOMIC=1` is probably required. Some apps would send ASYNC hint and tearing will "just work", otherwise it's possible to force specified clients to tear with a rule. |
 | `titleurgent` |  | - | Whenever a client title changes set the client's urgent flag. |
 | `tmux-borders` |  | - | This patch replaces the window borders of tiled windows with borders that are similar to those found in tmux. The result is that there are no more unnecessary borders along the monitor edges in tiled mode. Borders of floating windows are not affected. |
-| `toggle_constraints` | main, stable | - | Adds a function called togglepointerconstraints to turn pointer constraint enforcement on and off with a keybind.  |
+| `toggle_constraints` | main, stable | - | Adds a function called togglepointerconstraints to turn pointer constraint enforcement on and off with a keybind. |
 | `togglekblayoutandoptions` | stable | - | Switch between multiple keyboard layouts, variants, and options at runtime. Supports both assigning a specific keyboard to a shortcut and cycling through keyboards. |
 | `touch-input` | stable | - | Adds touchscreen functionality. |
 | `unclutter` | main | - | Hide the mouse cursor if it isn't being used for a certain period of time. |
 | `ungroup-keyboards` |  | - | Ungroup keyboard input devices based on device name. |
 | `vanitygaps` | stable | - | Adds (inner) gaps between client windows and (outer) gaps between windows and the screen edge in a flexible manner. |
-| `varcol` |  | - | A variable column layout.  |
+| `varcol` |  | - | A variable column layout. |
 | `viewnextocctag` |  | - | View the next or previous tag, skipping any tags that do not have any clients. |
 | `virtual-pointer` |  | - | implement wlr_virtual_pointer_v1 for things like wayvnc server to work |
 | `warpcursor` | main, stable | - | Warp cursor to the centre of newly focused clients. |
@@ -158,4 +158,4 @@ Run `nix run .#update-docs` to regenerate.
 | `winview` | stable | - | Implements the function `winview` which switches the visible tags to the tags on which the current client is visible. |
 | `xwayland-handle-minimize` |  | - | Some windows (wine) games go black screen after losing focus and never recover https://github.com/swaywm/sway/issues/4324. This patch fixes this by handling minimize requests that some xwayland clients do. |
 | `zerotag` | stable | `bar` |  |
-| `zoomswap` | main, stable | - | This patch swaps the current window (C) with the previous master (P) when zooming. ``` Original behaviour : +-----------------+-------+ \|                 \|       \| \|                 \|       \| \|                 \|       \| \|        P        +-------\| \|                 \|       \| \|                 \|   C   \| \|                 \|       \| +-----------------+-------+ |
+| `zoomswap` | main, stable | - | This patch swaps the current window (C) with the previous master (P) when zooming. |

@@ -13,9 +13,15 @@
       if (data.requires or null) != null
       then "`" + data.requires + "`"
       else "-";
+    cleanDesc = desc: let
+      noCode = lib.head (lib.splitString "```" desc);
+      singleLine = lib.replaceStrings ["\n" "\r" "|"] [" " " " "\\|"] noCode;
+      trimmed = lib.concatStringsSep " " (lib.filter (s: s != "") (lib.splitString " " singleLine));
+    in
+      trimmed;
     desc =
       if (data.description or null) != null
-      then lib.replaceStrings ["\n" "\r" "|"] [" " " " "\\|"] data.description
+      then cleanDesc data.description
       else "";
   in "| `${name}` | ${channels} | ${req} | ${desc} |\n";
 
