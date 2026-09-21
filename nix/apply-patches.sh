@@ -9,12 +9,17 @@ for p in "${patches[@]}"; do
 
   rest=$(mktemp)
   filterdiff -p1 -x config.def.h "$p" >"$rest"
-  if [ -s "$rest" ] && ! patch -p1 -f --dry-run -s <"$rest" >/dev/null 2>&1; then
-    echo "error: $p conflicts outside config.def.h" >&2
-    patch -p1 -f --dry-run <"$rest" >&2 || true
-    exit 1
+  if [ -s "$rest" ]; then
+    if patch -p1 -f --dry-run -s <"$rest" >/dev/null 2>&1; then
+      patch -p1 -f -s <"$rest"
+    elif patch -p1 -f -F3 --dry-run -s <"$rest" >/dev/null 2>&1; then
+      patch -p1 -f -F3 -s <"$rest"
+    else
+      echo "error: $p conflicts outside config.def.h" >&2
+      patch -p1 -f -F3 --dry-run <"$rest" >&2 || true
+      exit 1
+    fi
   fi
-  [ -s "$rest" ] && patch -p1 -f -s <"$rest"
 
   rej=$(mktemp)
   filterdiff -p1 -i config.def.h "$p" | patch -p1 -f -s -F0 -r "$rej" config.def.h >/dev/null 2>&1 || true
@@ -65,5 +70,9 @@ for p in "${patches[@]}"; do
   fi
   rm -rf "$rest" "$rej" "$decls"
 done
+
+if ! grep -q '#define TAGCOUNT' config.def.h dwl.c 2>/dev/null; then
+  sed -i '1i#ifndef TAGCOUNT\n#define TAGCOUNT 31\n#endif' dwl.c
+fi
 
 runHook postPatch
