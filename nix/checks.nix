@@ -355,11 +355,11 @@ in
         with subtest("screen locking works"):
             machine.sleep(2)
             machine.send_key("meta_l-l")
-            machine.wait_until_succeeds("pgrep -x swaylock")
+            machine.wait_until_succeeds("pgrep -u alice swaylock")
             machine.sleep(3)
             machine.send_chars("${nodes.machine.users.users.alice.password}")
             machine.send_key("ret")
-            machine.wait_until_fails("pgrep -x swaylock")
+            machine.wait_until_fails("pgrep -u alice swaylock")
 
         with subtest("quitting ends the session"):
             machine.send_key("meta_l-esc")

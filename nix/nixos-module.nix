@@ -115,6 +115,7 @@ in {
             && lib.versionOlder (lib.versions.major (lib.getVersion config.hardware.nvidia.package)) "551"
           ) "Using dwl with Nvidia driver version <= 550 may result in a broken system. Configure hardware.nvidia.package to use a newer version.";
 
+        environment.etc."xdg/dwl-session".source = "${session}/bin/dwl-session";
         environment.systemPackages = [cfg.package session pkgs.xdg-utils] ++ cfg.extraPackages;
         services.displayManager.sessionPackages = [sessionPackage];
         hardware.graphics.enable = lib.mkDefault true;
@@ -129,7 +130,7 @@ in {
           portal = {
             enable = true;
             config.dwl = {
-              default = lib.mkDefault ["gtk"];
+              default = lib.mkDefault ["wlr" "gtk"];
               "org.freedesktop.impl.portal.ScreenCast" = lib.mkDefault "wlr";
               "org.freedesktop.impl.portal.Screenshot" = lib.mkDefault "wlr";
               "org.freedesktop.impl.portal.Inhibit" = lib.mkDefault "none";
