@@ -30,7 +30,7 @@ in
       echo "Generated from the modules. Run \`nix run .#update-docs\` after changing an option."
       echo
       echo "All options live under \`programs.dwl\`, in the NixOS, Home Manager and hjem modules."
-      echo "\`useHomeManagerBuild\`, \`extraSessionCommands\`, \`startupCommand\`, \`polkitAgent\` and \`keyring\` only exist in the NixOS module."
+      echo "\`useHomeManagerBuild\`, \`polkitAgent\` and \`keyring\` only exist in the NixOS module."
       echo
       cat -s ${doc.optionsCommonMark} | sed -e '/^## /s/\\\././g'
       echo

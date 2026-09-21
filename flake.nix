@@ -116,9 +116,31 @@
       };
     });
 
-    overlays.default = final: _: {
-      dwl-git = mkDwl final "main";
-      dwl-stable-git = mkDwl final "stable";
+    apps = forAllSystems (pkgs: rec {
+      dwl = {
+        type = "app";
+        program = "${self.packages.${pkgs.stdenv.hostPlatform.system}.dwl}/bin/dwl";
+      };
+      dwl-stable = {
+        type = "app";
+        program = "${self.packages.${pkgs.stdenv.hostPlatform.system}.dwl-stable}/bin/dwl";
+      };
+      default = dwl;
+    });
+
+    overlays = rec {
+      default = final: prev: {
+        dwl = mkDwl final "main";
+        dwl-git = mkDwl final "main";
+        dwl-stable = mkDwl final "stable";
+        dwl-stable-git = mkDwl final "stable";
+      };
+      dwl = default;
+      dwl-stable = final: prev: {
+        dwl = mkDwl final "stable";
+        dwl-stable = mkDwl final "stable";
+        dwl-stable-git = mkDwl final "stable";
+      };
     };
 
     nixosModules = rec {
@@ -221,6 +243,13 @@
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {
         inputsFrom = [self.packages.${pkgs.stdenv.hostPlatform.system}.dwl];
+        packages = with pkgs; [
+          just
+          git
+          jq
+          gnupatch
+          ripgrep
+        ];
       };
     });
     checks = forAllSystems (pkgs:

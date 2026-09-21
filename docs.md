@@ -3,7 +3,7 @@
 Generated from the modules. Run `nix run .#update-docs` after changing an option.
 
 All options live under `programs.dwl`, in the NixOS, Home Manager and hjem modules.
-`useHomeManagerBuild`, `extraSessionCommands`, `startupCommand`, `polkitAgent` and `keyring` only exist in the NixOS module.
+`useHomeManagerBuild`, `polkitAgent` and `keyring` only exist in the NixOS module.
 
 ## programs.dwl.enable
 

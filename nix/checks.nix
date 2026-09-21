@@ -146,6 +146,13 @@ in
       keybinds."Super+Return".spawn = "foot";
     };
 
+    apps-default = pkgs.runCommand "test-apps-default" {} ''
+      test -x ${self.apps.${system}.default.program}
+      touch $out
+    '';
+    overlay-default = (pkgs.extend self.overlays.default).dwl;
+    overlay-dwl-stable = (pkgs.extend self.overlays.dwl-stable).dwl;
+
     docs-fresh = pkgs.runCommand "dwl-docs-fresh" {} ''
       diff -u ${../docs.md} ${self.packages.${system}.docs}
       touch $out

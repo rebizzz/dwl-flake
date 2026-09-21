@@ -6,6 +6,7 @@ mkDwl: {
 }: let
   cfg = config.programs.dwl;
   shared = import ./options.nix {inherit lib pkgs cfg mkDwl;};
+  session = shared.sessionForPackage cfg.package;
 in {
   options.programs.dwl =
     shared.options
@@ -28,7 +29,7 @@ in {
     };
 
   config = lib.mkIf cfg.enable {
-    packages = lib.throwIf (shared.package.configErrors != []) (lib.concatStringsSep "\n" shared.package.configErrors) ([cfg.package] ++ cfg.extraPackages);
+    packages = lib.throwIf (shared.package.configErrors != []) (lib.concatStringsSep "\n" shared.package.configErrors) ([cfg.package session] ++ cfg.extraPackages);
   };
 
   _class = "hjem";

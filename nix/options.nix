@@ -85,6 +85,36 @@
 
   typed = import ./typed.nix {inherit lib;};
   inherit (import ./config.nix {inherit lib;}) c;
+
+  sessionForPackage = pkg:
+    pkgs.writeShellScriptBin "dwl-session" ''
+      ${cfg.extraSessionCommands}
+      export XDG_CURRENT_DESKTOP=''${XDG_CURRENT_DESKTOP:-dwl}
+      export XDG_SESSION_DESKTOP=''${XDG_SESSION_DESKTOP:-dwl}
+      export XDG_SESSION_TYPE=wayland
+      ${lib.getExe pkg} ${lib.escapeShellArgs cfg.extraOptions} -s ${pkgs.writeShellScript "dwl-startup" ''
+        ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE
+        systemctl --user start dwl-session.target
+        ${cfg.startupCommand}
+      ''} "$@"
+      status=$?
+      systemctl --user stop dwl-session.target
+      exit $status
+    '';
+
+  sessionPackageForSession = sess:
+    (pkgs.writeTextDir "share/wayland-sessions/dwl.desktop" ''
+      [Desktop Entry]
+      Name=dwl
+      Comment=dwm for Wayland
+      Exec=${lib.getExe sess}
+      Type=Application
+      DesktopNames=dwl
+    '')
+    // {providedSessions = ["dwl"];};
+
+  session = sessionForPackage cfg.package;
+  sessionPackage = sessionPackageForSession session;
 in {
   options =
     typed.options
@@ -230,6 +260,27 @@ in {
         default = [];
         description = "Libraries a patch needs that aren't detected.";
       };
+
+      extraSessionCommands = mkOption {
+        type = types.lines;
+        default = "";
+        example = "export MOZ_ENABLE_WAYLAND=1";
+        description = "Shell commands run before dwl starts.";
+      };
+
+      extraOptions = mkOption {
+        type = with types; listOf str;
+        default = [];
+        example = ["-d"];
+        description = "Command line arguments passed to dwl.";
+      };
+
+      startupCommand = mkOption {
+        type = types.lines;
+        default = "";
+        example = "exec waybar";
+        description = "Shell commands run once dwl is up, with the Wayland environment set. Its standard input is dwl's status output.";
+      };
     };
 
   package = let
@@ -262,6 +313,8 @@ in {
         inherit (dwl) passthru;
         meta = dwl.meta // {outputsToInstall = ["out"];};
       };
+
+  inherit session sessionPackage sessionForPackage sessionPackageForSession;
 
   assertions = build:
     map (message: {

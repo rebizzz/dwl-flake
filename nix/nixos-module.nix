@@ -20,31 +20,8 @@
     exec ${lib.getExe shared.package} "$@"
   '';
 
-  session = pkgs.writeShellScriptBin "dwl-session" ''
-    ${cfg.extraSessionCommands}
-    export XDG_CURRENT_DESKTOP=''${XDG_CURRENT_DESKTOP:-dwl}
-    export XDG_SESSION_DESKTOP=''${XDG_SESSION_DESKTOP:-dwl}
-    export XDG_SESSION_TYPE=wayland
-    ${lib.getExe cfg.package} ${lib.escapeShellArgs cfg.extraOptions} -s ${pkgs.writeShellScript "dwl-startup" ''
-      ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE
-      systemctl --user start dwl-session.target
-      ${cfg.startupCommand}
-    ''} "$@"
-    status=$?
-    systemctl --user stop dwl-session.target
-    exit $status
-  '';
-
-  sessionPackage =
-    (pkgs.writeTextDir "share/wayland-sessions/dwl.desktop" ''
-      [Desktop Entry]
-      Name=dwl
-      Comment=dwm for Wayland
-      Exec=${lib.getExe session}
-      Type=Application
-      DesktopNames=dwl
-    '')
-    // {providedSessions = ["dwl"];};
+  session = shared.sessionForPackage cfg.package;
+  sessionPackage = shared.sessionPackageForSession session;
 in {
   disabledModules = ["programs/wayland/dwl.nix"];
 
@@ -77,27 +54,6 @@ in {
         description = "Start the dwl each user builds with the Home Manager module. Users without one get the build from these options.";
       };
 
-      extraSessionCommands = lib.mkOption {
-        type = lib.types.lines;
-        default = "";
-        example = "export MOZ_ENABLE_WAYLAND=1";
-        description = "Shell commands run before dwl starts.";
-      };
-
-      extraOptions = lib.mkOption {
-        type = with lib.types; listOf str;
-        default = [];
-        example = ["-d"];
-        description = "Command line arguments passed to dwl.";
-      };
-
-      startupCommand = lib.mkOption {
-        type = lib.types.lines;
-        default = "";
-        example = "exec waybar";
-        description = "Shell commands run once dwl is up, with the Wayland environment set. Its standard input is dwl's status output.";
-      };
-
       polkitAgent.enable = lib.mkEnableOption "a polkit authentication agent in the dwl session" // {default = true;};
 
       keyring.enable = lib.mkEnableOption "gnome-keyring for storing secrets in the dwl session" // {default = true;};
@@ -120,6 +76,9 @@ in {
         services.displayManager.sessionPackages = [sessionPackage];
         hardware.graphics.enable = lib.mkDefault true;
         fonts.enableDefaultPackages = lib.mkDefault true;
+        programs.dconf.enable = lib.mkDefault true;
+        security.pam.services.swaylock = lib.mkDefault {};
+        security.polkit.enable = lib.mkIf cfg.polkitAgent.enable (lib.mkDefault true);
         services.gnome.gnome-keyring.enable = lib.mkIf cfg.keyring.enable (lib.mkDefault true);
 
         xdg = {
