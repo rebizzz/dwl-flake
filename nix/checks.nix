@@ -352,6 +352,7 @@ in
             machine.wait_until_fails("pgrep -u alice -x foot")
 
         with subtest("screen locking works"):
+            machine.sleep(2)
             machine.send_key("meta_l-l")
             machine.wait_until_succeeds("pgrep -x swaylock")
             machine.sleep(3)
