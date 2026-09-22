@@ -1,6 +1,11 @@
 {
   "main": {
     "btrtile": "btrtile-v0.9.patch",
+    "focusonurgent": null,
+    "reorganizetags": null,
+    "simple_scratchpad": null,
+    "swapandfocusdir": null,
+    "swapfocus": null,
     "switchtotag": null
   },
   "stable": {
