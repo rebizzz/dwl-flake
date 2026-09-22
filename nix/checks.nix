@@ -169,6 +169,49 @@ in
     module-stable-channel = (evalSystem nixpkgs (full // {channel = "stable";})).programs.dwl.package;
     nixos-unstable = evaluates "nixos-unstable" (evalSystem nixpkgs full);
     nixos-stable = evaluates "nixos-stable" (evalSystem nixpkgs-stable {channel = "stable";});
+
+    # A configuration written the way an upstream Nixpkgs user would write it,
+    # using only the options that nixos/modules/programs/wayland/dwl.nix offers,
+    # must evaluate cleanly and still produce the whole upstream session surface.
+    nixos-upstream-options-compat = let
+      sentinel = "DWL_UPSTREAM_COMPAT_SENTINEL";
+      upstreamOptions = ["enable" "package" "extraSessionCommands"];
+      eval = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs.inputs.dwl-flake = self;
+        modules = [
+          base
+          self.nixosModules.default
+          {
+            programs.dwl = {
+              enable = true;
+              package = dwl;
+              extraSessionCommands = "export ${sentinel}=1";
+            };
+          }
+        ];
+      };
+      cfg = eval.config;
+      failedAssertions = map (a: a.message) (lib.filter (a: !a.assertion) cfg.assertions);
+      missingOptions = lib.filter (o: !(eval.options.programs.dwl ? ${o})) upstreamOptions;
+      problems =
+        lib.optional (missingOptions != []) "options missing relative to upstream: ${lib.concatStringsSep ", " missingOptions}"
+        ++ lib.optional (failedAssertions != []) "assertions failed on a pure upstream config: ${lib.concatStringsSep "; " failedAssertions}"
+        ++ lib.optional (!(cfg.environment.etc ? "xdg/dwl-session")) "missing the /etc/xdg/dwl-session wrapper"
+        ++ lib.optional (!(cfg.systemd.user.targets ? dwl-session)) "missing systemd.user.targets.dwl-session"
+        ++ lib.optional (!(lib.elem cfg.programs.dwl.package cfg.environment.systemPackages)) "programs.dwl.package absent from environment.systemPackages"
+        # services.displayManager.sessionPackages reads providedSessions off the
+        # package itself; passthru surfaces it there too, so either spelling works.
+        ++ lib.optional (!(lib.any (p: lib.elem "dwl" (p.providedSessions or p.passthru.providedSessions or [])) cfg.services.displayManager.sessionPackages)) "no session package advertising providedSessions = [\"dwl\"]"
+        ++ lib.optional ((cfg.xdg.portal.config.dwl.default or null) == null) "missing xdg.portal.config.dwl.default";
+    in
+      lib.throwIf (problems != []) ("nixos-upstream-options-compat:\n" + lib.concatStringsSep "\n" problems)
+      (pkgs.runCommand "dwl-check-upstream-options-compat" {} ''
+        # extraSessionCommands must actually reach the generated session wrapper.
+        grep -q '${sentinel}' ${cfg.environment.etc."xdg/dwl-session".source} \
+          || { echo "extraSessionCommands is not honoured by the dwl-session wrapper" >&2; exit 1; }
+        echo ${builtins.unsafeDiscardStringContext cfg.system.build.toplevel.drvPath} > $out
+      '');
     typed-options =
       (evalSystem nixpkgs {
         appearance = {
