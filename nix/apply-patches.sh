@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
+# Runs the patch engine by hand from a checkout; the build calls it directly.
 set -euo pipefail
 
 runHook prePatch 2>/dev/null || true
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PYTHON="${PYTHON:-python3}"
-
-# The build calls conflict-engine.py directly; this wrapper is for running the
-# same pipeline by hand from a checkout, where the engine sits alongside it.
-ENGINE="${CONFLICT_ENGINE:-$SCRIPT_DIR/conflict-engine.py}"
-if [ ! -f "$ENGINE" ]; then
-  echo "error: conflict engine not found at $ENGINE (set CONFLICT_ENGINE to override)" >&2
+NIX_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ ! -d "$NIX_DIR/engine" ]; then
+  echo "error: patch engine not found at $NIX_DIR/engine" >&2
   exit 1
 fi
 
@@ -22,7 +18,7 @@ elif [ "$#" -gt 0 ]; then
 fi
 
 if [ ${#PATCH_LIST[@]} -gt 0 ]; then
-  "$PYTHON" "$SCRIPT_DIR/conflict-engine.py" --target . "${PATCH_LIST[@]}"
+  PYTHONPATH="$NIX_DIR" "${PYTHON:-python3}" -m engine --target . "${PATCH_LIST[@]}"
 fi
 
 runHook postPatch 2>/dev/null || true

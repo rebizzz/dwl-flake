@@ -15,10 +15,7 @@
   wayland-scanner,
   writeText,
   xwayland,
-  patchutils,
-  ripgrep,
   python3 ? pkgs.python3,
-  python3Minimal ? pkgs.python3Minimal,
   src,
   version,
   channel ? "main",
@@ -64,82 +61,6 @@
 
   isPatchName = p: builtins.isString p && !lib.hasPrefix "/" p;
 
-  patchRank = p: let
-    name =
-      if isPatchName p
-      then (dwlPatches.parse p).name
-      else baseNameOf (toString p);
-  in
-    if name == "bar"
-    then 0
-    else if
-      lib.elem name [
-        "bar-awesomebar"
-        "bar-notitle"
-        "barborder"
-        "barcolors"
-        "barconfig"
-        "barpadding"
-        "bartruecenteredtitle"
-        "hide_vacant_tags"
-        "zerotag"
-      ]
-    then 10
-    else if
-      lib.elem name [
-        "vanitygaps"
-        "genericgaps"
-        "borders"
-        "smartborders"
-        "simpleborders"
-      ]
-    then 20
-    else if
-      lib.elem name [
-        "bottomstack"
-        "centeredmaster"
-        "decklayout"
-        "gaplessgrid"
-        "btrtile"
-        "dwindle"
-        "snail"
-      ]
-    then 30
-    else if
-      lib.elem name [
-        "movestack"
-        "attachbottom"
-        "attachtop"
-        "attachfocused"
-        "customfloat"
-        "focusonurgent"
-        "follow"
-        "zoomswap"
-        "swapfocus"
-        "swapandfocusdir"
-      ]
-    then 40
-    else if
-      lib.elem name [
-        "pertag"
-        "shifttag"
-        "shiftview"
-        "reorganizetags"
-        "singletagset"
-        "rotatetags"
-      ]
-    then 50
-    else if
-      lib.elem name [
-        "autostart"
-        "setupenv"
-        "systemd"
-        "ipc"
-        "kblayout"
-      ]
-    then 60
-    else 70;
-
   withAutostart = patches ++ lib.optional (autostart != [] && !lib.elem "autostart" patches) "autostart";
   requiredBy = p:
     if isPatchName p && dwlPatches != null
@@ -147,18 +68,15 @@
     else null;
   withDependencies = lib.unique (lib.concatMap (p: lib.optional (requiredBy p != null) (requiredBy p) ++ [p]) withAutostart);
 
+  # The engine applies patches in its own phase order; this only has to record
+  # a patch after the one it depends on.
   mustPrecede = a: b: let
     nameA =
       if isPatchName a
       then (dwlPatches.parse a).name
       else a;
-    nameB =
-      if isPatchName b
-      then (dwlPatches.parse b).name
-      else b;
-    reqB = requiredBy b;
   in
-    (reqB != null && reqB == nameA) || (patchRank a < patchRank b);
+    requiredBy b == nameA;
 
   sortedPatchesResult = lib.toposort mustPrecede withDependencies;
   allPatches =
@@ -239,6 +157,12 @@
     if builtins.isPath configH || lib.isDerivation configH
     then configH
     else writeText "config.h" configH;
+
+  # A directory named `engine` so `python3 -m engine` finds it on PYTHONPATH.
+  patchEngine = pkgs.runCommand "dwl-patch-engine" {} ''
+    mkdir -p $out/engine
+    cp ${./engine}/*.py $out/engine/
+  '';
 in
   stdenv.mkDerivation {
     pname = "dwl";
@@ -250,8 +174,6 @@ in
       installShellFiles
       pkg-config
       wayland-scanner
-      patchutils
-      ripgrep
       python3
     ];
 
@@ -259,7 +181,7 @@ in
       runHook prePatch
 
       if [ ''${#patches[@]} -gt 0 ]; then
-        python3 ${./conflict-engine.py} \
+        PYTHONPATH=${patchEngine} python3 -m engine \
           --channel "${channel}" \
           --target . \
           "''${patches[@]}"
