@@ -13,6 +13,13 @@
 
   cString = s: "\"${lib.escape ["\\" "\""] (lib.replaceStrings ["\n"] ["\\n"] s)}\"";
 
+  # toC guesses a C identifier for an all-caps string, which is what enum
+  # settings want and never what a name or symbol wants.
+  cStringOrNull = v:
+    if v == null
+    then "NULL"
+    else cString v;
+
   hexColor = s: let
     m = builtins.match "#([0-9a-fA-F]{6})([0-9a-fA-F]{2})?" s;
   in
@@ -201,9 +208,19 @@
     ["\t{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT, XKB_KEY_BackSpace, quit, {0} },"]
     ++ map (n: "\t{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT, XKB_KEY_F${toString n}, chvt, { .ui = ${toString n} } },") (lib.range 1 12);
 
-  ruleEntry = r: "\t{ ${toC (r.id or null)}, ${toC (r.title or null)}, ${tagMask (r.tags or [])}, ${toC (r.floating or false)}, ${toString (r.monitor or (-1))} },";
+  ruleEntry = r: "\t{ ${cStringOrNull (r.id or null)}, ${cStringOrNull (r.title or null)}, ${tagMask (r.tags or [])}, ${toC (r.floating or false)}, ${toString (r.monitor or (-1))} },";
 
-  monitorEntry = m: "\t{ ${toC (m.name or null)}, ${toC (m.mfact or 0.55)}, ${toString (m.nmaster or 1)}, ${toC ((m.scale or 1) * 1.0)}, &layouts[${toString (m.layout or 0)}], WL_OUTPUT_TRANSFORM_${lib.toUpper (m.transform or "normal")}, ${toString (m.x or (-1))}, ${toString (m.y or (-1))} },";
+  monitorEntry = m: "\t{ ${cStringOrNull (m.name or null)}, ${toC (m.mfact or 0.55)}, ${toString (m.nmaster or 1)}, ${toC ((m.scale or 1) * 1.0)}, &layouts[${toString (m.layout or 0)}], WL_OUTPUT_TRANSFORM_${lib.toUpper (m.transform or "normal")}, ${toString (m.x or (-1))}, ${toString (m.y or (-1))} },";
+
+  layoutEntry = l: let
+    arrange = l.arrange or null;
+  in "\t{ ${cStringOrNull (l.symbol or null)}, ${
+    if arrange == null
+    then "NULL"
+    else if isC arrange
+    then arrange.value
+    else arrange
+  } },";
 
   autostartEntries = cmds: concatStringsSep " " (map (cmd: "\"/bin/sh\", \"-c\", ${cString cmd}, NULL,") cmds) + " NULL";
   actionFunction = action:
@@ -271,7 +288,10 @@ in {
       // lib.mapAttrs (_: toC) (lib.filterAttrs (n: _: n == lib.toUpper n) cfg.settings);
 
     replace =
-      lib.mapAttrs (_: toC) (lib.filterAttrs (n: _: n != lib.toUpper n) cfg.settings)
+      lib.mapAttrs (_: toC) (lib.filterAttrs (n: _: n != lib.toUpper n && n != "layouts") cfg.settings)
+      // lib.optionalAttrs (cfg.settings.layouts or null != null) {
+        layouts = "{\n${concatMapStringsSep "\n" layoutEntry cfg.settings.layouts}\n}";
+      }
       // lib.optionalAttrs (!cfg.defaultKeybinds) {keys = "{\n${concatStringsSep "\n" (keyLines ++ vtKeys)}\n}";}
       // lib.optionalAttrs (cfg.axes != {}) {axes = "{\n${concatStringsSep "\n" (mapAttrsToList axisEntry cfg.axes)}\n}";}
       // lib.optionalAttrs (!cfg.defaultButtons) {buttons = "{\n${concatStringsSep "\n" buttonLines}\n}";}

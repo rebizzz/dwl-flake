@@ -336,6 +336,39 @@ in
   // lib.optionalAttrs (compatible "stable" "bar") {
     patch-merge = dwl-stable.override {patches = ["bar" "vanitygaps"];};
     dwl-stable-bar-addon = dwl-stable.override {patches = ["barpadding" "barcolors"];};
+
+    # An all-caps string is a C identifier in settings and a plain string
+    # everywhere else. "TTT" is the usual bstack symbol and "VGA1" a real
+    # output name; both used to be emitted unquoted and fail to compile.
+    identifier-shaped-strings = dwl-stable.override {
+      patches = ["bottomstack" "gaplessgrid"];
+      settings.layouts = with self.lib; [
+        {
+          symbol = "[]=";
+          arrange = c "tile";
+        }
+        {
+          symbol = "TTT";
+          arrange = c "bstack";
+        }
+        {
+          symbol = "###";
+          arrange = c "gaplessgrid";
+        }
+      ];
+      monitors = [
+        {
+          name = "VGA1";
+          scale = 1.0;
+        }
+      ];
+      rules = [
+        {
+          id = "GIMP";
+          floating = true;
+        }
+      ];
+    };
   }
   # Combination suites. verify-patches covers patches individually; these cover
   # pairs that edit the same code, as real compiles, so a bad merge fails loudly.
