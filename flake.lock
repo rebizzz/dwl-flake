@@ -20,10 +20,10 @@
     "dwl-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1790081580,
-        "narHash": "sha256-zsiu1wtzfIruEjf/fiL7EGV43Oa4BrzGAf3+cGYNPNE=",
+        "lastModified": 1790102568,
+        "narHash": "sha256-KxckmAeekoEPKy7H1uboI19bVPjcCjC1WNLzsZxebnk=",
         "ref": "refs/heads/main",
-        "rev": "87029e21c0fcc80121d79d77ff2682f15c98ee5f",
+        "rev": "a75ca796305e7a12bfbe89a57d31d92b7f35d601",
         "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/dwl/dwl"
