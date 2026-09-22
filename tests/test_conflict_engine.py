@@ -205,6 +205,14 @@ class ConflictReporting(unittest.TestCase):
             engine.blame_conflicting_patches(blocks, [guilty, innocent]), ["barcolors"]
         )
 
+    def test_a_patch_that_deletes_the_lines_says_so_instead_of_showing_nothing(self):
+        """ipc replaces the block focusonurgent adds, so its side of the
+        conflict is empty and the report has to say it was removed."""
+        report = engine.format_conflict_report(
+            "dwl.c", "/store/x/patches/ipc/ipc.patch", [[["urg |= c->tags;"], ["x"], []]], []
+        )
+        self.assertIn("removed by 'ipc'", report)
+
     def test_the_report_names_both_patches_and_says_what_to_do(self):
         guilty = self.write_patch("barcolors", ["tw = drawstatus(m); /* long enough */"])
         blocks = [[["tw = drawstatus(m); /* long enough */"], ["tw = 0;"], ["tw = other();"]]]

@@ -274,12 +274,19 @@ def format_conflict_report(
         f"differently by '{name}' and a patch already applied, so there is no "
         "mechanical merge."
     )
-    ours, base, theirs = conflict_blocks[0]
+    ours, _base, theirs = conflict_blocks[0]
     lines.append("  the first one is:")
-    lines.append("    --- already in the tree ---")
-    lines.extend(f"    {line}" for line in ours[:8])
-    lines.append(f"    --- as '{name}' wants it ---")
-    lines.extend(f"    {line}" for line in theirs[:8])
+
+    def show(heading: str, block: List[str], empty: str) -> None:
+        lines.append(f"    --- {heading} ---")
+        shown = [line for line in block if line.strip()][:8]
+        if shown:
+            lines.extend(f"    {line}" for line in shown)
+        else:
+            lines.append(f"    ({empty})")
+
+    show("already in the tree", ours, "nothing here")
+    show(f"as '{name}' wants it", theirs, f"removed by '{name}'")
     lines.append(
         "  drop one of the conflicting patches, or supply a pre-merged patch "
         "of your own instead."
