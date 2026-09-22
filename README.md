@@ -43,7 +43,9 @@ You can try it right now with `nix run github:rebizzz/dwl-flake`, or `nix run gi
 }
 ```
 
-This sets up the session, portals, polkit agent, gnome-keyring, swaylock PAM, dconf and a `dwl-session.target` for user services. Pick `dwl` in your display manager, or run `dwl-session` from a TTY.
+This sets up the session, the wayland plumbing every compositor needs, the portal backend for dwl and a `dwl-session.target` for user services. Pick `dwl` in your display manager, or run `dwl-session` from a TTY.
+
+It installs nothing you did not ask for: no terminal, no launcher, no agents. dwl's own keybinds launch `foot` and `wmenu`, so add them to `extraPackages` if you keep `defaultKeybinds`. `polkitAgent.enable` and `keyring.enable` are there when you want them, and off until you do.
 
 ### Home Manager
 

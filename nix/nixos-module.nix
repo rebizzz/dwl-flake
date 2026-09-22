@@ -54,9 +54,9 @@ in {
         description = "Start the dwl each user builds with the Home Manager module. Users without one get the build from these options.";
       };
 
-      polkitAgent.enable = lib.mkEnableOption "a polkit authentication agent in the dwl session" // {default = true;};
+      polkitAgent.enable = lib.mkEnableOption "a polkit authentication agent in the dwl session";
 
-      keyring.enable = lib.mkEnableOption "oo7 secret service for storing secrets in the dwl session" // {default = true;};
+      keyring.enable = lib.mkEnableOption "the oo7 secret service in the dwl session";
     };
 
   config = lib.mkMerge [
@@ -72,28 +72,17 @@ in {
           ) "Using dwl with Nvidia driver version <= 550 may result in a broken system. Configure hardware.nvidia.package to use a newer version.";
 
         environment.etc."xdg/dwl-session".source = "${session}/bin/dwl-session";
-        environment.systemPackages = [cfg.package session pkgs.xdg-utils] ++ cfg.extraPackages ++ lib.optional cfg.keyring.enable pkgs.oo7;
+        environment.systemPackages = [cfg.package session] ++ cfg.extraPackages ++ lib.optional cfg.keyring.enable pkgs.oo7;
         services.displayManager.sessionPackages = [sessionPackage];
-        hardware.graphics.enable = lib.mkDefault true;
-        fonts.enableDefaultPackages = lib.mkDefault true;
-        programs.dconf.enable = lib.mkDefault true;
-        security.pam.services.swaylock = lib.mkDefault {};
-        security.polkit.enable = lib.mkIf cfg.polkitAgent.enable (lib.mkDefault true);
 
-        xdg = {
-          autostart.enable = lib.mkDefault true;
-          menus.enable = lib.mkDefault true;
-          mime.enable = lib.mkDefault true;
-          icons.enable = lib.mkDefault true;
-          portal = {
-            enable = true;
-            config.dwl = {
-              default = lib.mkDefault ["wlr" "gtk"];
-              "org.freedesktop.impl.portal.ScreenCast" = lib.mkDefault "wlr";
-              "org.freedesktop.impl.portal.Screenshot" = lib.mkDefault "wlr";
-              "org.freedesktop.impl.portal.Inhibit" = lib.mkDefault "none";
-            };
-          };
+        # Which portal backend answers for the dwl session. Enabling portals at
+        # all is left to the configuration, as is everything else a desktop
+        # wants; wayland-session.nix below covers the wayland plumbing.
+        xdg.portal.config.dwl = lib.mkIf config.xdg.portal.enable {
+          default = lib.mkDefault ["wlr" "gtk"];
+          "org.freedesktop.impl.portal.ScreenCast" = lib.mkDefault "wlr";
+          "org.freedesktop.impl.portal.Screenshot" = lib.mkDefault "wlr";
+          "org.freedesktop.impl.portal.Inhibit" = lib.mkDefault "none";
         };
 
         systemd.user.targets.dwl-session = {

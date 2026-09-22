@@ -347,7 +347,7 @@ list of string
 
 ## programs.dwl.extraPackages
 
-Programs installed alongside dwl\. The default is what dwl’s own keybinds launch\.
+Programs installed alongside dwl\. dwl’s own keybinds launch foot and wmenu, so add them here if you keep the default keybinds\.
 
 *Type:*
 list of package
@@ -355,13 +355,13 @@ list of package
 *Default:*
 
 ```nix
-with pkgs; [ foot wmenu ]
+[ ]
 ```
 
 *Example:*
 
 ```nix
-with pkgs; [ foot rofi swaybg grim slurp ]
+with pkgs; [ foot wmenu swaybg grim slurp ]
 ```
 
 ## programs.dwl.extraSessionCommands
@@ -680,7 +680,7 @@ attribute set of (string or attribute set of anything)
 
 ## programs.dwl.keyring.enable
 
-Whether to enable oo7 secret service for storing secrets in the dwl session\.
+Whether to enable the oo7 secret service in the dwl session\.
 
 *Type:*
 boolean
@@ -688,7 +688,7 @@ boolean
 *Default:*
 
 ```nix
-true
+false
 ```
 
 *Example:*
@@ -925,7 +925,7 @@ boolean
 *Default:*
 
 ```nix
-true
+false
 ```
 
 *Example:*
