@@ -10,6 +10,10 @@ fmt-check:
 check:
     nix flake check -L
 
+# Run the patch engine unit tests
+test:
+    python3 tests/test_conflict_engine.py
+
 # Eval-only check, all systems
 eval:
     nix flake check --no-build --all-systems
