@@ -165,14 +165,27 @@ in
       touch $out
     '';
 
+    # Unit tests for the patch engine's conflict resolution. These are pure and
+    # take under a second, so they run on every check rather than only in CI.
+    conflict-engine =
+      pkgs.runCommand "dwl-conflict-engine-tests" {
+        nativeBuildInputs = [pkgs.python3 pkgs.patch pkgs.diffutils];
+      } ''
+        # The test finds the engine relative to the repo root.
+        mkdir -p nix/engine tests
+        cp ${../nix/engine}/*.py nix/engine/
+        cp ${../tests/test_conflict_engine.py} tests/test_conflict_engine.py
+        python3 tests/test_conflict_engine.py
+        touch $out
+      '';
+
     module-full = (evalSystem nixpkgs full).programs.dwl.package;
     module-stable-channel = (evalSystem nixpkgs (full // {channel = "stable";})).programs.dwl.package;
     nixos-unstable = evaluates "nixos-unstable" (evalSystem nixpkgs full);
     nixos-stable = evaluates "nixos-stable" (evalSystem nixpkgs-stable {channel = "stable";});
 
-    # A configuration written the way an upstream Nixpkgs user would write it,
-    # using only the options that nixos/modules/programs/wayland/dwl.nix offers,
-    # must evaluate cleanly and still produce the whole upstream session surface.
+    # A config written with only upstream's options must still produce the
+    # whole upstream session surface.
     nixos-upstream-options-compat = let
       sentinel = "DWL_UPSTREAM_COMPAT_SENTINEL";
       upstreamOptions = ["enable" "package" "extraSessionCommands"];
@@ -200,8 +213,7 @@ in
         ++ lib.optional (!(cfg.environment.etc ? "xdg/dwl-session")) "missing the /etc/xdg/dwl-session wrapper"
         ++ lib.optional (!(cfg.systemd.user.targets ? dwl-session)) "missing systemd.user.targets.dwl-session"
         ++ lib.optional (!(lib.elem cfg.programs.dwl.package cfg.environment.systemPackages)) "programs.dwl.package absent from environment.systemPackages"
-        # services.displayManager.sessionPackages reads providedSessions off the
-        # package itself; passthru surfaces it there too, so either spelling works.
+        # sessionPackages reads providedSessions off the package; passthru lands there too.
         ++ lib.optional (!(lib.any (p: lib.elem "dwl" (p.providedSessions or p.passthru.providedSessions or [])) cfg.services.displayManager.sessionPackages)) "no session package advertising providedSessions = [\"dwl\"]"
         ++ lib.optional ((cfg.xdg.portal.config.dwl.default or null) == null) "missing xdg.portal.config.dwl.default";
     in
@@ -325,6 +337,48 @@ in
     patch-merge = dwl-stable.override {patches = ["bar" "vanitygaps"];};
     dwl-stable-bar-addon = dwl-stable.override {patches = ["barpadding" "barcolors"];};
   }
+  # Combination suites. verify-patches covers patches individually; these cover
+  # pairs that edit the same code, as real compiles, so a bad merge fails loudly.
+  // (let
+    suites = {
+      # bar plus the addons that shift its geometry; two of them adjust the
+      # same expression, so both offsets have to survive.
+      suite-bar-addons.stable = ["bar" "barpadding" "barcolors" "bartruecenteredtitle" "hide_vacant_tags" "bar-awesomebar"];
+      suite-bar-border.stable = ["bar" "barpadding" "barborder"];
+      suite-bar-border-notitle.stable = ["bar" "bar-notitle" "barpadding" "barborder"];
+
+      # vanitygaps and pertag both rewrite the tag handling around bar. The
+      # reversed order is deliberate: patch order must not change the result.
+      suite-gaps-pertag.stable = ["bar" "vanitygaps" "pertag"];
+      suite-gaps-pertag-reversed.stable = ["pertag" "vanitygaps" "bar"];
+
+      # Several layouts at once, which all append to layouts[] in config.def.h.
+      suite-layouts.stable = ["bottomstack" "centeredmaster" "decklayout" "gaplessgrid" "dwindle" "snail" "btrtile"];
+      suite-layouts.main = ["bottomstack" "decklayout" "gaplessgrid" "dwindle" "snail" "btrtile"];
+      suite-layouts-stack-pertag.main = ["gaplessgrid" "decklayout" "movestack" "attachbottom" "pertag"];
+
+      # The full chadwm set, which is what examples/chadwm.nix builds.
+      suite-chadwm.stable = ["bar" "barpadding" "barcolors" "vanitygaps" "gaplessgrid" "movestack" "attachbottom" "decklayout" "centeredmaster" "pertag"];
+    };
+
+    basePackage = {
+      stable = dwl-stable;
+      main = dwl;
+    };
+
+    # One check per suite and channel, skipped when the channel lacks a patch.
+    forChannel = name: channel: patches:
+      lib.optionalAttrs (lib.all (compatible channel) patches) {
+        "${name}-${channel}" = basePackage.${channel}.override {inherit patches;};
+      };
+  in
+    lib.foldl' lib.mergeAttrs {} (
+      lib.concatLists (
+        lib.mapAttrsToList
+        (name: byChannel: lib.mapAttrsToList (forChannel name) byChannel)
+        suites
+      )
+    ))
   // lib.optionalAttrs (!(compatible "main" "bar") && compatible "stable" "bar") {
     assert-patch-channel = failsWith "patch-channel" "works with channel = \"stable\"" {patches = ["bar"];};
   }
