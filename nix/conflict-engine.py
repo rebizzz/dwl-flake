@@ -33,8 +33,9 @@ def get_patch_rank(patch_path: str) -> int:
         return 0
     # Rank 10: Base Addons
     elif any(k in (name, stem) for k in (
-        "awesomebar", "notitle", "barborder", "barcolors", "barconfig",
-        "barpadding", "bartruecenteredtitle", "hide_vacant_tags", "zerotag"
+        "bar-awesomebar", "bar-notitle", "awesomebar", "notitle",
+        "barborder", "barcolors", "barconfig", "barpadding",
+        "bartruecenteredtitle", "hide_vacant_tags", "zerotag"
     )):
         return 10
     # Rank 20: Window Geometry & Gaps
@@ -395,8 +396,16 @@ def parse_patch_content(patch_content: str) -> List[FileDiff]:
 
                 i += 1
                 hunk_lines = []
-                while i < n and not lines[i].startswith("@@ ") and not lines[i].startswith("diff --git ") and not (lines[i].startswith("--- ") and i + 1 < n and lines[i+1].startswith("+++ ")):
-                    hunk_lines.append(lines[i])
+                while i < n:
+                    cur = lines[i]
+                    if cur.startswith("@@ ") or cur.startswith("diff --git ") or (cur.startswith("--- ") and i + 1 < n and lines[i+1].startswith("+++ ")):
+                        break
+                    if cur.startswith("From ") or cur.startswith("-- "):
+                        break
+                    if not (cur.startswith(" ") or cur.startswith("+") or cur.startswith("-") or cur.startswith("\\")):
+                        if cur == "" and (i + 1 == n or lines[i+1].startswith("From ") or lines[i+1].startswith("diff --git ") or lines[i+1].startswith("@@ ")):
+                            break
+                    hunk_lines.append(cur)
                     i += 1
 
                 hunks.append(Hunk(old_start, old_count, new_start, new_count, header, hunk_lines))
@@ -857,6 +866,8 @@ def extract_declarations_from_hunk(hunk: Hunk) -> Tuple[List[Tuple[str, str]], L
     if current_decl:
         decls.append("\n".join(current_decl))
 
+    return layouts, keys, rules, decls
+
 def reconcile_scheme_enum(c_code: str, hunk: Hunk) -> Tuple[str, bool]:
     """
     Reconciles conflicting modifications to enum { SchemeNorm, SchemeSel, ... }.
@@ -940,7 +951,8 @@ def reconcile_c_struct_hunk(c_code: str, hunk: Hunk) -> Tuple[str, bool]:
     applied_any = False
 
     for line in hunk.added_lines:
-        line_clean = line.strip()
+        line_clean = re.sub(r'/\*.*?\*/', '', line).strip()
+        line_clean = re.sub(r'//.*$', '', line_clean).strip()
         if not line_clean.endswith(";"):
             continue
         if any(k in line_clean for k in ("if ", "for ", "while ", "return ", "switch ", "case ")) or "=" in line_clean:
@@ -951,6 +963,9 @@ def reconcile_c_struct_hunk(c_code: str, hunk: Hunk) -> Tuple[str, bool]:
             applied_any = True
             print(f"note: inserted member {names} into struct {target_struct}")
 
+    if target_struct == "Client" and "struct Client {" in updated_code:
+        updated_code = re.sub(r'(\}\s*)Client\s*;', r'\1;', updated_code, count=1)
+
     return updated_code, applied_any
 
 def reconcile_dwl_c_macro_hunk(c_code: str, hunk: Hunk) -> Tuple[str, bool]:
@@ -958,7 +973,7 @@ def reconcile_dwl_c_macro_hunk(c_code: str, hunk: Hunk) -> Tuple[str, bool]:
     Reconciles macro modifications in dwl.c (e.g. VISIBLEON and BORDERPX additions).
     """
     hunk_text = "\n".join(hunk.lines)
-    if "VISIBLEON" in hunk_text:
+    if re.search(r'#\s*define\s+VISIBLEON\b', hunk_text) or re.search(r'#\s*define\s+BORDERPX\b', hunk_text):
         if "!(C)->swallowedby" in hunk_text and "!(C)->swallowedby" not in c_code:
             v_match = re.search(r'^(#\s*define\s+VISIBLEON\s*\([^)]+\)\s+)(.+)$', c_code, re.MULTILINE)
             if v_match:
@@ -1102,52 +1117,62 @@ def reconcile_dwl_c_drawbar_hunk(c_code: str, hunk: Hunk, target_dir: str = ".")
 
 def apply_pure_addition_hunk(c_code: str, hunk: Hunk) -> Tuple[str, bool]:
     """
-    Applies pure addition hunks (e.g. forward function declarations) by anchoring
-    each added block to its nearest uniquely-matching context line.
+    Applies pure addition hunks (e.g. forward function declarations or function implementations)
+    by anchoring each added block to uniquely-matching context lines.
     """
     if hunk.removed_lines:
         return c_code, False
 
+    added_lines = hunk.added_lines
+    if not added_lines:
+        return c_code, False
+    added_text = "\n".join(added_lines) + "\n"
+
     lines = hunk.lines
-    i = 0
-    n = len(lines)
-    updated_code = c_code
-    applied_any = False
+    added_indices = [idx for idx, l in enumerate(lines) if l.startswith("+") and not l.startswith("+++")]
+    if not added_indices:
+        return c_code, False
+    first_add = added_indices[0]
+    last_add = added_indices[-1]
 
-    while i < n:
-        if lines[i].startswith("+") and not lines[i].startswith("+++"):
-            added_group = []
-            while i < n and lines[i].startswith("+"):
-                added_group.append(lines[i][1:])
-                i += 1
-            added_text = "\n".join(added_group) + "\n"
+    prec_lines = [lines[k][1:] for k in range(first_add) if lines[k].startswith(" ")]
+    succ_lines = [lines[k][1:] for k in range(last_add + 1, len(lines)) if lines[k].startswith(" ")]
 
-            preceding_anchor = None
-            for j in range(i - len(added_group) - 1, -1, -1):
-                if lines[j].startswith(" "):
-                    preceding_anchor = lines[j][1:].strip()
-                    break
+    prec_block = "\n".join(prec_lines).strip()
+    succ_block = "\n".join(succ_lines).strip()
 
-            succeeding_anchor = None
-            for j in range(i, n):
-                if lines[j].startswith(" "):
-                    succeeding_anchor = lines[j][1:].strip()
-                    break
+    # 1. Try anchoring before succ_block if unique
+    if succ_block and c_code.count(succ_block) == 1:
+        idx = c_code.find(succ_block)
+        print(f"note: applied pure addition hunk anchored before succeeding block")
+        return c_code[:idx] + added_text + "\n" + c_code[idx:], True
 
-            if preceding_anchor and updated_code.count(preceding_anchor) == 1:
-                idx = updated_code.find(preceding_anchor) + len(preceding_anchor)
-                if not preceding_anchor.endswith("\n") and updated_code[idx:idx+1] == "\n":
-                    idx += 1
-                updated_code = updated_code[:idx] + added_text + updated_code[idx:]
-                applied_any = True
-            elif succeeding_anchor and updated_code.count(succeeding_anchor) == 1:
-                idx = updated_code.find(succeeding_anchor)
-                updated_code = updated_code[:idx] + added_text + updated_code[idx:]
-                applied_any = True
-        else:
-            i += 1
+    # 2. Try anchoring after prec_block if unique
+    if prec_block and c_code.count(prec_block) == 1:
+        idx = c_code.find(prec_block) + len(prec_block)
+        if c_code[idx:idx+1] == "\n":
+            idx += 1
+        print(f"note: applied pure addition hunk anchored after preceding block")
+        return c_code[:idx] + added_text + "\n" + c_code[idx:], True
 
-    return updated_code, applied_any
+    # 3. Fallback to single non-trivial anchor lines (> 5 chars to avoid matching '}' or 'void')
+    for line in reversed(prec_lines):
+        s = line.strip()
+        if len(s) > 5 and c_code.count(s) == 1:
+            idx = c_code.find(s) + len(s)
+            if c_code[idx:idx+1] == "\n":
+                idx += 1
+            print(f"note: applied pure addition hunk anchored after '{s[:30]}'")
+            return c_code[:idx] + added_text + "\n" + c_code[idx:], True
+
+    for line in succ_lines:
+        s = line.strip()
+        if len(s) > 5 and c_code.count(s) == 1:
+            idx = c_code.find(s)
+            print(f"note: applied pure addition hunk anchored before '{s[:30]}'")
+            return c_code[:idx] + added_text + "\n" + c_code[idx:], True
+
+    return c_code, False
 
 def apply_single_patch_file(patch_path: str, channel: str = "main", target_dir: str = ".", is_single: bool = False) -> None:
     """

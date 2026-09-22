@@ -17,6 +17,8 @@
   xwayland,
   patchutils,
   ripgrep,
+  python3 ? pkgs.python3,
+  python3Minimal ? pkgs.python3Minimal,
   src,
   version,
   channel ? "main",
@@ -60,14 +62,109 @@
       entries)
   edits));
 
+  isPatchName = p: builtins.isString p && !lib.hasPrefix "/" p;
+
+  patchRank = p: let
+    name =
+      if isPatchName p
+      then (dwlPatches.parse p).name
+      else baseNameOf (toString p);
+  in
+    if name == "bar"
+    then 0
+    else if
+      lib.elem name [
+        "bar-awesomebar"
+        "bar-notitle"
+        "barborder"
+        "barcolors"
+        "barconfig"
+        "barpadding"
+        "bartruecenteredtitle"
+        "hide_vacant_tags"
+        "zerotag"
+      ]
+    then 10
+    else if
+      lib.elem name [
+        "vanitygaps"
+        "genericgaps"
+        "borders"
+        "smartborders"
+        "simpleborders"
+      ]
+    then 20
+    else if
+      lib.elem name [
+        "bottomstack"
+        "centeredmaster"
+        "decklayout"
+        "gaplessgrid"
+        "btrtile"
+        "dwindle"
+        "snail"
+      ]
+    then 30
+    else if
+      lib.elem name [
+        "movestack"
+        "attachbottom"
+        "attachtop"
+        "attachfocused"
+        "customfloat"
+        "focusonurgent"
+        "follow"
+        "zoomswap"
+        "swapfocus"
+        "swapandfocusdir"
+      ]
+    then 40
+    else if
+      lib.elem name [
+        "pertag"
+        "shifttag"
+        "shiftview"
+        "reorganizetags"
+        "singletagset"
+        "rotatetags"
+      ]
+    then 50
+    else if
+      lib.elem name [
+        "autostart"
+        "setupenv"
+        "systemd"
+        "ipc"
+        "kblayout"
+      ]
+    then 60
+    else 70;
+
   withAutostart = patches ++ lib.optional (autostart != [] && !lib.elem "autostart" patches) "autostart";
   requiredBy = p:
     if isPatchName p && dwlPatches != null
     then dwlPatches.requiredBy channel p
     else null;
-  allPatches = lib.unique (lib.concatMap (p: lib.optional (requiredBy p != null) (requiredBy p) ++ [p]) withAutostart);
+  withDependencies = lib.unique (lib.concatMap (p: lib.optional (requiredBy p != null) (requiredBy p) ++ [p]) withAutostart);
 
-  isPatchName = p: builtins.isString p && !lib.hasPrefix "/" p;
+  mustPrecede = a: b: let
+    nameA =
+      if isPatchName a
+      then (dwlPatches.parse a).name
+      else a;
+    nameB =
+      if isPatchName b
+      then (dwlPatches.parse b).name
+      else b;
+    reqB = requiredBy b;
+  in
+    (reqB != null && reqB == nameA) || (patchRank a < patchRank b);
+
+  sortedPatchesResult = lib.toposort mustPrecede withDependencies;
+  allPatches =
+    if sortedPatchesResult ? result
+    then sortedPatchesResult.result
+    else withDependencies;
 
   patchError = p: let
     spec = dwlPatches.parse p;
@@ -149,9 +246,27 @@ in
 
     patches = lib.warnIf (fuzzyPatches != []) "dwl: these patches need fuzz to apply to dwl ${channel}, check that they behave as expected: ${lib.concatStringsSep ", " fuzzyPatches}" (map (r: r.src) resolved);
 
-    nativeBuildInputs = [installShellFiles pkg-config wayland-scanner patchutils ripgrep];
+    nativeBuildInputs = [
+      installShellFiles
+      pkg-config
+      wayland-scanner
+      patchutils
+      ripgrep
+      python3
+    ];
 
-    patchPhase = builtins.readFile ./apply-patches.sh;
+    patchPhase = ''
+      runHook prePatch
+
+      if [ ''${#patches[@]} -gt 0 ]; then
+        python3 ${./conflict-engine.py} \
+          --channel "${channel}" \
+          --target . \
+          "''${patches[@]}"
+      fi
+
+      runHook postPatch
+    '';
 
     buildInputs =
       [libinput libxcb libxkbcommon pixman wayland wayland-protocols wlroots']

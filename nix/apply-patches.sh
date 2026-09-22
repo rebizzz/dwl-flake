@@ -1,78 +1,28 @@
-runHook prePatch
+#!/usr/bin/env bash
+set -euo pipefail
 
-for p in "${patches[@]}"; do
-  echo "applying $p"
-  if patch -p1 -f --dry-run -s <"$p" >/dev/null 2>&1; then
-    patch -p1 -f -s <"$p"
-    continue
-  fi
+runHook prePatch 2>/dev/null || true
 
-  rest=$(mktemp)
-  filterdiff -p1 -x config.def.h "$p" >"$rest"
-  if [ -s "$rest" ]; then
-    if patch -p1 -f --dry-run -s <"$rest" >/dev/null 2>&1; then
-      patch -p1 -f -s <"$rest"
-    elif patch -p1 -f -F3 --dry-run -s <"$rest" >/dev/null 2>&1; then
-      patch -p1 -f -F3 -s <"$rest"
-    else
-      echo "error: $p conflicts outside config.def.h" >&2
-      patch -p1 -f -F3 --dry-run <"$rest" >&2 || true
-      exit 1
-    fi
-  fi
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PYTHON="${PYTHON:-python3}"
 
-  rej=$(mktemp)
-  filterdiff -p1 -i config.def.h "$p" | patch -p1 -f -s -F0 -r "$rej" config.def.h >/dev/null 2>&1 || true
-
-  decls=$(mktemp -d)
-  awk -v dir="$decls" '
-    function flush() { if (name != "") { print block > (dir "/" name); close(dir "/" name) } name = ""; block = "" }
-    collecting && /^\+/ {
-      block = block "\n" substr($0, 2)
-      if ($0 ~ /^\+[ \t]*\};/) { collecting = 0; flush() }
-      next
-    }
-    /^\+#define[ \t]/ {
-      line = substr($0, 2)
-      split(line, parts, /[ \t(]+/)
-      name = parts[2]; block = line; flush(); next
-    }
-    /^\+static / {
-      line = substr($0, 2)
-      decl = line
-      sub(/[ \t]*(\[[^]]*\])?[ \t]*=.*$/, "", decl)
-      n = split(decl, parts, /[ \t*]+/)
-      name = parts[n]; block = line
-      if (line ~ /\{[^}]*$/) collecting = 1; else flush()
-      next
-    }
-    /^\+\+\+/ { next }
-    /^\+/ { print substr($0, 2) > (dir "/.dropped") }
-  ' "$rej"
-
-  merged=""
-  for f in "$decls"/*; do
-    [ -e "$f" ] || continue
-    name=$(basename "$f")
-    rg -q "\\b$name\\b" config.def.h && continue
-    merged="$merged$(cat "$f")"$'\n'
-  done
-
-  if [ -n "$merged" ]; then
-    printf '\n%s' "$merged" >>config.def.h
-  fi
-
-  echo "note: $p conflicted in config.def.h, merged its declarations:"
-  printf '%s' "$merged" | sed 's/^/  /'
-  if [ -s "$decls/.dropped" ]; then
-    echo "note: lines from $p that aren't declarations were left out (e.g. keybinds), add them yourself if needed:"
-    sed 's/^/  /' "$decls/.dropped"
-  fi
-  rm -rf "$rest" "$rej" "$decls"
-done
-
-if ! grep -q '#define TAGCOUNT' config.def.h dwl.c 2>/dev/null; then
-  sed -i '1i#ifndef TAGCOUNT\n#define TAGCOUNT 31\n#endif' dwl.c
+# The build calls conflict-engine.py directly; this wrapper is for running the
+# same pipeline by hand from a checkout, where the engine sits alongside it.
+ENGINE="${CONFLICT_ENGINE:-$SCRIPT_DIR/conflict-engine.py}"
+if [ ! -f "$ENGINE" ]; then
+  echo "error: conflict engine not found at $ENGINE (set CONFLICT_ENGINE to override)" >&2
+  exit 1
 fi
 
-runHook postPatch
+PATCH_LIST=()
+if [ -n "${patches+x}" ] && [ ${#patches[@]} -gt 0 ]; then
+  PATCH_LIST=("${patches[@]}")
+elif [ "$#" -gt 0 ]; then
+  PATCH_LIST=("$@")
+fi
+
+if [ ${#PATCH_LIST[@]} -gt 0 ]; then
+  "$PYTHON" "$SCRIPT_DIR/conflict-engine.py" --target . "${PATCH_LIST[@]}"
+fi
+
+runHook postPatch 2>/dev/null || true
