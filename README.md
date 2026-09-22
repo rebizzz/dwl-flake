@@ -115,7 +115,23 @@ nix eval github:rebizzz/dwl-flake#lib.compatible.stable
 
 Most patches target the latest release, so `stable` works with more of them than `main`. Every patch is actually built, and ones that don't compile are refused. If you need a specific version of a patch, write `"name:file"`, like `"btrtile:btrtile-v0.8.patch"`.
 
-You don't need to worry about patch order or dependencies much. `barpadding` needs `bar`, so asking for `barpadding` adds `bar` for you. Patches that only touch the same lines in `config.def.h`, like `bar` and `vanitygaps`, still work together. If two patches really conflict, the build stops and tells you which one.
+You don't need to worry about patch order or dependencies. `barpadding` needs `bar`, so asking for `barpadding` adds `bar` for you, and the order you list patches in doesn't change the result — `[ "pertag" "vanitygaps" "bar" ]` builds the same tree as `[ "bar" "vanitygaps" "pertag" ]`.
+
+Patches that rewrite the same code incompatibly stop the build and name both, so you know what to drop.
+
+<details>
+<summary>How patches are combined</summary>
+
+dwl-patches are written against unpatched dwl, so two that touch the same function won't both apply with `patch` alone. `nix/engine/` reconciles them during `patchPhase`:
+
+- patches are applied in dependency order: `bar`, its addons, gaps, layouts, stack helpers, then tag wrappers like `pertag`
+- additions to `layouts[]`, `keys[]` and `rules[]` are merged into the existing arrays, so a layout you asked for is reachable instead of dead code
+- struct members are inserted into `Client`, `Monitor` and `Rule`, and `TAGCOUNT` is bridged to `LENGTH(tags)` when a patch that uses it meets `bar`, which removes it
+- whatever is left goes through a three-way merge against the unpatched source. When two patches each add a term to one expression — `barpadding`'s `sidepad`, `barborder`'s `borderpx` — both are kept
+
+A lone patch is applied verbatim, so every single-patch tree stays byte-identical to patching dwl by hand. `nix run .#compare-upstream` checks all 142 of them.
+
+</details>
 
 The patches are also exposed directly, for use with any dwl package:
 
