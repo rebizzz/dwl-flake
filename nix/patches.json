@@ -531,19 +531,17 @@
   },
   "btrtile": {
     "default": {
-      "main": "btrtile-gaps-v0.9.patch",
+      "main": null,
       "stable": "btrtile-v0.8-gaps.patch"
     },
     "description": "# btrtile - A Focus-Driven Tiling Layout",
     "files": {
       "btrtile-gaps-v0.9.patch": {
         "applies": {
-          "main": true,
+          "main": false,
           "stable": false
         },
-        "fuzzy": {
-          "main": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "btrtile-0.9 WITH gaps"
@@ -570,12 +568,10 @@
       },
       "btrtile-v0.9.patch": {
         "applies": {
-          "main": true,
+          "main": false,
           "stable": false
         },
-        "fuzzy": {
-          "main": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "btrtile-0.9"
@@ -891,7 +887,9 @@
           "main": true,
           "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-01-20"
@@ -1396,7 +1394,7 @@
   },
   "fullscreenadaptivesync": {
     "default": {
-      "main": "fullscreenadaptivesync-v0.9.patch",
+      "main": "fullscreenadaptivesync-v0.8.patch",
       "stable": "fullscreenadaptivesync-v0.8.patch"
     },
     "description": "# fullscreenadaptivesync - Enables adaptive sync/VRR when a client is fullscreen.",
@@ -1419,6 +1417,7 @@
           "stable": true
         },
         "fuzzy": {
+          "main": true,
           "stable": true
         },
         "needsRequired": {},
@@ -2365,43 +2364,37 @@
   },
   "numlock-capslock": {
     "default": {
-      "main": "numlock-capslock_main-5fd19fe.patch",
+      "main": null,
       "stable": "numlock-capslock_0.8.patch"
     },
     "description": "Allows activating numlock or capslock at startup.",
     "files": {
       "numlock-capslock_0.8.patch": {
         "applies": {
-          "main": true,
+          "main": false,
           "stable": true
         },
-        "fuzzy": {
-          "main": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_0.8.patch"
       },
       "numlock-capslock_main-5fd19fe.patch": {
         "applies": {
-          "main": true,
+          "main": false,
           "stable": true
         },
-        "fuzzy": {
-          "main": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_main-5fd19fe.patch"
       },
       "numlock-capslock_wlroots-next-f4249db.patch": {
         "applies": {
-          "main": true,
+          "main": false,
           "stable": true
         },
-        "fuzzy": {
-          "main": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_wlroots-next-f4249db.patch"
@@ -3411,9 +3404,7 @@
           "main": true,
           "stable": true
         },
-        "fuzzy": {
-          "main": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
