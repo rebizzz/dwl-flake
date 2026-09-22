@@ -67,13 +67,13 @@ Run `nix run .#update-docs` to regenerate.
 | `globalkey` | stable | - | This patch adds the ability to pass keys that are specified in the config header globally, similar to Hyprland's approach. This might deal with Wayland's lack of global shortcuts. |
 | `hide-behind-deck` | unsupported | - | Hides all slave clients behind last focused slave in deck layout. |
 | `hide-behind-fullscreen` | unsupported | - | Hide all clients (and layer surfaces) behind the current client if it is fullscreen, only the background (layer surfaces at the background layer) will be shown |
-| `hide-behind-monocle` | main, stable | - | Hide all clients behind the focused one in the monocle layout |
+| `hide-behind-monocle` | stable | - | Hide all clients behind the focused one in the monocle layout |
 | `hide-cursor-when-typing` | stable | - | Hide the mouse cursor when you start typing, and restore it again when the mouse cursor moves or a mouse button is pressed, just like [xbanish](https://github.com/jcs/xbanish). |
 | `hide_vacant_tags` | stable | `bar` | Prevent [bar](/dwl/dwl-patches/wiki/bar) from drawing tags with no clients (i.e. vacant). It also stops drawing empty rectangles on the bar for non-vacant tags as there is no need anymore to distinguish vacant tags and it offers a more visible contrast than if there were filled/empty rectangles. |
 | `hiderule` | unsupported | - | Adds a `ishidden` option to client rules, that allows hiding any matching clients entirely. |
 | `hot-reload` | unsupported | - | Enables hot-reloading of dwl; meaning almost all logic can be changed at runtime. This obviously requires some black magic so for now there's a glibc 2.0 or later dependency to this. In particular this allows for every option in config.h to be changed at runtime. |
 | `inputdevicerules` | main, stable | - | Input device rules implemented using custom device create functions for keyboards and pointing devices. |
-| `ipc` | main | - | Largely based on [raphi](https://sr.ht/~raphi/)'s [somebar](https://sr.ht/~raphi/somebar/), this patch provides an ipc for wayland clients to get and set dwl state. The ipc is intended for status bars, but can also be scripted with tools like [dwlmsg](https://codeberg.org/julmajustus/dwlmsg). |
+| `ipc` | unsupported | - | Largely based on [raphi](https://sr.ht/~raphi/)'s [somebar](https://sr.ht/~raphi/somebar/), this patch provides an ipc for wayland clients to get and set dwl state. The ipc is intended for status bars, but can also be scripted with tools like [dwlmsg](https://codeberg.org/julmajustus/dwlmsg). |
 | `kblayout` | stable | - | This patch adds per-client keyboard layout and ability to send current keyboard layout information to a status bar. |
 | `keyboardshortcutsinhibit` | unsupported | - | Allows clients to use the keyboard-shortcuts-inhibit protocol to block the compositor from using keybinds. This is useful for virtualization software like looking-glass which requires this protocol to run. |
 | `keycodes` | unsupported | - | Use keycodes instead of keysyms. This way, input is independent from keyboard layout (you can use the keys.h file to customize, or get the keycodes with `wev` or `xkbcli interactive-wayland` (x11-libs/libxkbcommon[tools] in gentoo)). |
@@ -99,7 +99,7 @@ Run `nix run .#update-docs` to regenerate.
 | `passthrough` | unsupported | - | allows pausing keybind handling |
 | `per-app-cast` | unsupported | - | Adds per-window screen sharing aka toplevel capture via `ext-foreign-toplevel-image-capture-source-v1` based on the sway implementation <br> XWayland clients work in basic testing but it should be considered rather experimental. There is some possible restacking edge-cases but I was not able to reproduce them yet <br> Note that the captured surface is rendered a second time into its own scene, so there's a small GPU cost while a capture is active |
 | `perinputconfig` | main, stable | - | Replace the singular keyboard and pointer input configuration with an array allowing to set different variables matching by name. |
-| `pertag` | main, stable | - | Makes layout, mwfact and nmaster individual for every tag. |
+| `pertag` | stable | - | Makes layout, mwfact and nmaster individual for every tag. |
 | `pointer-gestures-unstable-v1` | stable | - | Forward the following events to client: swipe_begin, swipe_update, swipe_end, pinch_begin, pinch_update and pinch_end |
 | `primaryselection` | stable | - | Adds a config option to disable/enable primary selection (middle-click paste). |
 | `push` | stable | - | Adds functions `pushup` and `pushdown` to move windows within the tiling order. |

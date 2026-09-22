@@ -541,7 +541,9 @@
           "main": true,
           "stable": false
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "btrtile-0.9 WITH gaps"
@@ -571,7 +573,9 @@
           "main": true,
           "stable": false
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "btrtile-0.9"
@@ -1631,7 +1635,7 @@
   },
   "hide-behind-monocle": {
     "default": {
-      "main": "hide-behind-monocle-0.8.patch",
+      "main": null,
       "stable": "hide-behind-monocle-0.8.patch"
     },
     "description": "Hide all clients behind the focused one in the monocle layout",
@@ -1648,12 +1652,10 @@
       },
       "hide-behind-monocle-0.8.patch": {
         "applies": {
-          "main": true,
+          "main": false,
           "stable": true
         },
-        "fuzzy": {
-          "main": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "hide-behind-monocle-0.8.patch"
@@ -1807,7 +1809,7 @@
   },
   "ipc": {
     "default": {
-      "main": "ipc.patch",
+      "main": null,
       "stable": null
     },
     "description": "Largely based on [raphi](https://sr.ht/~raphi/)'s [somebar](https://sr.ht/~raphi/somebar/), this patch provides an ipc for wayland clients to get and set dwl state. The ipc is intended for status bars, but can also be scripted with tools like [dwlmsg](https://codeberg.org/julmajustus/dwlmsg).",
@@ -1824,7 +1826,7 @@
       },
       "ipc.patch": {
         "applies": {
-          "main": true,
+          "main": false,
           "stable": false
         },
         "fuzzy": {},
@@ -2499,18 +2501,17 @@
   },
   "pertag": {
     "default": {
-      "main": "pertag.patch",
+      "main": null,
       "stable": "pertag.patch"
     },
     "description": "Makes layout, mwfact and nmaster individual for every tag.",
     "files": {
       "pertag.patch": {
         "applies": {
-          "main": true,
+          "main": false,
           "stable": true
         },
         "fuzzy": {
-          "main": true,
           "stable": true
         },
         "needsRequired": {},
@@ -3388,7 +3389,9 @@
           "main": true,
           "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -3981,7 +3984,9 @@
           "main": true,
           "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.6"
@@ -3991,7 +3996,9 @@
           "main": true,
           "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "main": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7"
