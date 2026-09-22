@@ -148,6 +148,7 @@ Enter the dev shell with `nix develop`. A `justfile` is included:
 ```sh
 just fmt             # format all nix files
 just check           # run all checks
+just test            # run the patch engine unit tests
 just eval            # eval-only check across all systems
 just test-vm         # boot the NixOS VM integration test
 just update          # update dwl, patches, and lockfile
