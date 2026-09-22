@@ -27,7 +27,7 @@ Run `nix run .#update-docs` to regenerate.
 | `borderlessrule` | unsupported | - | Borderless client if rule set to borderless |
 | `borders` | stable | - | Adds 2 more borders to each side (top, bottom, left, right) of every window. |
 | `bottomstack` | main, stable | - | bstack and bstackhoriz are two stack layouts for dwl. |
-| `btrtile` | main, stable | - | # btrtile - A Focus-Driven Tiling Layout |
+| `btrtile` | stable | - | # btrtile - A Focus-Driven Tiling Layout |
 | `buttonbystate` | stable | - | Adds "state" (`enum wlr_button_state`) to configure a button action on either press or release. This basically enables release to be used for button actions. |
 | `center-terminal` | main | - | Add a keybinding that toggles centering the terminally horizontally when it's the only window, while still tiling multiple windows. |
 | `centeredmaster` | stable | - | This is a port of centeredmaster patch for dwm: <https://dwm.suckless.org/patches/centeredmaster> |
@@ -95,7 +95,7 @@ Run `nix run .#update-docs` to regenerate.
 | `namedscratchpads` | stable | - | Allows for the creation of multiple scratchpad windows, each assigned to a different keybinding. In simple terms, it enables 'run or raise' functionality |
 | `naturalscrolltrackpad` | main, stable | - | Set natural scrolling only for trackpads. Without this patch, setting `natural_scrolling` to 1 in `config.h` results in a regular mouse wheel having natural scrolling enabled as well. |
 | `nextlayout` | unsupported | - | Change the current layout to the next available one. |
-| `numlock-capslock` | main, stable | - | Allows activating numlock or capslock at startup. |
+| `numlock-capslock` | stable | - | Allows activating numlock or capslock at startup. |
 | `passthrough` | unsupported | - | allows pausing keybind handling |
 | `per-app-cast` | unsupported | - | Adds per-window screen sharing aka toplevel capture via `ext-foreign-toplevel-image-capture-source-v1` based on the sway implementation <br> XWayland clients work in basic testing but it should be considered rather experimental. There is some possible restacking edge-cases but I was not able to reproduce them yet <br> Note that the captured surface is rendered a second time into its own scene, so there's a small GPU cost while a capture is active |
 | `perinputconfig` | main, stable | - | Replace the singular keyboard and pointer input configuration with an array allowing to set different variables matching by name. |
