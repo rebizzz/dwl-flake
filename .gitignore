@@ -1,2 +1,13 @@
+# build results
 result
 result-*
+
+# python bytecode from the patch engine
+__pycache__/
+*.pyc
+
+# local scratch space
+scratch/
+
+# agent/session bookkeeping, not part of the flake
+.agents/
