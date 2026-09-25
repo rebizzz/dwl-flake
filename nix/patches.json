@@ -1120,6 +1120,18 @@
         "pkgConfig": [],
         "target": "v0.7"
       },
+      "dragmfact-v0.9.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {
+          "stable": true
+        },
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "v0.9"
+      },
       "dragmfact.patch": {
         "applies": {
           "main": true,
@@ -2186,6 +2198,16 @@
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.8"
+      },
+      "monitorconfig-0.9.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "0.9"
       },
       "monitorconfig-wlroots-next-f4249db.patch": {
         "applies": {
