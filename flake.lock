@@ -3,10 +3,10 @@
     "dwl-patches-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1790353518,
-        "narHash": "sha256-oMjm32NoUR3JVnx4YEscKEU+rliWEe01n7hpEa5D45g=",
+        "lastModified": 1790418627,
+        "narHash": "sha256-5mtClmKJ/aICDfm6AgW1mAuZsk98+pI97aBYGs+ETr8=",
         "ref": "refs/heads/main",
-        "rev": "3940eaa6a4eede6a4f101bf3dd72db12a6376ff6",
+        "rev": "ac6087554123c98fa7bf80a37809344eee7c725f",
         "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/dwl/dwl-patches"
