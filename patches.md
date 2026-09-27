@@ -43,7 +43,7 @@ Run `nix run .#update-docs` to regenerate.
 | `cursortheme` | unsupported | - | Adds ability to change cursor's theme and size. |
 | `customfloat` | main, stable | - | Rules for floating windows support default x, y, width, height. Defaults to the center of the screen and the client size. |
 | `decklayout` | main, stable | - | Deck is a dwl-layout which is inspired by the dwm Deck layout (which is inspired by TTWM window manager). It applies the monocle-layout to the clients in the stack. The master-client is still visible. The stacked clients are like a deck of cards, hence the name. |
-| `dim-unfocused` | unsupported | - | Implements dimming of clients which are unfocused. |
+| `dim-unfocused` | main, stable | - | Implements dimming of clients which are unfocused. |
 | `disable-keybindings-on-fullscreen` | unsupported | - | This patch disables all keybindings except `togglefullscreen` when the focused window is fullscreen. Might help prevent fat-fingering. |
 | `disable-keybindings-on-fullscreen-toggle` | unsupported | - | This patch changes the default behavior of the [disable-keybindings-on-fullscreen](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/disable-keybindings-on-fullscreen) patch by only taking effect when you explicitly toggle the functionality. You must apply that patch prior to applying this one. |
 | `dragmfact` | main, stable | - | Change mfact by dragging the mouse. |
@@ -123,7 +123,7 @@ Run `nix run .#update-docs` to regenerate.
 | `singletagset` | unsupported | - | Single set of tags shared between multiple monitors. |
 | `singletagset-pertag` | unsupported | - | Pertag keeps layouts, mfact and nmaster per tag instead of per output. |
 | `singletagset-sticky` | unsupported | - | Makes sticky work as expected with singletagset. The sticky window will stay on original output until you explicitly put it to a different monitor. |
-| `skipfocus` | unsupported | - | Adds a rule-based ability to skip automatically focusing a window on creation. Expected use-case is for transient windows like notifications etc. The window can still be focused by mouse or keyboard movement. |
+| `skipfocus` | main | - | Adds a rule-based ability to skip automatically focusing a window on creation. Expected use-case is for transient windows like notifications etc. The window can still be focused by mouse or keyboard movement. |
 | `smartborders` | stable | - | The borders of a window aren't drawn when the window is the only tiling window in its tag OR if the window is in a monocle layout. |
 | `snail` | main, stable | - | This layout is a scalable alternative to the "tile" and "spiral" layouts, optimized for wide monitors. Both the master area and the stack are "spirals", but windows in the master area are split horizontally as long as the master area has enough horizontal space, and the first window in the stack is split vertically unless the stack is wide. |
 | `snail-gaps` | unsupported | - | Adds support for the [gaps patch](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/gaps) to the [snail layout patch](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/snail). |
@@ -146,7 +146,7 @@ Run `nix run .#update-docs` to regenerate.
 | `tmux-borders` | unsupported | - | This patch replaces the window borders of tiled windows with borders that are similar to those found in tmux. The result is that there are no more unnecessary borders along the monitor edges in tiled mode. Borders of floating windows are not affected. |
 | `toggle_constraints` | main, stable | - | Adds a function called togglepointerconstraints to turn pointer constraint enforcement on and off with a keybind. |
 | `togglekblayoutandoptions` | stable | - | Switch between multiple keyboard layouts, variants, and options at runtime. Supports both assigning a specific keyboard to a shortcut and cycling through keyboards. |
-| `touch-input` | stable | - | Adds touchscreen functionality. |
+| `touch-input` | main, stable | - | Adds touchscreen functionality. |
 | `unclutter` | main | - | Hide the mouse cursor if it isn't being used for a certain period of time. |
 | `ungroup-keyboards` | unsupported | - | Ungroup keyboard input devices based on device name. |
 | `vanitygaps` | stable | - | Adds (inner) gaps between client windows and (outer) gaps between windows and the screen edge in a flexible manner. |
@@ -155,7 +155,7 @@ Run `nix run .#update-docs` to regenerate.
 | `virtual-pointer` | unsupported | - | implement wlr_virtual_pointer_v1 for things like wayvnc server to work |
 | `warpcursor` | main, stable | - | Warp cursor to the centre of newly focused clients. |
 | `wayland-socket-handover` | main, stable | - | When your Wayland compositor crashes, your entire session dies with it. This patch allows your session to survive a restart or crash of dwl by passing in the Wayland socket from an outside wrapper program such as [wl-restart](https://github.com/Ferdi265/wl-restart). |
-| `winview` | stable | - | Implements the function `winview` which switches the visible tags to the tags on which the current client is visible. |
+| `winview` | main, stable | - | Implements the function `winview` which switches the visible tags to the tags on which the current client is visible. |
 | `xwayland-handle-minimize` | unsupported | - | Some windows (wine) games go black screen after losing focus and never recover https://github.com/swaywm/sway/issues/4324. This patch fixes this by handling minimize requests that some xwayland clients do. |
 | `zerotag` | stable | `bar` |  |
 | `zoomswap` | main, stable | - | This patch swaps the current window (C) with the previous master (P) when zooming. |
