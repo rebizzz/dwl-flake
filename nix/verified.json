@@ -1,15 +1,18 @@
 {
   "main": {
+    "dim-unfocused": null,
     "focusonurgent": null,
     "reorganizetags": null,
     "simple_scratchpad": null,
     "swapandfocusdir": null,
     "swapfocus": null,
-    "switchtotag": null
+    "switchtotag": null,
+    "touch-input": null
   },
   "stable": {
     "btrtile": "btrtile-v0.8.patch",
     "color_manager": null,
+    "dim-unfocused": null,
     "gamepad-bindings": null
   }
 }

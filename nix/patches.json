@@ -979,8 +979,8 @@
   },
   "dim-unfocused": {
     "default": {
-      "main": null,
-      "stable": null
+      "main": "dim-unfocused-20260927.patch",
+      "stable": "dim-unfocused-20260310.patch"
     },
     "description": "Implements dimming of clients which are unfocused.",
     "files": {
@@ -1034,15 +1034,25 @@
         "pkgConfig": [],
         "target": "2024-09-18"
       },
-      "dim-unfocused.patch": {
+      "dim-unfocused-20260310.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2026-03-10"
+      },
+      "dim-unfocused-20260927.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "2026-09-27"
       }
     },
     "requires": null
@@ -1464,8 +1474,8 @@
   },
   "gaplessgrid": {
     "default": {
-      "main": "gaplessgrid.patch",
-      "stable": "gaplessgrid.patch"
+      "main": "gaplessgrid-20260228.patch",
+      "stable": "gaplessgrid-20260228.patch"
     },
     "description": "Arranges windows in a grid. Except it adjusts the number of windows in the first few columns to avoid empty cells.",
     "files": {
@@ -1509,7 +1519,7 @@
         "pkgConfig": [],
         "target": "2025-10-31"
       },
-      "gaplessgrid.patch": {
+      "gaplessgrid-20260228.patch": {
         "applies": {
           "main": true,
           "stable": true
@@ -1518,6 +1528,16 @@
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
+      },
+      "gaplessgrid-20260927.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "2026-09-27"
       }
     },
     "requires": null
@@ -3112,7 +3132,7 @@
   },
   "skipfocus": {
     "default": {
-      "main": null,
+      "main": "skipfocus-20260927.patch",
       "stable": null
     },
     "description": "Adds a rule-based ability to skip automatically focusing a window on creation. Expected use-case is for transient windows like notifications etc. The window can still be focused by mouse or keyboard movement.",
@@ -3127,7 +3147,7 @@
         "pkgConfig": [],
         "target": "2024-07-14"
       },
-      "skipfocus.patch": {
+      "skipfocus-20240918.patch": {
         "applies": {
           "main": false,
           "stable": false
@@ -3136,6 +3156,16 @@
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-09-18"
+      },
+      "skipfocus-20260927.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "2026-09-27"
       },
       "skipfocus20240108.patch": {
         "applies": {
@@ -3672,7 +3702,7 @@
   },
   "touch-input": {
     "default": {
-      "main": null,
+      "main": "touch-input-0.9.patch",
       "stable": "touch-input-0.8-osu-ver.patch"
     },
     "description": "Adds touchscreen functionality.",
@@ -3697,15 +3727,25 @@
         "pkgConfig": [],
         "target": "touch-input-0.8.patch"
       },
-      "touch-input-wlroots-next-f4249db.patch": {
+      "touch-input-0.9.patch": {
         "applies": {
-          "main": false,
-          "stable": true
+          "main": true,
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "touch-input-wlroots-next-f4249db.patch"
+        "target": "touch-input-0.9.patch"
+      },
+      "touch-input-wlroots-next-f1675a4.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "touch-input-wlroots-next-f1675a4.patch"
       }
     },
     "requires": null
@@ -3895,7 +3935,7 @@
   },
   "winview": {
     "default": {
-      "main": null,
+      "main": "winview-20260927.patch",
       "stable": "winview_dwl_08.patch"
     },
     "description": "Implements the function `winview` which switches the visible tags to the tags on which the current client is visible.",
@@ -3909,6 +3949,16 @@
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-06"
+      },
+      "winview-20260927.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "2026-09-27"
       },
       "winview_dwl_07.patch": {
         "applies": {
