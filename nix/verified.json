@@ -1,5 +1,6 @@
 {
   "main": {
+    "blur": null,
     "dim-unfocused": null,
     "focusonurgent": "focusonurgent_current.patch",
     "reorganizetags": null,

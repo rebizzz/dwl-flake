@@ -467,6 +467,42 @@
     },
     "requires": null
   },
+  "blur": {
+    "default": {
+      "main": "blur.patch",
+      "stable": null
+    },
+    "description": "Blur implemented using scenefx",
+    "files": {
+      "blur.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [
+          "scenefx-0.5"
+        ],
+        "target": "blur.patch"
+      },
+      "blur_bar.patch": {
+        "applies": {
+          "main": false,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [
+          "fcft",
+          "pixman-1",
+          "scenefx-0.5"
+        ],
+        "target": "blur_bar.patch"
+      }
+    },
+    "requires": null
+  },
   "borderlessrule": {
     "default": {
       "main": null,

@@ -3,10 +3,10 @@
     "dwl-patches-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1790594330,
-        "narHash": "sha256-QvXwzTa36N01hLxp3o45AutO2BzMwqty8XPeDnEln48=",
+        "lastModified": 1790624858,
+        "narHash": "sha256-6O4LHum3HZw5Vcoz1IvJA5TXltziLGYWRyctJp+dXeQ=",
         "ref": "refs/heads/main",
-        "rev": "08c7e3b6fb45089ba63ea409196c8b8736806158",
+        "rev": "06112ab17aee672e31022693d4c4e8ae1b4415e8",
         "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/dwl/dwl-patches"
@@ -20,10 +20,10 @@
     "dwl-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1790594329,
-        "narHash": "sha256-Qh23CLHNyX8Bs89xu96eMMp+FvuittuNWDSrCsEj/Ek=",
+        "lastModified": 1790630329,
+        "narHash": "sha256-U/Jkt3NXc1YYvzwwOIdu9d7SBm4fs1jWRg79GpTyKys=",
         "ref": "refs/heads/main",
-        "rev": "d29259c26ab90caa657ed1cbeab03c2039ef5fce",
+        "rev": "4fd683cc84d670d97f6f7020001410f2fb3daa6c",
         "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/dwl/dwl"
