@@ -24,6 +24,7 @@ Run `nix run .#update-docs` to regenerate.
 | `barpadding` | stable | `bar` | Add vertical and horizontal space between the [bar](/dwl/dwl-patches/wiki/bar) and the edge of the screen. |
 | `bartruecenteredtitle` | stable | `bar` | A homegrown port of dwm's _truecenteredtitle_ patch, with the addition of a config option to toggle its effects.<br>Requires [the bar patch](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar) to be applied beforehand. |
 | `better-resize` | unsupported | - | This patch allows you to configure window resizing more flexibly. It introduces three options with the following possible values: |
+| `blur` | main | - | Blur implemented using scenefx |
 | `borderlessrule` | unsupported | - | Borderless client if rule set to borderless |
 | `borders` | stable | - | Adds 2 more borders to each side (top, bottom, left, right) of every window. |
 | `bottomstack` | main, stable | - | bstack and bstackhoriz are two stack layouts for dwl. |
