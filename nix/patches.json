@@ -1354,12 +1354,12 @@
   },
   "focusonurgent": {
     "default": {
-      "main": "focusonurgent.patch",
-      "stable": "focusonurgent.patch"
+      "main": "focusonurgent_08.patch",
+      "stable": "focusonurgent_08.patch"
     },
     "description": "By default, dwl responds to client requests to client messages by setting the urgency bit on the named window.\nThis patch changes the focus to the window instead.\nBoth behaviours are legitimate according to the cursed spec. \nThis is the approximately the equivalent of the focusonactive patch of dwm.\nIf you want a more controlled behavior, for example setting which clients can focus, check [activation-rule patch](https://codeberg.org/sevz/dwl-patches/src/branch/activation-rules).",
     "files": {
-      "focusonurgent.patch": {
+      "focusonurgent_08.patch": {
         "applies": {
           "main": true,
           "stable": true
@@ -1367,7 +1367,17 @@
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "main dwl 0.8"
+        "target": "dwl 0.8"
+      },
+      "focusonurgent_current.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "dwl current 2026/09/28"
       }
     },
     "requires": null
