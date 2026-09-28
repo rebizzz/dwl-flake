@@ -1,7 +1,7 @@
 {
   "main": {
     "dim-unfocused": null,
-    "focusonurgent": null,
+    "focusonurgent": "focusonurgent_current.patch",
     "reorganizetags": null,
     "simple_scratchpad": null,
     "swapandfocusdir": null,
