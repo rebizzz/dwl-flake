@@ -8,7 +8,7 @@
     "swapandfocusdir": null,
     "swapfocus": null,
     "switchtotag": null,
-    "touch-input": null
+    "touch-input": "touch-input-wlroots-next-4fd683c.patch"
   },
   "stable": {
     "btrtile": "btrtile-v0.8.patch",
