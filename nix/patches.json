@@ -41,6 +41,38 @@
     },
     "requires": null
   },
+  "animation": {
+    "default": {
+      "main": "animation-d29259c.patch",
+      "stable": null
+    },
+    "description": "Add simple animation support with a [cubic-bezier](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) curve.",
+    "files": {
+      "animation-0.9.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {
+          "main": true
+        },
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "animation-0.9.patch"
+      },
+      "animation-d29259c.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "animation-d29259c.patch"
+      }
+    },
+    "requires": null
+  },
   "attachbottom": {
     "default": {
       "main": "attachbottom.patch",
@@ -1370,20 +1402,35 @@
   },
   "focusdir": {
     "default": {
-      "main": null,
-      "stable": null
+      "main": "focusdir-wlroots-next-4fd683c.patch",
+      "stable": "focusdir-0.9.patch"
     },
     "description": "Focus the window to the left, right, above or below the current focused window",
     "files": {
-      "focusdir.patch": {
+      "focusdir-0.9.patch": {
         "applies": {
-          "main": false,
-          "stable": false
+          "main": true,
+          "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "main": true,
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "2023-01-22"
+        "target": null
+      },
+      "focusdir-wlroots-next-4fd683c.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {
+          "stable": true
+        },
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "main 2026-09-29"
       }
     },
     "requires": null
@@ -3783,7 +3830,7 @@
         "pkgConfig": [],
         "target": "touch-input-0.9.patch"
       },
-      "touch-input-wlroots-next-f1675a4.patch": {
+      "touch-input-wlroots-next-4fd683c.patch": {
         "applies": {
           "main": true,
           "stable": false
@@ -3791,7 +3838,7 @@
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "touch-input-wlroots-next-f1675a4.patch"
+        "target": "touch-input-wlroots-next-4fd683c.patch"
       }
     },
     "requires": null

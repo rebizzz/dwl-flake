@@ -7,6 +7,7 @@ Run `nix run .#update-docs` to regenerate.
 | --- | --- | --- | --- |
 | `accessnthmon` | stable | - | Port of dwm's accessnthmon. Adds functions to tag and focus monitor by index. |
 | `alwayscenter` | main, stable | - | Automatically center floating windows. |
+| `animation` | main | - | Add simple animation support with a [cubic-bezier](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) curve. |
 | `attachbottom` | main, stable | - | Newly created windows are placed at the bottom of the client tile stack. |
 | `attachfocused` | main, stable | - | Makes windows attach below the currently active window. |
 | `attachtop` | main, stable | - | This is a port of attachtop patch for dwm: https://dwm.suckless.org/patches/attachtop |
@@ -56,7 +57,7 @@ Run `nix run .#update-docs` to regenerate.
 | `extrabar` | unsupported | - |  |
 | `fakefullscreenclient` | unsupported | - | Allow setting fake fullscreen per client |
 | `fallback` | main, stable | - | Tries a different display mode if the preferred mode doesn't work. |
-| `focusdir` | unsupported | - | Focus the window to the left, right, above or below the current focused window |
+| `focusdir` | main, stable | - | Focus the window to the left, right, above or below the current focused window |
 | `focusonurgent` | main, stable | - | By default, dwl responds to client requests to client messages by setting the urgency bit on the named window. This patch changes the focus to the window instead. Both behaviours are legitimate according to the cursed spec. This is the approximately the equivalent of the focusonactive patch of dwm. If you want a more controlled behavior, for example setting which clients can focus, check [activation-rule patch](https://codeberg.org/sevz/dwl-patches/src/branch/activation-rules). |
 | `follow` | main, stable | - | An extremely simple patch that adds the option to change DWL's window sending behavior; when active, sent windows will be followed, i.e. when a window is sent to another tag, the view changes to that tag.<br>No dependencies. |
 | `foreign-toplevel-management` | unsupported | - | Implement `foreign-toplevel-management`, it add handlers for activate, close, fullscreen and destroy request events, it's missing minimize and maximize request handlers. |

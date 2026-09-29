@@ -3,10 +3,10 @@
     "dwl-patches-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1790624858,
-        "narHash": "sha256-6O4LHum3HZw5Vcoz1IvJA5TXltziLGYWRyctJp+dXeQ=",
+        "lastModified": 1790681096,
+        "narHash": "sha256-fzyuz5ExRSyNYDraGT7HyM/KrX2/k5YbrZnpsA1h5MI=",
         "ref": "refs/heads/main",
-        "rev": "06112ab17aee672e31022693d4c4e8ae1b4415e8",
+        "rev": "1be70745cc847b6bceadbf178b76bd3bea7b75bd",
         "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/dwl/dwl-patches"
@@ -20,10 +20,10 @@
     "dwl-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1790630329,
-        "narHash": "sha256-U/Jkt3NXc1YYvzwwOIdu9d7SBm4fs1jWRg79GpTyKys=",
+        "lastModified": 1790682899,
+        "narHash": "sha256-ZLnSN/Miu0hjVui04NUxEa7D/vTz6DA1OGmfu5d3ipE=",
         "ref": "refs/heads/main",
-        "rev": "4fd683cc84d670d97f6f7020001410f2fb3daa6c",
+        "rev": "e2038450f2b7746d5c2600b0b04bc7717a29c986",
         "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/dwl/dwl"
@@ -70,11 +70,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1790533781,
-        "narHash": "sha256-F+b8u43BVF5DlM0pz7JQSbtbwKy5PrHIT5zQUekXsD0=",
+        "lastModified": 1790635395,
+        "narHash": "sha256-bNyvoIyOCu7lzoCpWKWGIsHpTtERUWzqYWFPlN++WTw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "cf5e76507c6e23b59f7e0ffcc7baa2a39ddd8442",
+        "rev": "7fc6f2c20af09cdcaf48b92ec3121860139ec668",
         "type": "github"
       },
       "original": {
