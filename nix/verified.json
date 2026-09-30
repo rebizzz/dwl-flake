@@ -1,5 +1,6 @@
 {
   "main": {
+    "animation": null,
     "blur": null,
     "dim-unfocused": null,
     "focusonurgent": "focusonurgent_current.patch",
