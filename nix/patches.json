@@ -43,7 +43,7 @@
   },
   "animation": {
     "default": {
-      "main": "animation-d29259c.patch",
+      "main": "animation-e203845.patch",
       "stable": null
     },
     "description": "Add simple animation support with a [cubic-bezier](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) curve.",
@@ -60,7 +60,7 @@
         "pkgConfig": [],
         "target": "animation-0.9.patch"
       },
-      "animation-d29259c.patch": {
+      "animation-e203845.patch": {
         "applies": {
           "main": true,
           "stable": false
@@ -68,7 +68,7 @@
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "animation-d29259c.patch"
+        "target": "animation-e203845.patch"
       }
     },
     "requires": null
