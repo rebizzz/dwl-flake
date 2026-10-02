@@ -35,7 +35,7 @@ Run `nix run .#update-docs` to regenerate.
 | `centeredmaster` | stable | - | This is a port of centeredmaster patch for dwm: <https://dwm.suckless.org/patches/centeredmaster> |
 | `cfact` | unsupported | - | A port of the [dwm cfacts patch](https://dwm.suckless.org/patches/cfacts/) (with the limits removed) |
 | `cfact-snail` | unsupported | - | This patch implements [cfact][cfact] for [snail][snail] layout. This patch must be applied on top of cfact and snail patches. |
-| `chainkeys` | unsupported | - | Implements chained keybindings (like the dwm [keychain](https://dwm.suckless.org/patches/keychain/) patch). |
+| `chainkeys` | main | - | Implements chained keybindings (like the dwm [keychain](https://dwm.suckless.org/patches/keychain/) patch). |
 | `client-opacity` | unsupported | - | This patch adds default transparency parameters to config.h which specify the starting transparencies of all windows. |
 | `client-opacity-focus` | unsupported | - | This patch is based on the [client-opacity](https://codeberg.org/dwl/dwl-patches/raw/branch/main/patches/client-opacity/client-opacity.patch) patch. This patch adds differing opacity levels depending upon whether the client is focused or not. |
 | `color_manager` | stable | - | Adds simple support for color management using `wp_color_manager_v1`. |
