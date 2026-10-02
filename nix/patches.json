@@ -791,12 +791,22 @@
   },
   "chainkeys": {
     "default": {
-      "main": null,
+      "main": "chainkeys.patch",
       "stable": null
     },
     "description": "Implements chained keybindings (like the dwm\n[keychain](https://dwm.suckless.org/patches/keychain/) patch).",
     "files": {
       "chainkeys.patch": {
+        "applies": {
+          "main": true,
+          "stable": false
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "chainkeys.patch"
+      },
+      "chainkeys_2024-05-20.patch": {
         "applies": {
           "main": false,
           "stable": false
@@ -804,7 +814,7 @@
         "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
-        "target": "2024-05-20"
+        "target": "chainkeys_2024-05-20.patch"
       }
     },
     "requires": null
