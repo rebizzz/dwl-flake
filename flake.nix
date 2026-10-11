@@ -10,7 +10,7 @@
       flake = false;
     };
     dwl-stable-src = {
-      url = "git+https://codeberg.org/dwl/dwl?ref=0.8&shallow=1";
+      url = "git+https://codeberg.org/dwl/dwl?ref=0.9&shallow=1";
       flake = false;
     };
     dwl-patches-src = {
