@@ -2,18 +2,16 @@
   "accessnthmon": {
     "default": {
       "main": null,
-      "stable": "accessnthmon.patch"
+      "stable": null
     },
     "description": "Port of dwm's accessnthmon. Adds functions to tag and focus monitor by index.",
     "files": {
       "accessnthmon.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-05-10"
@@ -41,17 +39,37 @@
     },
     "requires": null
   },
+  "alwaysontop": {
+    "default": {
+      "main": "ontop.patch",
+      "stable": "ontop.patch"
+    },
+    "description": null,
+    "files": {
+      "ontop.patch": {
+        "applies": {
+          "main": true,
+          "stable": true
+        },
+        "fuzzy": {},
+        "needsRequired": {},
+        "pkgConfig": [],
+        "target": "2026-09-17"
+      }
+    },
+    "requires": null
+  },
   "animation": {
     "default": {
       "main": "animation-e203845.patch",
-      "stable": null
+      "stable": "animation-0.9.patch"
     },
     "description": "Add simple animation support with a [cubic-bezier](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) curve.",
     "files": {
       "animation-0.9.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {
           "main": true
@@ -63,9 +81,11 @@
       "animation-e203845.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "animation-e203845.patch"
@@ -86,7 +106,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -108,7 +129,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -130,7 +152,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -142,7 +165,7 @@
   "autostart": {
     "default": {
       "main": "autostart_main-5fd19fe.patch",
-      "stable": "autostart_0.8.patch"
+      "stable": "autostart_main-5fd19fe.patch"
     },
     "description": "Allow dwl to execute commands from autostart array in your config.h file. And when you exit dwl all processes from autostart array will be killed.",
     "files": {
@@ -152,7 +175,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -163,9 +187,7 @@
           "main": true,
           "stable": true
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "autostart_main-5fd19fe"
@@ -176,7 +198,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -188,7 +211,7 @@
   "bar": {
     "default": {
       "main": null,
-      "stable": "bar.patch"
+      "stable": null
     },
     "description": "Add a bar identical to dwm's bar.",
     "files": {
@@ -223,7 +246,7 @@
       "bar.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -260,24 +283,22 @@
   "bar-awesomebar": {
     "default": {
       "main": null,
-      "stable": "bar-awesomebar.patch"
+      "stable": null
     },
     "description": "Based on the corresponding `dwm` patch, this patch implements the AwesomeWM-style bar for `dwl`.",
     "files": {
       "bar-awesomebar.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
-        "needsRequired": {
-          "stable": true
-        },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2026-08-03"
       }
     },
-    "requires": "bar"
+    "requires": null
   },
   "bar-modes": {
     "default": {
@@ -302,24 +323,22 @@
   "bar-notitle": {
     "default": {
       "main": null,
-      "stable": "bar-notitle.patch"
+      "stable": null
     },
     "description": "Add a `window_title` option to toggle showing window titles in the bar, similar to the DWM `notitle` patch.",
     "files": {
       "bar-notitle.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
-        "needsRequired": {
-          "stable": true
-        },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
     },
-    "requires": "bar"
+    "requires": null
   },
   "bar-recolr": {
     "default": {
@@ -368,116 +387,102 @@
   "barborder": {
     "default": {
       "main": null,
-      "stable": "barborder.patch"
+      "stable": null
     },
     "description": "Add a border around the [bar](/dwl/dwl-patches/wiki/bar) similar to how a client is given a border.",
     "files": {
       "barborder.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
-        "needsRequired": {
-          "stable": true
-        },
+        "fuzzy": {},
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
     },
-    "requires": "bar"
+    "requires": null
   },
   "barcolors": {
     "default": {
       "main": null,
-      "stable": "barcolors.patch"
+      "stable": null
     },
     "description": "Add support for colored status text to the [bar](/dwl/dwl-patches/src/branch/main/patches/bar). Text can be colored in the same manner as with dwlb, namely by wrapping it between `^fg(color)` and `^fg()` or `^bg(color)` and `^bg()`, where `color` is a 6-digit hexadecimal value.",
     "files": {
       "barcolors.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
-        "needsRequired": {
-          "stable": true
-        },
+        "fuzzy": {},
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
     },
-    "requires": "bar"
+    "requires": null
   },
   "barconfig": {
     "default": {
       "main": null,
-      "stable": "barconfig.patch"
+      "stable": null
     },
     "description": "This patch **requires** the dwl [barconfig](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar) patch be applied first! The barconfig patch provides configuration for the dwl bar via the variable\n`barlayout`. This determines which of the elements listed below to\ndisplay on the bar and in which order:",
     "files": {
       "barconfig.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
-        "needsRequired": {
-          "stable": true
-        },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2025-10-24"
       }
     },
-    "requires": "bar"
+    "requires": null
   },
   "barpadding": {
     "default": {
       "main": null,
-      "stable": "barpadding.patch"
+      "stable": null
     },
     "description": "Add vertical and horizontal space between the [bar](/dwl/dwl-patches/wiki/bar) and the edge of the screen.",
     "files": {
       "barpadding.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
-        "needsRequired": {
-          "stable": true
-        },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
     },
-    "requires": "bar"
+    "requires": null
   },
   "bartruecenteredtitle": {
     "default": {
       "main": null,
-      "stable": "bartruecenteredtitle.patch"
+      "stable": null
     },
     "description": "A homegrown port of dwm's _truecenteredtitle_ patch, with the addition of a config option to toggle its effects.<br>Requires [the bar patch](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar) to be applied beforehand.",
     "files": {
       "bartruecenteredtitle.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
-        "needsRequired": {
-          "stable": true
-        },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.7/v0.6"
       }
     },
-    "requires": "bar"
+    "requires": null
   },
   "better-resize": {
     "default": {
@@ -558,18 +563,16 @@
   "borders": {
     "default": {
       "main": null,
-      "stable": "borders.patch"
+      "stable": null
     },
     "description": "Adds 2 more borders to each side (top, bottom, left, right) of every window.",
     "files": {
       "borders.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-04"
@@ -600,14 +603,14 @@
   "btrtile": {
     "default": {
       "main": null,
-      "stable": "btrtile-v0.8-gaps.patch"
+      "stable": "btrtile-gaps-v0.9.patch"
     },
     "description": "# btrtile - A Focus-Driven Tiling Layout",
     "files": {
       "btrtile-gaps-v0.9.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -617,7 +620,7 @@
       "btrtile-v0.8-gaps.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -627,7 +630,7 @@
       "btrtile-v0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -637,7 +640,7 @@
       "btrtile-v0.9.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -650,18 +653,16 @@
   "buttonbystate": {
     "default": {
       "main": null,
-      "stable": "buttonbystate.patch"
+      "stable": null
     },
     "description": "Adds \"state\" (`enum wlr_button_state`) to configure a button action on either press or release.\nThis basically enables release to be used for button actions.",
     "files": {
       "buttonbystate.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-04-06"
@@ -672,14 +673,14 @@
   "center-terminal": {
     "default": {
       "main": "center-terminal.patch",
-      "stable": null
+      "stable": "center-terminal.patch"
     },
     "description": "Add a keybinding that toggles centering the terminally horizontally when\nit's the only window, while still tiling multiple windows.",
     "files": {
       "center-terminal.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -692,7 +693,7 @@
   "centeredmaster": {
     "default": {
       "main": null,
-      "stable": "centeredmaster-0.8.patch"
+      "stable": null
     },
     "description": "This is a port of centeredmaster patch for dwm: <https://dwm.suckless.org/patches/centeredmaster>",
     "files": {
@@ -709,7 +710,7 @@
       "centeredmaster-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -862,18 +863,16 @@
   "color_manager": {
     "default": {
       "main": null,
-      "stable": "color_manager.patch"
+      "stable": null
     },
     "description": "Adds simple support for color management using `wp_color_manager_v1`.",
     "files": {
       "color_manager.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [
           "libdrm"
@@ -906,14 +905,14 @@
   "controlled_fullscreen": {
     "default": {
       "main": null,
-      "stable": "controlled_fullscreen.patch"
+      "stable": null
     },
     "description": "\tThis patch allows a window to adjust its layout as if it was fullscreen, but it won't change its size and position, and it will stays under the control of dwl. For example a video on a browser can occupy the whole space reserved to the window, but we can still resize it and move it and see the status bar. ",
     "files": {
       "controlled_fullscreen.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -923,7 +922,7 @@
       "controlled_fullscreen_2025_10_08.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -933,7 +932,7 @@
       "controlled_fullscreen_2025_11_13.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -998,7 +997,7 @@
   "customfloat": {
     "default": {
       "main": "customfloat_main-5fd19fe.patch",
-      "stable": "customfloat_0.8.patch"
+      "stable": "customfloat_main-5fd19fe.patch"
     },
     "description": "Rules for floating windows support default x, y, width, height. Defaults to the center of the screen and the client size.",
     "files": {
@@ -1058,7 +1057,7 @@
   "dim-unfocused": {
     "default": {
       "main": "dim-unfocused-20260927.patch",
-      "stable": "dim-unfocused-20260310.patch"
+      "stable": null
     },
     "description": "Implements dimming of clients which are unfocused.",
     "files": {
@@ -1115,7 +1114,7 @@
       "dim-unfocused-20260310.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -1178,7 +1177,7 @@
   "dragmfact": {
     "default": {
       "main": "dragmfact.patch",
-      "stable": "dragmfact.patch"
+      "stable": "dragmfact-v0.9.patch"
     },
     "description": "Change mfact by dragging the mouse.",
     "files": {
@@ -1213,9 +1212,7 @@
           "main": true,
           "stable": true
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.9"
@@ -1259,18 +1256,16 @@
   "drm_lease": {
     "default": {
       "main": null,
-      "stable": "drm_lease.patch"
+      "stable": null
     },
     "description": "Adds support for drm-lease-v1 for embedded displays such as VR headsets",
     "files": {
       "drm_lease.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "main 2026-02-25"
@@ -1301,7 +1296,7 @@
   "en-keycodes": {
     "default": {
       "main": null,
-      "stable": "en-keycodes-0.8.patch"
+      "stable": null
     },
     "description": "Always use the English keymap to get keycodes, so key bindings work even when using a non-English keyboard layout.",
     "files": {
@@ -1318,7 +1313,7 @@
       "en-keycodes-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -1331,18 +1326,16 @@
   "envcfg": {
     "default": {
       "main": null,
-      "stable": "envcfg.patch"
+      "stable": null
     },
     "description": "Input device configuration (click method, tap-and-drag, acceleration, etc), border size and colors via environment variables.",
     "files": {
       "envcfg.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-02-11"
@@ -1423,8 +1416,7 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true,
-          "stable": true
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1488,7 +1480,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1520,7 +1513,7 @@
   "fullscreenadaptivesync": {
     "default": {
       "main": "fullscreenadaptivesync-v0.8.patch",
-      "stable": "fullscreenadaptivesync-v0.8.patch"
+      "stable": "fullscreenadaptivesync-v0.9.patch"
     },
     "description": "# fullscreenadaptivesync - Enables adaptive sync/VRR when a client is fullscreen.",
     "files": {
@@ -1530,7 +1523,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1542,8 +1536,7 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true,
-          "stable": true
+          "main": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1555,14 +1548,14 @@
   "gamepad-bindings": {
     "default": {
       "main": null,
-      "stable": "gamepad-bindings.patch"
+      "stable": null
     },
     "description": "Gamepad bindings to dwl. Press `LB + RB` toggle gamepad bindings.",
     "files": {
       "gamepad-bindings.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -1668,7 +1661,7 @@
   "genericgaps": {
     "default": {
       "main": null,
-      "stable": "genericgaps.patch"
+      "stable": null
     },
     "description": "This patch adds gaps around windows and works with any layout (the layout code\ndoes not need to know about the gaps). This patch is a modified version of\n[vanitygaps][vanitygaps] patch.",
     "files": {
@@ -1685,7 +1678,7 @@
       "genericgaps.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -1698,18 +1691,16 @@
   "globalkey": {
     "default": {
       "main": null,
-      "stable": "globalkey.patch"
+      "stable": null
     },
     "description": "This patch adds the ability to pass keys that are specified in the config header globally, similar to Hyprland's approach.\nThis might deal with Wayland's lack of global shortcuts.",
     "files": {
       "globalkey.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-06-08"
@@ -1789,7 +1780,9 @@
           "main": false,
           "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "hide-behind-monocle-0.8.patch"
@@ -1810,14 +1803,14 @@
   "hide-cursor-when-typing": {
     "default": {
       "main": null,
-      "stable": "hide-cursor-when-typing.patch"
+      "stable": null
     },
     "description": "Hide the mouse cursor when you start typing, and restore it again when the\nmouse cursor moves or a mouse button is pressed, just like\n[xbanish](https://github.com/jcs/xbanish).",
     "files": {
       "hide-cursor-when-typing.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -1830,24 +1823,22 @@
   "hide_vacant_tags": {
     "default": {
       "main": null,
-      "stable": "hide_vacant_tags.patch"
+      "stable": null
     },
     "description": "Prevent [bar](/dwl/dwl-patches/wiki/bar) from drawing tags with no clients (i.e. vacant).\nIt also stops drawing empty rectangles on the bar for non-vacant tags as there is no need anymore to distinguish vacant tags and it offers a more visible contrast than if there were filled/empty rectangles.",
     "files": {
       "hide_vacant_tags.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
-        "needsRequired": {
-          "stable": true
-        },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
       }
     },
-    "requires": "bar"
+    "requires": null
   },
   "hiderule": {
     "default": {
@@ -1932,7 +1923,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -1944,7 +1936,7 @@
   "ipc": {
     "default": {
       "main": null,
-      "stable": null
+      "stable": "ipc.patch"
     },
     "description": "Largely based on [raphi](https://sr.ht/~raphi/)'s [somebar](https://sr.ht/~raphi/somebar/), this patch provides an ipc for wayland clients to get and set dwl state. The ipc is intended for status bars, but can also be scripted with tools like [dwlmsg](https://codeberg.org/julmajustus/dwlmsg).",
     "files": {
@@ -1961,7 +1953,7 @@
       "ipc.patch": {
         "applies": {
           "main": false,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -1984,7 +1976,7 @@
   "kblayout": {
     "default": {
       "main": null,
-      "stable": "kblayout-0.8.patch"
+      "stable": null
     },
     "description": "This patch adds per-client keyboard layout and ability to send current\nkeyboard layout information to a status bar.",
     "files": {
@@ -2001,7 +1993,7 @@
       "kblayout-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -2144,14 +2136,14 @@
   "lockedkeys": {
     "default": {
       "main": null,
-      "stable": "lockedkeys.patch"
+      "stable": null
     },
     "description": "This patch allows you to add keybindings to the lockscreen.",
     "files": {
       "lockedkeys.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -2214,7 +2206,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -2276,18 +2269,16 @@
   "modes": {
     "default": {
       "main": null,
-      "stable": "modes.patch"
+      "stable": null
     },
     "description": "Implement  modes, that way each mapping is associated with a mode and is only active while in that mode, default mode is `NORMAL`",
     "files": {
       "modes-0.5.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.5"
@@ -2295,7 +2286,7 @@
       "modes.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -2308,7 +2299,7 @@
   "monitorconfig": {
     "default": {
       "main": "monitorconfig-0.8.patch",
-      "stable": "monitorconfig-0.8.patch"
+      "stable": "monitorconfig-0.9.patch"
     },
     "description": "Allows more monitor configuration in config.h",
     "files": {
@@ -2398,7 +2389,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -2440,14 +2432,14 @@
   "namedscratchpads": {
     "default": {
       "main": null,
-      "stable": "namedscratchpads-0.8.patch"
+      "stable": null
     },
     "description": "Allows for the creation of multiple scratchpad windows, each assigned to a different keybinding. In simple terms, it enables 'run or raise' functionality",
     "files": {
       "namedscratchpads-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -2510,7 +2502,7 @@
   "numlock-capslock": {
     "default": {
       "main": null,
-      "stable": "numlock-capslock_0.8.patch"
+      "stable": "numlock-capslock_main-5fd19fe.patch"
     },
     "description": "Allows activating numlock or capslock at startup.",
     "files": {
@@ -2519,7 +2511,9 @@
           "main": false,
           "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_0.8.patch"
@@ -2529,7 +2523,9 @@
           "main": false,
           "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_main-5fd19fe.patch"
@@ -2539,7 +2535,9 @@
           "main": false,
           "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "numlock-capslock_wlroots-next-f4249db.patch"
@@ -2590,7 +2588,7 @@
   "perinputconfig": {
     "default": {
       "main": "perinputconfig-pointer.patch",
-      "stable": "perinputconfig-keyboard.patch"
+      "stable": "perinputconfig-pointer.patch"
     },
     "description": "Replace the singular keyboard and pointer input configuration with an array allowing to set different variables matching by name.",
     "files": {
@@ -2607,7 +2605,7 @@
       "perinputconfig-keyboard.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -2662,18 +2660,16 @@
   "pointer-gestures-unstable-v1": {
     "default": {
       "main": null,
-      "stable": "pointer-gestures-unstable-v1.patch"
+      "stable": null
     },
     "description": "Forward the following events to client:\nswipe_begin, swipe_update, swipe_end, pinch_begin, pinch_update and pinch_end",
     "files": {
       "pointer-gestures-unstable-v1.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2024-07-12"
@@ -2684,7 +2680,7 @@
   "primaryselection": {
     "default": {
       "main": null,
-      "stable": "primaryselection.patch"
+      "stable": null
     },
     "description": "Adds a config option to disable/enable primary selection (middle-click paste).",
     "files": {
@@ -2701,7 +2697,7 @@
       "primaryselection.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -2714,14 +2710,14 @@
   "push": {
     "default": {
       "main": null,
-      "stable": "push.patch"
+      "stable": null
     },
     "description": "Adds functions `pushup` and `pushdown` to move windows within the tiling order.",
     "files": {
       "push-0.7.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -2731,7 +2727,7 @@
       "push.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -2847,7 +2843,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -2979,7 +2976,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -3024,7 +3022,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -3036,7 +3035,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -3058,7 +3058,8 @@
           "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -3070,14 +3071,14 @@
   "simple_scratchpad": {
     "default": {
       "main": "simple_scratchpad-v0.9.patch",
-      "stable": "simple_scratchpad-v0.8.patch"
+      "stable": "simple_scratchpad-v0.9.patch"
     },
     "description": "# simple_scratchpad - A very simple scratchpad utility.",
     "files": {
       "simple_scratchpad-v0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3087,7 +3088,7 @@
       "simple_scratchpad-v0.9.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3100,7 +3101,7 @@
   "simpleborders": {
     "default": {
       "main": "simpleborders_main-5fd19fe.patch",
-      "stable": "simpleborders_0.8.patch"
+      "stable": "simpleborders_main-5fd19fe.patch"
     },
     "description": "Like smartborders. Don't put borders when there is only one window on the screen.",
     "files": {
@@ -3236,7 +3237,7 @@
   "skipfocus": {
     "default": {
       "main": "skipfocus-20260927.patch",
-      "stable": null
+      "stable": "skipfocus-20260927.patch"
     },
     "description": "Adds a rule-based ability to skip automatically focusing a window on creation. Expected use-case is for transient windows like notifications etc. The window can still be focused by mouse or keyboard movement.",
     "files": {
@@ -3263,7 +3264,7 @@
       "skipfocus-20260927.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3286,7 +3287,7 @@
   "smartborders": {
     "default": {
       "main": null,
-      "stable": "smartborders.patch"
+      "stable": null
     },
     "description": "The borders of a window aren't drawn when the window is the only tiling window\nin its tag OR if the window is in a monocle layout.",
     "files": {
@@ -3303,7 +3304,7 @@
       "smartborders.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3366,18 +3367,16 @@
   "spawninfo": {
     "default": {
       "main": null,
-      "stable": "spawninfo.patch"
+      "stable": null
     },
     "description": "This patch adds `spawninfo` function that is very similar to `spawn`, except it\nalso passes some information about the focused client via stdin.",
     "files": {
       "spawninfo.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "0.7"
@@ -3468,14 +3467,14 @@
   "sticky": {
     "default": {
       "main": null,
-      "stable": "sticky.patch"
+      "stable": null
     },
     "description": "Adds a toggleable function that makes a sticky client that is visible on all tags.",
     "files": {
       "sticky.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3488,7 +3487,7 @@
   "swallow": {
     "default": {
       "main": null,
-      "stable": "swallow-0.8.patch"
+      "stable": null
     },
     "description": "This patch adds \"window swallowing\" to dwl.",
     "files": {
@@ -3505,7 +3504,7 @@
       "swallow-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3559,7 +3558,9 @@
           "main": true,
           "stable": true
         },
-        "fuzzy": {},
+        "fuzzy": {
+          "stable": true
+        },
         "needsRequired": {},
         "pkgConfig": [],
         "target": "v0.8"
@@ -3570,14 +3571,14 @@
   "swapmons": {
     "default": {
       "main": null,
-      "stable": "swapmons_v0.1.patch"
+      "stable": null
     },
     "description": "This patch is for dual-monitor setups (and can be extended for more monitors). It swaps the active client on Monitor-A with the active client on Monitor-B while preserving original tags of the swapped clients.",
     "files": {
       "swapmons_v0.1.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3590,17 +3591,18 @@
   "switchtotag": {
     "default": {
       "main": "switchtotag.patch",
-      "stable": null
+      "stable": "switchtotag.patch"
     },
     "description": "Add a rule option to switch to the configured tag when a window opens, then switch back when it closes.",
     "files": {
       "switchtotag.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {
-          "main": true
+          "main": true,
+          "stable": true
         },
         "needsRequired": {},
         "pkgConfig": [],
@@ -3632,14 +3634,14 @@
   "tablet-input": {
     "default": {
       "main": null,
-      "stable": "tablet-input-0.8.patch"
+      "stable": null
     },
     "description": "Implements wlr-tablet-v2 for drawing tablets with cursor emulation.\nInspired by @guyuming76's [branch](https://codeberg.org/guyuming76/dwl/commits/branch/graphic_tablet), with coding help from @Palanix and testing by @Thanatos.",
     "files": {
       "tablet-input-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3649,7 +3651,7 @@
       "tablet-input-main-a2d03cf.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3682,7 +3684,7 @@
   "tearing": {
     "default": {
       "main": null,
-      "stable": "tearing.patch"
+      "stable": null
     },
     "description": "This patch adds support for tearing protocol. To get it working `export WLR_DRM_NO_ATOMIC=1` is probably required.\nSome apps would send ASYNC hint and tearing will \"just work\", otherwise it's possible to force specified clients to tear with a rule.",
     "files": {
@@ -3701,11 +3703,9 @@
       "tearing.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
-        "fuzzy": {
-          "stable": true
-        },
+        "fuzzy": {},
         "needsRequired": {},
         "pkgConfig": [],
         "target": "2025-04-22"
@@ -3776,7 +3776,7 @@
   "togglekblayoutandoptions": {
     "default": {
       "main": null,
-      "stable": "togglekblayoutandoptions-0.8.patch"
+      "stable": null
     },
     "description": "Switch between multiple keyboard layouts, variants, and options at runtime.\nSupports both assigning a specific keyboard to a shortcut and cycling through\nkeyboards.",
     "files": {
@@ -3793,7 +3793,7 @@
       "togglekblayoutandoptions-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3806,14 +3806,14 @@
   "touch-input": {
     "default": {
       "main": "touch-input-0.9.patch",
-      "stable": "touch-input-0.8-osu-ver.patch"
+      "stable": "touch-input-0.9.patch"
     },
     "description": "Adds touchscreen functionality.",
     "files": {
       "touch-input-0.8-osu-ver.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3823,7 +3823,7 @@
       "touch-input-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3833,7 +3833,7 @@
       "touch-input-0.9.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3843,7 +3843,7 @@
       "touch-input-wlroots-next-4fd683c.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3856,14 +3856,14 @@
   "unclutter": {
     "default": {
       "main": "unclutter.patch",
-      "stable": null
+      "stable": "unclutter.patch"
     },
     "description": "Hide the mouse cursor if it isn't being used for a certain period of time.",
     "files": {
       "unclutter.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -3896,7 +3896,7 @@
   "vanitygaps": {
     "default": {
       "main": null,
-      "stable": "vanitygaps-0.8.patch"
+      "stable": null
     },
     "description": "Adds (inner) gaps between client windows and (outer) gaps between windows and\nthe screen edge in a flexible manner.",
     "files": {
@@ -3913,7 +3913,7 @@
       "vanitygaps-0.8.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -4039,7 +4039,7 @@
   "winview": {
     "default": {
       "main": "winview-20260927.patch",
-      "stable": "winview_dwl_08.patch"
+      "stable": "winview-20260927.patch"
     },
     "description": "Implements the function `winview` which switches the visible tags to the tags on which the current client is visible.",
     "files": {
@@ -4056,7 +4056,7 @@
       "winview-20260927.patch": {
         "applies": {
           "main": true,
-          "stable": false
+          "stable": true
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -4076,7 +4076,7 @@
       "winview_dwl_08.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -4109,26 +4109,24 @@
   "zerotag": {
     "default": {
       "main": null,
-      "stable": "zerotag.patch"
+      "stable": null
     },
     "description": null,
     "files": {
       "bar_zerotag.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
-        "needsRequired": {
-          "stable": true
-        },
+        "needsRequired": {},
         "pkgConfig": [],
         "target": null
       },
       "zerotag.patch": {
         "applies": {
           "main": false,
-          "stable": true
+          "stable": false
         },
         "fuzzy": {},
         "needsRequired": {},
@@ -4136,7 +4134,7 @@
         "target": "git branch"
       }
     },
-    "requires": "bar"
+    "requires": null
   },
   "zoomswap": {
     "default": {
