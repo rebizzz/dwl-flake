@@ -12,9 +12,8 @@
     "touch-input": "touch-input-wlroots-next-4fd683c.patch"
   },
   "stable": {
-    "btrtile": "btrtile-v0.8.patch",
-    "color_manager": null,
-    "dim-unfocused": null,
-    "gamepad-bindings": null
+    "animation": null,
+    "btrtile": "btrtile-v0.9.patch",
+    "switchtotag": null
   }
 }
