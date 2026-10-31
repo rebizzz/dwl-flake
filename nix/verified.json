@@ -1,20 +1,16 @@
 {
   "main": {
-    "animation": null,
     "blur": null,
-    "dim-unfocused": null,
+    "btrtile": "btrtile-main-12a5856.patch",
     "focusonurgent": "focusonurgent_current.patch",
     "reorganizetags": null,
-    "simple_scratchpad": null,
+    "scenefx": null,
     "swapandfocusdir": null,
-    "swapfocus": null,
-    "switchtotag": null,
-    "touch-input": "touch-input-wlroots-next-4fd683c.patch"
+    "switchtotag": null
   },
   "stable": {
-    "btrtile": "btrtile-v0.8.patch",
-    "color_manager": null,
-    "dim-unfocused": null,
-    "gamepad-bindings": null
+    "animation": null,
+    "btrtile": "btrtile-v0.9.patch",
+    "swapfocus": "swapfocus-0.8.patch"
   }
 }
